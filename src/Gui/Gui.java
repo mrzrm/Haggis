@@ -55,7 +55,7 @@ public class Gui extends JFrame {
 	private JToggleButton btn13;
 	private JToggleButton btn14;
 	
-	public ImageIcon yellow2 = new ImageIcon(Gui.class.getResource("/images/gelb02.jpg"));
+	public ImageIcon yellow2 = new ImageIcon(Gui.class.getResource("/images/yellow/gelb02.jpg"));
 	private JButton btnPassen;
 	private JButton btnAusspielen;
 	private JButton btnSort;
