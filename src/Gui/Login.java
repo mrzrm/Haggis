@@ -7,18 +7,19 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import java.awt.FlowLayout;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Login extends JFrame {
+public class Login extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -56,7 +57,7 @@ public class Login extends JFrame {
 		setResizable(false);
 		setTitle("Login Haggis Game");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 350, 340);
+		setBounds(100, 100, 450, 340);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -71,10 +72,11 @@ public class Login extends JFrame {
 		
 		textField = new JTextField();
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
+		textField.addActionListener(this);
 		panel_center.add(textField);
 		textField.setColumns(10);
 		
-		lblmaxZeichen = new JLabel("(max.12 Zeichen)");
+		lblmaxZeichen = new JLabel("(max. 14 Zeichen)");
 		panel_center.add(lblmaxZeichen);
 		
 		panel_north = new JPanel();
@@ -89,15 +91,56 @@ public class Login extends JFrame {
 		contentPane.add(panel_south, BorderLayout.SOUTH);
 		
 		btnSpielStarten = new JButton("Spiel starten");
+		btnSpielStarten.addActionListener(this);
 		panel_south.add(btnSpielStarten);
 		
 		btnVerlassen = new JButton("Verlassen");
-		btnVerlassen.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(-1);
-			}
-		});
+		btnVerlassen.addActionListener(this);
 		panel_south.add(btnVerlassen);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		Object src = e.getSource();
+		
+		//Input von btnSpielStarten
+		if (src == btnSpielStarten){
+			if (textField.getText().length() <= 14){
+				System.out.println("Login: btnSpielStarten");
+//					//Methode um User zu ertstellen	
+//					User Loginuser = new User(tfEnterNickname.getText());
+//					this.out.writeObject(Loginuser);
+//					tfEnterNickname.setText("");
+//					setVisible(false);
+//					playtable = new Playtable(this.out, this.in);
+			}else{
+				textField.setText("");
+				JOptionPane.showMessageDialog(null, "Spielername darf nicht mehr als 14 Zeichen haben!", "Dein Spielername ist zu lang!", JOptionPane.PLAIN_MESSAGE);
+			}
+			
+		// Input von textField (Eingabe mit Enter-Taste)
+		}else if (src == textField){
+			if(textField.getText().length() <= 14){
+				System.out.println("Login: textField");
+//					//Methode um User zu ertstellen	
+//					User Loginuser = new User(tfEnterNickname.getText());
+//					this.out.writeObject(Loginuser);
+//					tfEnterNickname.setText("");
+//					setVisible(false);
+//					playtable = new Playtable(this.out, this.in);
+			}else{
+				textField.setText("");
+				JOptionPane.showMessageDialog(null, "Spielername darf nicht mehr als 14 Zeichen haben!", "Dein Spielername ist zu lang!", JOptionPane.PLAIN_MESSAGE);
+			}
+		}
+		
+		//Input von btnVerlassen
+		if (src == btnVerlassen){
+			System.out.println("Login: btnVerlassen");
+			System.exit(-1);
+		}
+		
 	}
 
 }
