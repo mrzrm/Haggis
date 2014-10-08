@@ -15,7 +15,7 @@ public class Karte {
 	}
 	
 	public enum Farbe {
-        RED, GREEN, GREY, YELLOW;
+        RED, GREEN, GREY, YELLOW, JOKER;
 	}
 
 	public Farbe getFarbe() {
