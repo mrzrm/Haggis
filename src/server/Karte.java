@@ -5,12 +5,14 @@ import javax.swing.ImageIcon;
 public class Karte {
 
 	private final Farbe farbe;
-	private final int wert;
+	private final int rang;
+	private final int punkte;
 	private final ImageIcon icon;
 	
-	public Karte(Farbe f, int w, ImageIcon i){
+	public Karte(Farbe f, int r, int p, ImageIcon i){
 		this.farbe = f;
-		this.wert = w;
+		this.rang = r;
+		this.punkte = p;
 		this.icon = i;
 	}
 	
@@ -23,7 +25,12 @@ public class Karte {
 	}
 
 	public int getWert() {
-		return wert;
+		return rang;
+	}
+	
+	
+	public int getPunkte() {
+		return punkte;
 	}
 
 	public ImageIcon getIcon() {

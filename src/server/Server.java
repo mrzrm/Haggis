@@ -7,41 +7,51 @@ import java.net.ServerSocket;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
-public class Server extends JFrame{
+public class Server extends JFrame {
 
 	private ServerSocket server;
 	private JTextArea output;
-	private static Server s;
+	public static Server s;
+	private int port = 55559;
 
-	public Server(){
-			
-		super("Gaggis Game-Server");
-	
-		try {
-			server = new ServerSocket(5000, 2);
-		}
-		catch( IOException e ) {
-			e.printStackTrace();
-			System.exit( 1 );
-		}
+	public Server() {
 
-		output = new JTextArea();
-		getContentPane().add( output, BorderLayout.CENTER );
-		output.setText( "Server waiting for connections\n" );
-
-		setLocation(100,100);
-		setSize(300,300);
-		setVisible(true);
-	}
-	
-	public void display(String s){
+		super("Haggis Game-Server");
 		
+		output = new JTextArea();
+		getContentPane().add(output, BorderLayout.CENTER);
+		this.display("Server waiting for connections...");
+
+		setLocation(100, 100);
+		setSize(300, 300);
+		setVisible(true);
+		
+		try (ServerSocket serverSocket = new ServerSocket(port)) {
+			
+			while (ServerThread.userList.size() < 2) {
+				new ServerThread(serverSocket.accept()).start();
+
+			}
+		} catch (IOException e) {
+			this.display("Could not listen on port " + port);
+			System.err.println("Could not listen on port " + port);
+			System.exit(-1);
+		}
+	}
+
+	/**
+	 * Methode welche auf die Serverkonsole schreibt.
+	 * 
+	 * @param s
+	 *            : Text der auf Serverkonsole ausgegeben werden soll.
+	 */
+	public void display(String s) {
+
 		output.append(s + "\n");
 	}
-	
+
 	public static void main(String[] args) {
 		s = new Server();
 	}
 
 }
-

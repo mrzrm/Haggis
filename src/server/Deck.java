@@ -105,51 +105,54 @@ public class Deck {
 	public ArrayList<Karte> jokerPlayer1 = new ArrayList<Karte>();
 	public ArrayList<Karte> jokerPlayer2 = new ArrayList<Karte>();
 
+	/**
+	 * 
+	 */
 	public Deck() {
 
 		// Grüne Karten erstellen und zur ArrayList hinzufügen
-		kartenDeck.add(e02 = new Karte(Karte.Farbe.GREEN, 2, iie02));
-		kartenDeck.add(e03 = new Karte(Karte.Farbe.GREEN, 3, iie03));
-		kartenDeck.add(e04 = new Karte(Karte.Farbe.GREEN, 4, iie04));
-		kartenDeck.add(e05 = new Karte(Karte.Farbe.GREEN, 5, iie05));
-		kartenDeck.add(e06 = new Karte(Karte.Farbe.GREEN, 6, iie06));
-		kartenDeck.add(e07 = new Karte(Karte.Farbe.GREEN, 7, iie07));
-		kartenDeck.add(e08 = new Karte(Karte.Farbe.GREEN, 8, iie08));
-		kartenDeck.add(e09 = new Karte(Karte.Farbe.GREEN, 9, iie09));
-		kartenDeck.add(e10 = new Karte(Karte.Farbe.GREEN, 10, iie10));
+		kartenDeck.add(e02 = new Karte(Karte.Farbe.GREEN, 2, 0, iie02));
+		kartenDeck.add(e03 = new Karte(Karte.Farbe.GREEN, 3, 1, iie03));
+		kartenDeck.add(e04 = new Karte(Karte.Farbe.GREEN, 4, 0, iie04));
+		kartenDeck.add(e05 = new Karte(Karte.Farbe.GREEN, 5, 1, iie05));
+		kartenDeck.add(e06 = new Karte(Karte.Farbe.GREEN, 6, 0, iie06));
+		kartenDeck.add(e07 = new Karte(Karte.Farbe.GREEN, 7, 1, iie07));
+		kartenDeck.add(e08 = new Karte(Karte.Farbe.GREEN, 8, 0, iie08));
+		kartenDeck.add(e09 = new Karte(Karte.Farbe.GREEN, 9, 1, iie09));
+		kartenDeck.add(e10 = new Karte(Karte.Farbe.GREEN, 10, 0, iie10));
 
 		// Graue Karten erstellen und zur ArrayList hinzufügen
-		kartenDeck.add(g02 = new Karte(Karte.Farbe.GREY, 2, iig02));
-		kartenDeck.add(g03 = new Karte(Karte.Farbe.GREY, 3, iig03));
-		kartenDeck.add(g04 = new Karte(Karte.Farbe.GREY, 4, iig04));
-		kartenDeck.add(g05 = new Karte(Karte.Farbe.GREY, 5, iig05));
-		kartenDeck.add(g06 = new Karte(Karte.Farbe.GREY, 6, iig06));
-		kartenDeck.add(g07 = new Karte(Karte.Farbe.GREY, 7, iig07));
-		kartenDeck.add(g08 = new Karte(Karte.Farbe.GREY, 8, iig08));
-		kartenDeck.add(g09 = new Karte(Karte.Farbe.GREY, 9, iig09));
-		kartenDeck.add(g10 = new Karte(Karte.Farbe.GREY, 10, iig10));
+		kartenDeck.add(g02 = new Karte(Karte.Farbe.GREY, 2, 0, iig02));
+		kartenDeck.add(g03 = new Karte(Karte.Farbe.GREY, 3, 1, iig03));
+		kartenDeck.add(g04 = new Karte(Karte.Farbe.GREY, 4, 0, iig04));
+		kartenDeck.add(g05 = new Karte(Karte.Farbe.GREY, 5, 1, iig05));
+		kartenDeck.add(g06 = new Karte(Karte.Farbe.GREY, 6, 0, iig06));
+		kartenDeck.add(g07 = new Karte(Karte.Farbe.GREY, 7, 1, iig07));
+		kartenDeck.add(g08 = new Karte(Karte.Farbe.GREY, 8, 0, iig08));
+		kartenDeck.add(g09 = new Karte(Karte.Farbe.GREY, 9, 1, iig09));
+		kartenDeck.add(g10 = new Karte(Karte.Farbe.GREY, 10, 0, iig10));
 
 		// Rote Karten erstellen und zur ArrayList hinzufügen
-		kartenDeck.add(r02 = new Karte(Karte.Farbe.RED, 2, iir02));
-		kartenDeck.add(r03 = new Karte(Karte.Farbe.RED, 3, iir03));
-		kartenDeck.add(r04 = new Karte(Karte.Farbe.RED, 4, iir04));
-		kartenDeck.add(r05 = new Karte(Karte.Farbe.RED, 5, iir05));
-		kartenDeck.add(r06 = new Karte(Karte.Farbe.RED, 6, iir06));
-		kartenDeck.add(r07 = new Karte(Karte.Farbe.RED, 7, iir07));
-		kartenDeck.add(r08 = new Karte(Karte.Farbe.RED, 8, iir08));
-		kartenDeck.add(r09 = new Karte(Karte.Farbe.RED, 9, iir09));
-		kartenDeck.add(r10 = new Karte(Karte.Farbe.RED, 10, iir10));
+		kartenDeck.add(r02 = new Karte(Karte.Farbe.RED, 2, 0, iir02));
+		kartenDeck.add(r03 = new Karte(Karte.Farbe.RED, 3, 1, iir03));
+		kartenDeck.add(r04 = new Karte(Karte.Farbe.RED, 4, 0, iir04));
+		kartenDeck.add(r05 = new Karte(Karte.Farbe.RED, 5, 1, iir05));
+		kartenDeck.add(r06 = new Karte(Karte.Farbe.RED, 6, 0, iir06));
+		kartenDeck.add(r07 = new Karte(Karte.Farbe.RED, 7, 1, iir07));
+		kartenDeck.add(r08 = new Karte(Karte.Farbe.RED, 8, 0, iir08));
+		kartenDeck.add(r09 = new Karte(Karte.Farbe.RED, 9, 1, iir09));
+		kartenDeck.add(r10 = new Karte(Karte.Farbe.RED, 10, 0, iir10));
 
 		// Gelbe Karten erstellen und zur ArrayList hinzufügen
-		kartenDeck.add(y02 = new Karte(Karte.Farbe.YELLOW, 2, iiy02));
-		kartenDeck.add(y03 = new Karte(Karte.Farbe.YELLOW, 3, iiy03));
-		kartenDeck.add(y04 = new Karte(Karte.Farbe.YELLOW, 4, iiy04));
-		kartenDeck.add(y05 = new Karte(Karte.Farbe.YELLOW, 5, iiy05));
-		kartenDeck.add(y06 = new Karte(Karte.Farbe.YELLOW, 6, iiy06));
-		kartenDeck.add(y07 = new Karte(Karte.Farbe.YELLOW, 7, iiy07));
-		kartenDeck.add(y08 = new Karte(Karte.Farbe.YELLOW, 8, iiy08));
-		kartenDeck.add(y09 = new Karte(Karte.Farbe.YELLOW, 9, iiy09));
-		kartenDeck.add(y10 = new Karte(Karte.Farbe.YELLOW, 10, iiy10));
+		kartenDeck.add(y02 = new Karte(Karte.Farbe.YELLOW, 2, 0, iiy02));
+		kartenDeck.add(y03 = new Karte(Karte.Farbe.YELLOW, 3, 1, iiy03));
+		kartenDeck.add(y04 = new Karte(Karte.Farbe.YELLOW, 4, 0, iiy04));
+		kartenDeck.add(y05 = new Karte(Karte.Farbe.YELLOW, 5, 1, iiy05));
+		kartenDeck.add(y06 = new Karte(Karte.Farbe.YELLOW, 6, 0, iiy06));
+		kartenDeck.add(y07 = new Karte(Karte.Farbe.YELLOW, 7, 1, iiy07));
+		kartenDeck.add(y08 = new Karte(Karte.Farbe.YELLOW, 8, 0, iiy08));
+		kartenDeck.add(y09 = new Karte(Karte.Farbe.YELLOW, 9, 1, iiy09));
+		kartenDeck.add(y10 = new Karte(Karte.Farbe.YELLOW, 10, 0, iiy10));
 
 
 	}
@@ -160,6 +163,9 @@ public class Deck {
 
 	}
 
+	/**
+	 * 
+	 */
 	public void giveCards() {
 
 		// am besten nochmals Mischen
@@ -173,13 +179,13 @@ public class Deck {
 			}
 		}
 
-		jokerPlayer1.add(new Karte(Karte.Farbe.JOKER, 0, iij1));
-		jokerPlayer1.add(new Karte(Karte.Farbe.JOKER, 1, iiq1));
-		jokerPlayer1.add(new Karte(Karte.Farbe.JOKER, 2, iik1));
+		jokerPlayer1.add(new Karte(Karte.Farbe.JOKER, 11, 2, iij1));
+		jokerPlayer1.add(new Karte(Karte.Farbe.JOKER, 12, 3, iiq1));
+		jokerPlayer1.add(new Karte(Karte.Farbe.JOKER, 13, 5, iik1));
 
-		jokerPlayer2.add(new Karte(Karte.Farbe.JOKER, 0, iij1));
-		jokerPlayer2.add(new Karte(Karte.Farbe.JOKER, 1, iiq1));
-		jokerPlayer2.add(new Karte(Karte.Farbe.JOKER, 2, iik1));
+		jokerPlayer2.add(new Karte(Karte.Farbe.JOKER, 11, 2, iij1));
+		jokerPlayer2.add(new Karte(Karte.Farbe.JOKER, 12, 3, iiq1));
+		jokerPlayer2.add(new Karte(Karte.Farbe.JOKER, 13, 5, iik1));
 
 	}
 
@@ -209,7 +215,7 @@ public class Deck {
 
 		for (int i = 0; i < d.jokerPlayer1.size(); i++) {
 			System.out
-					.print("Farbe: " + d.jokerPlayer1.get(i).getFarbe() + " ");
+			.print("Farbe: " + d.jokerPlayer1.get(i).getFarbe() + " ");
 			System.out.println("Wert: " + d.jokerPlayer1.get(i).getWert());
 		}
 
@@ -223,7 +229,7 @@ public class Deck {
 
 		for (int i = 0; i < d.jokerPlayer2.size(); i++) {
 			System.out
-					.print("Farbe: " + d.jokerPlayer2.get(i).getFarbe() + " ");
+			.print("Farbe: " + d.jokerPlayer2.get(i).getFarbe() + " ");
 			System.out.println("Wert: " + d.jokerPlayer2.get(i).getWert());
 
 		}

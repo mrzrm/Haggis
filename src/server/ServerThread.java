@@ -3,36 +3,66 @@ package server;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class ServerThread extends Thread {
-	
+
 	private Socket connection;
 	private DataInputStream input;
 	private DataOutputStream output;
-	private Server server;
+//	private Server server;
+	static int userId = 0;
+	public static ArrayList<User> userList = new ArrayList<User>(2);
+	public static ArrayList<ObjectOutputStream> outlist = new ArrayList<ObjectOutputStream>(
+			2);
 
-	//Konstruktor
-	public ServerThread(Socket socket, Server s) {
+	// Konstruktor
+	public ServerThread(Socket socket) {
 		this.connection = socket;
-		
-		try {
-			input = new DataInputStream(connection.getInputStream() );
-			output = new DataOutputStream(connection.getOutputStream() );
-		}
-		catch( IOException e ) {
-			e.printStackTrace();
-			System.exit(1);
-		}
-		
-		server = s;
-		
-		
+
 	}
 
-	//Run Methode
-	public void run(){
-		
-		
+	// Run Methode
+	public void run() {
+
+		// sends object (out) and receives object (in)
+		try {
+			ObjectOutputStream out = new ObjectOutputStream(
+					connection.getOutputStream());
+			out.flush();
+			outlist.add(out);
+			ObjectInputStream in = new ObjectInputStream(
+					connection.getInputStream());
+
+			Object inputObject;
+			try {
+
+				while ((inputObject = in.readObject()) != null) {
+
+					if (inputObject instanceof User) {
+						User user = (User) inputObject;
+						user.setUserId(userId);
+						userList.add(user);
+						out.writeObject(userId);
+						userId++;
+						System.out.println(this.getId() + ": Spieler " + user.getUserId() + " hat sich eingeloggt!");
+						
+						//Server.s.display("User mit ID " + userId + "hat sich eingeloggt!");
+
+					}
+
+				}
+			} catch (ClassNotFoundException cnfException) {
+				cnfException.printStackTrace();
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			
+		}
+
 	}
 }

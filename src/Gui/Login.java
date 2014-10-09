@@ -16,11 +16,20 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
+import server.User;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
+@SuppressWarnings("serial")
 public class Login extends JFrame implements ActionListener{
 
+	ObjectOutputStream out;
+	ObjectInputStream in;
+	
 	private JPanel contentPane;
 	private JTextField textField;
 	private JLabel lblSpielerNameEingeben;
@@ -35,25 +44,36 @@ public class Login extends JFrame implements ActionListener{
 	private JLabel lblmaxZeichen;
 
 	/**
-	 * Launch the application.
+	 * Launch the application. Only for test purposes
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login frame = new Login();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Login frame = new Login();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
+	
+	public Login(ObjectOutputStream out, ObjectInputStream in){
+		this.init();
+		this.setVisible(true);
+		this.out = out;
+		this.in = in;
+		System.out.println("Login.java: Login erstellt!");
+	}
+	
+	
 	/**
 	 * Create the frame.
+	 * @return 
 	 */
-	public Login() {
+	public void init() {
 		setResizable(false);
 		setTitle("Login Haggis Game");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -108,6 +128,15 @@ public class Login extends JFrame implements ActionListener{
 		if (src == btnSpielStarten){
 			if (textField.getText().length() <= 14){
 				System.out.println("Login: btnSpielStarten");
+				
+				User newUser = new User(textField.getText());
+				try {
+					this.out.writeObject(newUser);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				setVisible(false);
 //					//Methode um User zu ertstellen	
 //					User Loginuser = new User(tfEnterNickname.getText());
 //					this.out.writeObject(Loginuser);
@@ -138,7 +167,7 @@ public class Login extends JFrame implements ActionListener{
 		//Input von btnVerlassen
 		if (src == btnVerlassen){
 			System.out.println("Login: btnVerlassen");
-			System.exit(-1);
+			System.exit(0);
 		}
 		
 	}
