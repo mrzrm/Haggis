@@ -64,6 +64,8 @@ public class Client {
 				// set Client_ID
 				if (inputObject instanceof Integer) {
 					clientId = (int) inputObject;
+					Gui frame = new Gui();
+					frame.setVisible(true);
 				} 
 				
 				// Error if someone disconnects or closes game

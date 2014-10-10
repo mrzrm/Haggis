@@ -13,6 +13,7 @@ public class Server extends JFrame {
 	private JTextArea output;
 	public static Server s;
 	private int port = 55559;
+	private int loggedUser;
 
 	public Server() {
 
@@ -28,8 +29,9 @@ public class Server extends JFrame {
 		
 		try (ServerSocket serverSocket = new ServerSocket(port)) {
 			
-			while (ServerThread.userList.size() < 2) {
+			while (loggedUser < 2) {
 				new ServerThread(serverSocket.accept()).start();
+				loggedUser++;
 
 			}
 		} catch (IOException e) {
