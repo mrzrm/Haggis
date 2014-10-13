@@ -3,6 +3,7 @@ package Gui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Image;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -55,11 +56,20 @@ public class Gui extends JFrame {
 	private JToggleButton btn13;
 	private JToggleButton btn14;
 	
-	public ImageIcon yellow2 = new ImageIcon(Gui.class.getResource("/images/yellow/gelb02.jpg"));
+	public ImageIcon yellow2 = new ImageIcon(Gui.class.getResource("/images/yellow/gelb02.jpg")); // test purpose
+	public ImageIcon iibube = new ImageIcon(Gui.class.getResource("/images/special/Bube.jpg"));
+	public ImageIcon iidame = new ImageIcon(Gui.class.getResource("/images/special/Dame.jpg"));
+	public ImageIcon iikoenig = new ImageIcon(Gui.class.getResource("/images/special/König.jpg"));
+	
 	private JButton btnPassen;
 	private JButton btnAusspielen;
-	private JButton btnSort;
 	boolean state = true;
+	private JToggleButton btnp1koenig;
+	private JPanel p2joker;
+	private JToggleButton btnp1bube;
+	private JLabel btnp2bube;
+	private JLabel btnp2dame;
+	private JLabel btnp2koenig;
 	
 	/**
 	 * Launch the application.
@@ -107,72 +117,116 @@ public class Gui extends JFrame {
 		JPanel panel_spieler2 = new JPanel();
 		panel_spieler2.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
-		JPanel panel_1 = new JPanel();
+		JPanel btnPanel = new JPanel();
+		btnPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		
+		JPanel p1joker = new JPanel();
+		p1joker.setMaximumSize(new Dimension(228, 123));
+		p1joker.setMinimumSize(new Dimension(228, 123));
+		p1joker.setPreferredSize(new Dimension(228, 123));
+		
+		p2joker = new JPanel();
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panel_mycards, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 267, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panel_spieler1, GroupLayout.PREFERRED_SIZE, 267, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panel_spieler2, GroupLayout.PREFERRED_SIZE, 267, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
+						.addComponent(panel_mycards, GroupLayout.PREFERRED_SIZE, 604, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(p2joker, GroupLayout.PREFERRED_SIZE, 290, Short.MAX_VALUE)
+						.addComponent(panel_spieler2, GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+						.addComponent(p1joker, GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+						.addComponent(panel_spieler1, GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+						.addComponent(btnPanel, GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel_spieler2, GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
-						.addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(panel_spieler1, GroupLayout.PREFERRED_SIZE, 171, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-						.addComponent(panel_mycards, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(panel_spieler2, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(p2joker, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(panel_spieler1, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(p1joker, GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnPanel, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
+						.addComponent(panel_mycards, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addContainerGap())
 		);
-		panel_1.setLayout(new GridLayout(2, 2, 2, 2));
+		
+	
+		
+		
+		// Bube im Spieler 1 panel
+		btnp1bube = new JToggleButton("");
+		btnp1bube.setPreferredSize(new Dimension(76, 123));
+		p1joker.add(btnp1bube);
+		
+		Image iibubeimage =  iibube.getImage();
+		Image newimg = iibubeimage.getScaledInstance(76, 123, java.awt.Image.SCALE_SMOOTH); 
+		ImageIcon iibube2 = new ImageIcon(newimg);  
+		btnp1bube.setIcon(iibube2);
+		
+		
+		// Dame im Spieler 1 panel
+		JToggleButton btnp1dame = new JToggleButton("");
+		btnp1dame.setPreferredSize(new Dimension(76, 123));
+		p1joker.add(btnp1dame);
+		
+		Image iidameimage =  iidame.getImage();
+		Image newimg2 = iidameimage.getScaledInstance(76, 123, java.awt.Image.SCALE_SMOOTH); 
+		ImageIcon iidame2 = new ImageIcon(newimg2);  
+		btnp1dame.setIcon(iidame2);
+		
+		// König im Spieler 1 panel
+		btnp1koenig = new JToggleButton("");
+		btnp1koenig.setPreferredSize(new Dimension(76, 123));
+		p1joker.add(btnp1koenig);
+		
+		Image iikoenigimage =  iikoenig.getImage();
+		Image newimg3 = iikoenigimage.getScaledInstance(76, 123, java.awt.Image.SCALE_SMOOTH); 
+		ImageIcon iikoenig2 = new ImageIcon(newimg3);  
+		btnp1koenig.setIcon(iikoenig2);
+		
+		
+		// p1joker panel
+		//
+		btnp2bube = new JLabel("");
+		btnp2bube.setPreferredSize(new Dimension(76, 123));
+		p2joker.add(btnp2bube);
+		btnp2bube.setIcon(iibube2);
+		
+		btnp2dame = new JLabel("");
+		btnp2dame.setFocusCycleRoot(true);
+		btnp2dame.setPreferredSize(new Dimension(76, 123));
+		p2joker.add(btnp2dame);
+		btnp2dame.setIcon(iidame2);
+				
+		btnp2koenig = new JLabel("");
+		btnp2koenig.setPreferredSize(new Dimension(76, 123));
+		p2joker.add(btnp2koenig);
+		btnp2koenig.setIcon(iikoenig2);
+				
+		
+		p1joker.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 2));
+		btnPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		btnAusspielen = new JButton("Ausspielen");
 		btnAusspielen.setActionCommand("Ausspielen");
-		panel_1.add(btnAusspielen);
+		btnPanel.add(btnAusspielen);
 		
 		
 		btnPassen = new JButton("Passen");
-		panel_1.add(btnPassen);
-		
-		btnSort = new JButton("Farbe sortieren");
-		panel_1.add(btnSort);
-		btnSort.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				
-				
-				if (state){
-					
-					// Methode für nach Farbe sortieren hier einfügen
-					btnSort.setText("Rang sortieren");
-					state = false;
-					
-				}
-				else{
-										
-					// Methode für nach Rang sortieren hier einfügen
-					btnSort.setText("Farbe sortieren");
-					state = true;
-				}
-
-				
-				
-			}
-		});
+		btnPanel.add(btnPassen);
 		
 		JLabel lblSpieler_1 = new JLabel("Spieler 2");
 		lblSpieler_1.setHorizontalAlignment(SwingConstants.LEFT);
