@@ -48,9 +48,12 @@ public class ServerThread extends Thread {
 						userList.add(user);
 						out.writeObject(userId);
 						userId++;
-						System.out.println(this.getId() + ": Spieler " + user.getUserId() + " hat sich eingeloggt!");
+						System.out.println(this.getId() + ": Spieler " + user.getName() + " hat sich eingeloggt! (" + user.getUserId() + ")");
 						
-						//Server.s.display("User mit ID " + userId + "hat sich eingeloggt!");
+						// Ausgabe in Serverkonsole
+						Server.display(this.getId() + ": Spieler " + user.getName() + " hat sich eingeloggt! (" + user.getUserId() + ")");
+						
+						
 
 					}
 

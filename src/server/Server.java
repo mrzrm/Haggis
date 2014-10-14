@@ -10,7 +10,7 @@ import javax.swing.JTextArea;
 public class Server extends JFrame {
 
 	private ServerSocket server;
-	private JTextArea output;
+	private static JTextArea output;
 	public static Server s;
 	private int port = 55559;
 	private int loggedUser;
@@ -47,7 +47,7 @@ public class Server extends JFrame {
 	 * @param s
 	 *            : Text der auf Serverkonsole ausgegeben werden soll.
 	 */
-	public void display(String s) {
+	public static void display(String s) {
 
 		output.append(s + "\n");
 	}
