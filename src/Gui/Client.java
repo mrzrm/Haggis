@@ -68,7 +68,7 @@ public class Client {
 				// empfangen des Masteobjekts
 				else if (inputObject instanceof MasterObject) {
 					m = (MasterObject) inputObject;
-					System.out.println("MsterObject empfangen - Spieler: " + m.users.get(0).getName() + " und " + m.users.get(1).getName());
+					System.out.println("MasterObject empfangen - Spieler: " + m.users.get(0).getName() + " und " + m.users.get(1).getName());
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
@@ -76,7 +76,7 @@ public class Client {
 					}
 					refreshGui();
 				} 
-				// set Client_ID
+				// ClientId setzen
 				if (inputObject instanceof Integer) {
 					clientId = (int) inputObject;
 					Gui frame = new Gui();
@@ -111,6 +111,8 @@ public class Client {
 				else{
 					Gui.lblSpieler2.setText(m.users.get(i).getName());
 				}
+				
+				
 			}
 		}
 		
@@ -120,6 +122,18 @@ public class Client {
 		}
 		else{
 			kartenSetzen(1);
+		}
+		
+		// Buttons aktivieren und Status setzen wenn Spieler am Zug ist
+		if(m.getAmZug() == clientId){
+			Gui.btnAusspielen.setEnabled(true);
+			Gui.btnPassen.setEnabled(true);
+			Gui.jlStatus.setText("Sie sind am Zug.");
+		}
+		else{
+			Gui.btnAusspielen.setEnabled(false);
+			Gui.btnPassen.setEnabled(false);
+			Gui.jlStatus.setText("Ihr gegner ist am Zug.");
 		}
 		
 	}

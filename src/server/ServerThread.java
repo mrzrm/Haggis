@@ -9,6 +9,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+
+
 public class ServerThread extends Thread {
 
 	private Socket connection;
@@ -74,7 +76,7 @@ public class ServerThread extends Thread {
 													
 							// sleep
 							try {
-								Thread.sleep(1000);
+								Thread.sleep(100);
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
@@ -82,14 +84,36 @@ public class ServerThread extends Thread {
 						}
 
 					}
+					
+					// Input vom  MasterObjekt
+					else if (inputObject instanceof MasterObject) {
+						MasterObject m = (MasterObject) inputObject;
+						
+						// Spiellogik aufrufen
+						// etwa so: m = Logik.machmal(m);
+						
+						// Neues MasterObejct zu den Clients zurückschicken
+						Iterator<ObjectOutputStream> i = outlist.iterator();
+						while (i.hasNext()) {
+							i.next().writeObject(m);
+						}
+						
+					}
+					
+					// Falls ein kaputtes Objekt ankommt 
+					else {
+						Server.display("Unerwartetes Objekt erhalten: " + inputObject.getClass().getName());
+					}
 
 				}
 			} catch (ClassNotFoundException cnfException) {
 				cnfException.printStackTrace();
+				Server.display("Class Not Found Exception: " + cnfException.toString());
 			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
+			Server.display("Ein Spieler hat das Spiel verlassen!\n" + e.toString()); 
 
 		}
 

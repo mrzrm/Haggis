@@ -21,7 +21,7 @@ public class Server extends JFrame {
 		
 		output = new JTextArea();
 		getContentPane().add(output, BorderLayout.CENTER);
-		this.display("Server waiting for connections...");
+		this.display("Server wartet auf Spieler ...");
 
 		setLocation(100, 100);
 		setSize(300, 300);

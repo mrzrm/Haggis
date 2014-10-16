@@ -37,6 +37,24 @@ public class MasterObject implements Serializable {
 		this.passt = false;
 		this.amZug = 0;
 	}
+
+	public boolean isPasst() {
+		return passt;
+	}
+
+	public void setPasst(boolean passt) {
+		this.passt = passt;
+	}
+
+	public int getAmZug() {
+		return amZug;
+	}
+
+	public void setAmZug(int amZug) {
+		this.amZug = amZug;
+	}
+	
+	
 	
 	
 }
