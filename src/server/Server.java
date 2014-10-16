@@ -12,7 +12,7 @@ public class Server extends JFrame {
 	private ServerSocket server;
 	private static JTextArea output;
 	public static Server s;
-	private int port = 55559;
+	private int port = 55558;
 	private int loggedUser;
 
 	public Server() {

@@ -189,6 +189,38 @@ public class Deck {
 
 	}
 
+	public ArrayList<Karte> getKartenPlayer1() {
+		return kartenPlayer1;
+	}
+
+	public void setKartenPlayer1(ArrayList<Karte> kartenPlayer1) {
+		this.kartenPlayer1 = kartenPlayer1;
+	}
+
+	public ArrayList<Karte> getKartenPlayer2() {
+		return kartenPlayer2;
+	}
+
+	public void setKartenPlayer2(ArrayList<Karte> kartenPlayer2) {
+		this.kartenPlayer2 = kartenPlayer2;
+	}
+
+	public ArrayList<Karte> getJokerPlayer1() {
+		return jokerPlayer1;
+	}
+
+	public void setJokerPlayer1(ArrayList<Karte> jokerPlayer1) {
+		this.jokerPlayer1 = jokerPlayer1;
+	}
+
+	public ArrayList<Karte> getJokerPlayer2() {
+		return jokerPlayer2;
+	}
+
+	public void setJokerPlayer2(ArrayList<Karte> jokerPlayer2) {
+		this.jokerPlayer2 = jokerPlayer2;
+	}
+
 	public static void main(String[] args) {
 
 		// Neues Deck erstellen

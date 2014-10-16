@@ -17,7 +17,7 @@ public class Client {
 	Object inputObject;
 	static int clientId;
 	static String hostName = "localhost";
-	static int portNumber = 55559;
+	static int portNumber = 55558;
 	
 
 	

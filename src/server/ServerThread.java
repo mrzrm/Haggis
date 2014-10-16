@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
+
 public class ServerThread extends Thread {
 
 	private Socket connection;
@@ -53,7 +54,10 @@ public class ServerThread extends Thread {
 						// Ausgabe in Serverkonsole
 						Server.display(this.getId() + ": Spieler " + user.getName() + " hat sich eingeloggt! (" + user.getUserId() + ")");
 						
-						
+						//falls 2 spieler angemeldet sind, wird masterobject erstellt
+						if (userList.size() == 2) {
+							MasterObject mo = new MasterObject(userList);
+						}
 
 					}
 
