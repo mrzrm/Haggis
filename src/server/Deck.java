@@ -1,14 +1,16 @@
 package server;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 import javax.swing.ImageIcon;
 
 import server.Karte;
 import Gui.Gui;
 
-public class Deck {
+public class Deck implements Serializable {
 
 	public ImageIcon iie02 = new ImageIcon(
 			Gui.class.getResource("/images/green/gruen02.jpg"));
@@ -154,7 +156,6 @@ public class Deck {
 		kartenDeck.add(y09 = new Karte(Karte.Farbe.YELLOW, 9, 1, iiy09));
 		kartenDeck.add(y10 = new Karte(Karte.Farbe.YELLOW, 10, 0, iiy10));
 
-
 	}
 
 	public void shuffleDeck() {
@@ -178,6 +179,10 @@ public class Deck {
 				kartenPlayer2.add(this.kartenDeck.get(j));
 			}
 		}
+
+		// Sorting
+		Collections.sort(kartenPlayer1, new CustomComparator());
+		Collections.sort(kartenPlayer2, new CustomComparator());
 
 		jokerPlayer1.add(new Karte(Karte.Farbe.JOKER, 11, 2, iij1));
 		jokerPlayer1.add(new Karte(Karte.Farbe.JOKER, 12, 3, iiq1));
@@ -221,49 +226,50 @@ public class Deck {
 		this.jokerPlayer2 = jokerPlayer2;
 	}
 
-	public static void main(String[] args) {
+//	public static void main(String[] args) {
+//
+//		 //Neues Deck erstellen
+//		 Deck d = new Deck();
+//
+//		// Karten mischen und verteilen
+//		 d.giveCards();
+//
+//		
+//
+//		System.out.println("KARTEN SPIELER 1");
+//		for (int i = 0; i < d.kartenPlayer1.size(); i++) {
+//			System.out.print("Farbe: " + d.kartenPlayer1.get(i).getFarbe()
+//					+ " ");
+//			System.out.println("Wert: " + d.kartenPlayer1.get(i).getWert());
+//
+//		}
+//
+//		for (int i = 0; i < d.jokerPlayer1.size(); i++) {
+//			System.out
+//					.print("Farbe: " + d.jokerPlayer1.get(i).getFarbe() + " ");
+//			System.out.println("Wert: " + d.jokerPlayer1.get(i).getWert());
+//		}
+//
+//		System.out.println("KARTEN SPIELER 2");
+//		for (int i = 0; i < d.kartenPlayer2.size(); i++) {
+//			System.out.print("Farbe: " + d.kartenPlayer2.get(i).getFarbe()
+//					+ " ");
+//			System.out.println("Wert: " + d.kartenPlayer2.get(i).getWert());
+//
+//		}
+//
+//		for (int i = 0; i < d.jokerPlayer2.size(); i++) {
+//			System.out
+//					.print("Farbe: " + d.jokerPlayer2.get(i).getFarbe() + " ");
+//			System.out.println("Wert: " + d.jokerPlayer2.get(i).getWert());
+//
+//		}
+//	}
 
-		// Neues Deck erstellen
-		Deck d = new Deck();
-
-		// Karten mischen und verteilen
-		d.giveCards();
-
-		/*
-		 * for(int i = 0; i < d.kartendeck.size(); i++){
-		 * System.out.print("Farbe: " + d.kartendeck.get(i).getFarbe() + " ");
-		 * System.out.println("Wert: " + d.kartendeck.get(i).getWert());
-		 * 
-		 * }
-		 */
-
-		System.out.println("KARTEN SPIELER 1");
-		for (int i = 0; i < d.kartenPlayer1.size(); i++) {
-			System.out.print("Farbe: " + d.kartenPlayer1.get(i).getFarbe()
-					+ " ");
-			System.out.println("Wert: " + d.kartenPlayer1.get(i).getWert());
-
-		}
-
-		for (int i = 0; i < d.jokerPlayer1.size(); i++) {
-			System.out
-			.print("Farbe: " + d.jokerPlayer1.get(i).getFarbe() + " ");
-			System.out.println("Wert: " + d.jokerPlayer1.get(i).getWert());
-		}
-
-		System.out.println("KARTEN SPIELER 2");
-		for (int i = 0; i < d.kartenPlayer2.size(); i++) {
-			System.out.print("Farbe: " + d.kartenPlayer2.get(i).getFarbe()
-					+ " ");
-			System.out.println("Wert: " + d.kartenPlayer2.get(i).getWert());
-
-		}
-
-		for (int i = 0; i < d.jokerPlayer2.size(); i++) {
-			System.out
-			.print("Farbe: " + d.jokerPlayer2.get(i).getFarbe() + " ");
-			System.out.println("Wert: " + d.jokerPlayer2.get(i).getWert());
-
+	public class CustomComparator implements Comparator<Karte> {
+		@Override
+		public int compare(Karte k1, Karte k2) {
+			return k1.getWert() - (k2.getWert());
 		}
 	}
 

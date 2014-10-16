@@ -36,6 +36,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 
 public class Gui extends JFrame {
 	
@@ -55,8 +56,9 @@ public class Gui extends JFrame {
 	private JToggleButton btn12;
 	private JToggleButton btn13;
 	private JToggleButton btn14;
+	public static ArrayList<JToggleButton> alKarten = new ArrayList<JToggleButton>();
 	
-	public ImageIcon yellow2 = new ImageIcon(Gui.class.getResource("/images/yellow/gelb02.jpg")); // test purpose
+	//public ImageIcon yellow2 = new ImageIcon(Gui.class.getResource("/images/yellow/gelb02.jpg")); // test purpose
 	public ImageIcon iibube = new ImageIcon(Gui.class.getResource("/images/special/Bube.jpg"));
 	public ImageIcon iidame = new ImageIcon(Gui.class.getResource("/images/special/Dame.jpg"));
 	public ImageIcon iikoenig = new ImageIcon(Gui.class.getResource("/images/special/König.jpg"));
@@ -70,6 +72,8 @@ public class Gui extends JFrame {
 	private JLabel btnp2bube;
 	private JLabel btnp2dame;
 	private JLabel btnp2koenig;
+	public static JLabel lblSpieler1;
+	public static JLabel lblSpieler2;
 	
 	/**
 	 * Launch the application.
@@ -228,75 +232,90 @@ public class Gui extends JFrame {
 		btnPassen = new JButton("Passen");
 		btnPanel.add(btnPassen);
 		
-		JLabel lblSpieler_1 = new JLabel("Spieler 2");
-		lblSpieler_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblSpieler_1.setFont(new Font("Tahoma", Font.BOLD, 24));
-		panel_spieler2.add(lblSpieler_1);
+		lblSpieler2 = new JLabel("Spieler 2");
+		lblSpieler2.setHorizontalAlignment(SwingConstants.LEFT);
+		lblSpieler2.setFont(new Font("Tahoma", Font.BOLD, 24));
+		panel_spieler2.add(lblSpieler2);
 		
-		JLabel lblSpieler = new JLabel("Spieler 1");
-		lblSpieler.setFont(new Font("Tahoma", Font.BOLD, 24));
-		lblSpieler.setHorizontalAlignment(SwingConstants.LEFT);
-		panel_spieler1.add(lblSpieler);
+		lblSpieler1 = new JLabel("Spieler 1");
+		lblSpieler1.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblSpieler1.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_spieler1.add(lblSpieler1);
 		panel_mycards.setLayout(new GridLayout(2, 7, 0, 0));
 		
 		btn1 = new JToggleButton("");
 		btn1.setPreferredSize(new Dimension(87, 140));
 		panel_mycards.add(btn1);
-		btn1.setIcon(yellow2);
-		
+		alKarten.add(btn1);
+				
 		btn2 = new JToggleButton("");
 		btn2.setPreferredSize(new Dimension(87, 140));
 		btn2.setSize(new Dimension(87, 140));
 		panel_mycards.add(btn2);
+		alKarten.add(btn2);
 		
 		btn3 = new JToggleButton("");
 		btn3.setPreferredSize(new Dimension(87, 140));
 		panel_mycards.add(btn3);
+		alKarten.add(btn3);
 		
 		btn4 = new JToggleButton("");
 		btn4.setPreferredSize(new Dimension(87, 140));
 		panel_mycards.add(btn4);
+		alKarten.add(btn4);
 		
 		btn5 = new JToggleButton("");
 		btn5.setPreferredSize(new Dimension(87, 140));
 		panel_mycards.add(btn5);
+		alKarten.add(btn5);
 		
 		btn6 = new JToggleButton("");
 		btn6.setPreferredSize(new Dimension(87, 140));
 		panel_mycards.add(btn6);
+		alKarten.add(btn6);
 		
 		btn7 = new JToggleButton("");
 		btn7.setPreferredSize(new Dimension(87, 140));
 		panel_mycards.add(btn7);
+		alKarten.add(btn7);
 		
 		btn8 = new JToggleButton("");
 		btn8.setPreferredSize(new Dimension(87, 140));
 		panel_mycards.add(btn8);
+		alKarten.add(btn8);
 		
 		btn9 = new JToggleButton("");
 		btn9.setSize(new Dimension(87, 140));
 		btn9.setPreferredSize(new Dimension(87, 140));
 		panel_mycards.add(btn9);
+		alKarten.add(btn9);
 		
 		btn10 = new JToggleButton("");
 		btn10.setPreferredSize(new Dimension(87, 140));
 		panel_mycards.add(btn10);
+		alKarten.add(btn10);
 		
 		btn11 = new JToggleButton("");
 		btn11.setPreferredSize(new Dimension(87, 140));
 		panel_mycards.add(btn11);
+		alKarten.add(btn11);
 		
 		btn12 = new JToggleButton("");
 		btn12.setPreferredSize(new Dimension(87, 140));
 		panel_mycards.add(btn12);
+		alKarten.add(btn12);
 		
 		btn13 = new JToggleButton("");
 		btn13.setPreferredSize(new Dimension(87, 140));
 		panel_mycards.add(btn13);
+		alKarten.add(btn13);
 		
 		btn14 = new JToggleButton("");
 		btn14.setPreferredSize(new Dimension(87, 140));
 		panel_mycards.add(btn14);
+		alKarten.add(btn14);
+		
+		
 		contentPane.setLayout(gl_contentPane);
 		
 		btnListener btnl1 = new btnListener();

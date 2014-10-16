@@ -151,7 +151,16 @@ public class Login extends JFrame implements ActionListener{
 		// Input von textField (Eingabe mit Enter-Taste)
 		}else if (src == textField){
 			if(textField.getText().length() <= 14){
-				System.out.println("Login: textField");
+				System.out.println("Login: btnSpielStarten");
+				
+				User newUser = new User(textField.getText());
+				try {
+					this.out.writeObject(newUser);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				setVisible(false);
 //					//Methode um User zu ertstellen	
 //					User Loginuser = new User(tfEnterNickname.getText());
 //					this.out.writeObject(Loginuser);

@@ -27,12 +27,12 @@ public class MasterObject implements Serializable {
 		d.giveCards();
 		
 		this.kartenPlayer1 = d.getKartenPlayer1();
-		this.kartenPlayer2 = d.getJokerPlayer2();
+		this.kartenPlayer2 = d.getKartenPlayer2();
 		this.kartenJoker1 = d.getJokerPlayer1();
 		this.kartenJoker2 = d.getJokerPlayer2();
 		
-		System.out.println(kartenPlayer1.get(0).getWert());
-		System.out.println("masterobject erstellt");
+		//System.out.println(kartenPlayer1.get(0).getWert());
+		System.out.println("Masteoject.java: MasterObject erstellt");
 		
 		this.passt = false;
 		this.amZug = 0;

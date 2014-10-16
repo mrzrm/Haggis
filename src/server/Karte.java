@@ -1,8 +1,10 @@
 package server;
 
+import java.io.Serializable;
+
 import javax.swing.ImageIcon;
 
-public class Karte {
+public class Karte implements Serializable{
 
 	private final Farbe farbe;
 	private final int rang;
@@ -36,6 +38,5 @@ public class Karte {
 	public ImageIcon getIcon() {
 		return icon;
 	}
-	
 	
 }

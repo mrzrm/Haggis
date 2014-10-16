@@ -5,7 +5,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.SocketException;
+
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+
+import server.MasterObject;
 
 
 public class Client {
@@ -18,6 +22,7 @@ public class Client {
 	static int clientId;
 	static String hostName = "localhost";
 	static int portNumber = 55558;
+	public MasterObject m;
 	
 
 	
@@ -48,19 +53,29 @@ public class Client {
 
 	
 	public void receiveObjectFromServer() {
-		// receive the UserObject and do whatever the client has to do...
+		// receive the Masterobject 
 		try {
 			while ((inputObject = in.readObject()) != null) {
-//				if (inputObject instanceof Masterobject) {
-//					//mo = (Masterobject) inputObject;
-//					
-//					try {
-//						Thread.sleep(100);
-//					} catch (InterruptedException e) {
-//						e.printStackTrace();
-//					}
-//					UpdatePlaytable();
-//				} 
+				
+				// empfangen der ClientID
+				if (inputObject instanceof Integer) {
+					clientId = (int) inputObject;
+					System.out.println("ClientId empfangen: " + clientId );
+				} 
+				
+				
+				
+				// empfangen des Masteobjekts
+				else if (inputObject instanceof MasterObject) {
+					m = (MasterObject) inputObject;
+					System.out.println("MsterObject empfangen - Spieler: " + m.users.get(0).getName() + " und " + m.users.get(1).getName());
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					refreshGui();
+				} 
 				// set Client_ID
 				if (inputObject instanceof Integer) {
 					clientId = (int) inputObject;
@@ -82,6 +97,48 @@ public class Client {
 		} catch (ClassNotFoundException | IOException cnfException) {
 			cnfException.printStackTrace();
 		}
+	}
+
+	private void refreshGui() {
+		
+		// Spielernamen setzen
+		if(Gui.lblSpieler1.getText().equals("Spieler 1")){
+			
+			for (int i = 0; i < m.users.size(); i++){
+				if (m.users.get(i).getUserId() == clientId){
+					Gui.lblSpieler1.setText(m.users.get(i).getName());
+				}
+				else{
+					Gui.lblSpieler2.setText(m.users.get(i).getName());
+				}
+			}
+		}
+		
+		// Spielkarten laden
+		if(clientId == 0){
+			kartenSetzen(0);
+		}
+		else{
+			kartenSetzen(1);
+		}
+		
+	}
+
+	private void kartenSetzen(int i) {
+		if(i == 0){
+			for (int j = 0; j < m.kartenPlayer1.size(); j++){
+				ImageIcon tmpii = m.kartenPlayer1.get(j).getIcon();
+				Gui.alKarten.get(j).setIcon(tmpii);
+			}
+		}
+		else{
+			for (int j = 0; j < m.kartenPlayer2.size(); j++){
+				ImageIcon tmpii = m.kartenPlayer2.get(j).getIcon();
+				Gui.alKarten.get(j).setIcon(tmpii);
+			}
+			
+		}
+		
 	}
 	
 	

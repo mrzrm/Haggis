@@ -7,14 +7,15 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
-
+import java.util.Iterator;
 
 public class ServerThread extends Thread {
 
 	private Socket connection;
-	private DataInputStream input;
-	private DataOutputStream output;
-//	private Server server;
+	//private DataInputStream input;
+	//private DataOutputStream output;
+	private MasterObject m;
+	// private Server server;
 	static int userId = 0;
 	public static ArrayList<User> userList = new ArrayList<User>(2);
 	public static ArrayList<ObjectOutputStream> outlist = new ArrayList<ObjectOutputStream>(
@@ -49,14 +50,35 @@ public class ServerThread extends Thread {
 						userList.add(user);
 						out.writeObject(userId);
 						userId++;
-						System.out.println(this.getId() + ": Spieler " + user.getName() + " hat sich eingeloggt! (" + user.getUserId() + ")");
-						
+						System.out.println(this.getId() + ": Spieler "
+								+ user.getName() + " hat sich eingeloggt! ("
+								+ user.getUserId() + ")");
+
 						// Ausgabe in Serverkonsole
-						Server.display(this.getId() + ": Spieler " + user.getName() + " hat sich eingeloggt! (" + user.getUserId() + ")");
-						
-						//falls 2 spieler angemeldet sind, wird masterobject erstellt
+						Server.display(this.getId() + ": Spieler "
+								+ user.getName() + " hat sich eingeloggt! ("
+								+ user.getUserId() + ")");
+
+						// falls 2 spieler angemeldet sind, wird masterobject
+						// erstellt
 						if (userList.size() == 2) {
-							MasterObject mo = new MasterObject(userList);
+							m = new MasterObject(userList);
+
+							// send Masterobject to Clients
+							Iterator<ObjectOutputStream> i = outlist.iterator();
+							while (i.hasNext()) {
+								i.next().writeObject(m);
+								System.out.println("ServerThread.java: MasterObject wurde geschickt!");
+							}
+									
+													
+							// sleep
+							try {
+								Thread.sleep(1000);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+							
 						}
 
 					}
@@ -68,7 +90,7 @@ public class ServerThread extends Thread {
 
 		} catch (IOException e) {
 			e.printStackTrace();
-			
+
 		}
 
 	}
