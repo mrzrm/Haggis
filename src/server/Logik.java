@@ -4,15 +4,38 @@ package server;
 public class Logik {
 	
 	public static MasterObject Kontrolle (MasterObject m){
-		m.setPasst(false);
-		System.out.println(m.getAmZug());
 		
-		if (m.amZug == 1){
-			m.amZug = 0;
-		}else{
-			m.amZug = 1;
+		// Falls Spieler passt
+		if (m.isPasst()){
+			m.setPasst(false);
+			
+			// Konsolenausgabe
+			Server.display(m.users.get(m.getAmZug()).getName() + " hat gepasst.");
 		}
-		System.out.println(m.getAmZug());
+		
+		
+		// Wenn Spieler Karten ausspielt
+		else {
+			
+			// Code hier einfügen wenn Karten gespielt werden
+			
+			
+			
+			
+			
+			
+		}
+				
+		
+		// Den Spieler der am Zug ist wechseln
+		if (m.getAmZug() == 1){
+			m.setAmZug(0);
+		}else{
+			m.setAmZug(1);
+		}
+		Server.display(m.users.get(m.getAmZug()).getName() + " ist am Zug.");
+		
+		
 		return m;
 	}
 }

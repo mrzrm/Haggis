@@ -261,11 +261,13 @@ public class Gui extends JFrame {
 		btnPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		btnAusspielen = new JButton("Ausspielen");
+		btnAusspielen.setEnabled(false);
 		btnAusspielen.setActionCommand("Ausspielen");
 		btnPanel.add(btnAusspielen);
 		
 		
 		btnPassen = new JButton("Passen");
+		btnPassen.setEnabled(false);
 		btnPanel.add(btnPassen);
 		
 		lblSpieler2 = new JLabel("Spieler 2");

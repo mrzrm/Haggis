@@ -52,14 +52,12 @@ public class ServerThread extends Thread {
 						userList.add(user);
 						out.writeObject(userId);
 						userId++;
-						System.out.println(this.getId() + ": Spieler "
-								+ user.getName() + " hat sich eingeloggt! ("
+						System.out.println("Thread Id: " + this.getId() + " Spieler "
+								+ user.getName() + " hat sich eingeloggt! (UserId:"
 								+ user.getUserId() + ")");
 
 						// Ausgabe in Serverkonsole
-						Server.display(this.getId() + ": Spieler "
-								+ user.getName() + " hat sich eingeloggt! ("
-								+ user.getUserId() + ")");
+						Server.display(user.getName() + " hat sich eingeloggt.");
 
 						// falls 2 spieler angemeldet sind, wird masterobject
 						// erstellt
@@ -71,6 +69,7 @@ public class ServerThread extends Thread {
 							while (i.hasNext()) {
 								i.next().writeObject(m);
 								System.out.println("ServerThread.java: MasterObject wurde geschickt!");
+								Server.display(m.users.get(0).getName() + " ist am Zug.");
 							}
 									
 													
@@ -97,6 +96,7 @@ public class ServerThread extends Thread {
 						while (i.hasNext()) {
 							i.next().writeObject(m);
 							System.out.println("Masterobjekt: sent back");
+							System.out.println("ServerThread.class - amZug:" + m.getAmZug());
 						}
 					}
 					
