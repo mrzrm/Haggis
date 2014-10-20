@@ -393,6 +393,8 @@ public class Gui extends JFrame {
 			if(e.getSource() == btnPassen){
 				System.out.println("Button: Passen");
 				// HIER CODE EINFÜGEN UM ZU PASSEN
+				Client.m.setPasst(true);
+				Client.sendObjectToServer();
 			}
 			
 		}

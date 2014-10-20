@@ -5,6 +5,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -16,13 +18,14 @@ public class Client {
 
 	Login login;
 	Socket socket;
-	ObjectOutputStream out;
+	static ObjectOutputStream out;
 	ObjectInputStream in;
 	Object inputObject;
 	static int clientId;
 	static String hostName = "localhost";
 	static int portNumber = 55558;
-	public MasterObject m;
+	public static MasterObject m;
+	public static ArrayList<ObjectOutputStream> outlist = new ArrayList<ObjectOutputStream>();
 	
 
 	
@@ -50,6 +53,16 @@ public class Client {
 			System.exit(1);
 		}
 	}
+	
+	public static void sendObjectToServer(){
+		// send Masterobject from client
+		try{
+			out.writeObject(Client.m);
+			System.out.println("Masterobject: sent");
+		}catch  (IOException e){
+			e.printStackTrace();
+		}
+	}
 
 	
 	public void receiveObjectFromServer() {
@@ -57,31 +70,29 @@ public class Client {
 		try {
 			while ((inputObject = in.readObject()) != null) {
 				
-				// empfangen der ClientID
-				if (inputObject instanceof Integer) {
-					clientId = (int) inputObject;
-					System.out.println("ClientId empfangen: " + clientId );
-				} 
+//				// empfangen der ClientID
+//				if (inputObject instanceof Integer) {
+//					clientId = (int) inputObject;
+//					System.out.println("ClientId empfangen: " + clientId );
+//				} 
 				
-				
-				
-				// empfangen des Masteobjekts
-				else if (inputObject instanceof MasterObject) {
+				// empfangen des Masterobjekts
+				if (inputObject instanceof MasterObject) {
 					m = (MasterObject) inputObject;
 					System.out.println("MasterObject empfangen - Spieler: " + m.users.get(0).getName() + " und " + m.users.get(1).getName());
+					refreshGui();
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					refreshGui();
-				} 
+				}
 				// ClientId setzen
-				if (inputObject instanceof Integer) {
+				else if (inputObject instanceof Integer) {
 					clientId = (int) inputObject;
 					Gui frame = new Gui();
 					frame.setVisible(true);
-				} 
+				}
 				
 				// Error if someone disconnects or closes game
 				else if (inputObject instanceof SocketException){
@@ -111,8 +122,6 @@ public class Client {
 				else{
 					Gui.lblSpieler2.setText(m.users.get(i).getName());
 				}
-				
-				
 			}
 		}
 		
@@ -133,9 +142,11 @@ public class Client {
 		else{
 			Gui.btnAusspielen.setEnabled(false);
 			Gui.btnPassen.setEnabled(false);
-			Gui.jlStatus.setText("Ihr gegner ist am Zug.");
+			Gui.jlStatus.setText("Ihr Gegner ist am Zug.");
 		}
-		
+		System.out.println("Client: gui refreshed");
+		System.out.println("am zug:" + m.getAmZug());
+		System.out.println("clientId: " + clientId);
 	}
 
 	private void kartenSetzen(int i) {

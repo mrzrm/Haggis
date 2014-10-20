@@ -12,8 +12,8 @@ public class MasterObject implements Serializable {
 	public ArrayList<Karte> kartenPlayer2;
 	public ArrayList<Karte> kartenJoker1;
 	public ArrayList<Karte> kartenJoker2;
-	public boolean passt = false;
-	public int amZug = 0;
+	public static boolean passt = false;
+	public static int amZug = 0;
 
 
 	//constructor
@@ -43,7 +43,7 @@ public class MasterObject implements Serializable {
 	}
 
 	public void setPasst(boolean passt) {
-		this.passt = passt;
+		this.passt = true;
 	}
 
 	public int getAmZug() {

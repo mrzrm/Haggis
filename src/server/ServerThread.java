@@ -90,14 +90,14 @@ public class ServerThread extends Thread {
 						MasterObject m = (MasterObject) inputObject;
 						
 						// Spiellogik aufrufen
-						// etwa so: m = Logik.machmal(m);
+						m = Logik.Kontrolle(m);
 						
 						// Neues MasterObejct zu den Clients zurückschicken
 						Iterator<ObjectOutputStream> i = outlist.iterator();
 						while (i.hasNext()) {
 							i.next().writeObject(m);
+							System.out.println("Masterobjekt: sent back");
 						}
-						
 					}
 					
 					// Falls ein kaputtes Objekt ankommt 
