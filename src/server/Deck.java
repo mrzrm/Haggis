@@ -225,6 +225,15 @@ public class Deck implements Serializable {
 	public void setJokerPlayer2(ArrayList<Karte> jokerPlayer2) {
 		this.jokerPlayer2 = jokerPlayer2;
 	}
+	
+	public ArrayList<Karte> getKartenDeck() {
+		return kartenDeck;
+	}
+
+	public void setKartenDeck(ArrayList<Karte> kartenDeck) {
+		this.kartenDeck = kartenDeck;
+	}
+	
 
 //	public static void main(String[] args) {
 //
@@ -265,6 +274,10 @@ public class Deck implements Serializable {
 //
 //		}
 //	}
+
+
+
+
 
 	public class CustomComparator implements Comparator<Karte> {
 		@Override

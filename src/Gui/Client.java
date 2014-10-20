@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JToggleButton;
 
 import server.MasterObject;
 
@@ -125,24 +127,40 @@ public class Client {
 			}
 		}
 		
-		// Spielkarten laden
-		if(clientId == 0){
-			kartenSetzen(0);
+		// Spielkarten auf Hand laden (wenn neu verteilt)
+		if (m.neuVerteilt) {
+			m.neuVerteilt = false;
+			if (clientId == 0) {
+				kartenSetzen(0);
+			} else {
+				kartenSetzen(1);
+			}
 		}
+		// Spielfläche laden
 		else{
-			kartenSetzen(1);
+			
+			// Reset Spielfläche
+			for (int g = 0; g < Gui.alKartenTisch.size(); g++){
+				Gui.alKartenTisch.get(g).setIcon(null);
+			}
+			// neue gespielte Karten setzen
+			for (int f = 0; f < m.gespielteKarten.size(); f++){
+				Gui.alKartenTisch.get(f).setIcon(m.gespielteKarten.get(f).getIcon());
+			}
+			// Array gespielte Karten löschen
+			m.gespielteKarten.clear();
 		}
 		
 		// Buttons aktivieren und Status setzen wenn Spieler am Zug ist
 		if(m.getAmZug() == clientId){
 			Gui.btnAusspielen.setEnabled(true);
 			Gui.btnPassen.setEnabled(true);
-			Gui.jlStatus.setText("Sie sind am Zug.");
+			Gui.jlStatus.setText("Sie sind am Zug");
 		}
 		else{
 			Gui.btnAusspielen.setEnabled(false);
 			Gui.btnPassen.setEnabled(false);
-			Gui.jlStatus.setText("Ihr Gegner ist am Zug.");
+			Gui.jlStatus.setText("Ihr Gegner ist am Zug");
 		}
 		System.out.println("Client: gui refreshed");
 		System.out.println("am zug:" + m.getAmZug());
@@ -152,20 +170,36 @@ public class Client {
 	private void kartenSetzen(int i) {
 		if(i == 0){
 			for (int j = 0; j < m.kartenPlayer1.size(); j++){
+				// ImageIcon setzen
 				ImageIcon tmpii = m.kartenPlayer1.get(j).getIcon();
 				Gui.alKarten.get(j).setIcon(tmpii);
+				// Kartenobjekt dem Button zuweisen
+				Gui.alKarten.get(j).setKarte(m.kartenPlayer1.get(j));
 			}
+			
+			for (int k = 0; k < m.kartenJoker1.size(); k++){
+				Gui.alJoker.get(k).setKarte(m.kartenJoker1.get(k));
+			}
+			
+			
+			
+			
 		}
 		else{
 			for (int j = 0; j < m.kartenPlayer2.size(); j++){
+				// ImageIcon setzen
 				ImageIcon tmpii = m.kartenPlayer2.get(j).getIcon();
 				Gui.alKarten.get(j).setIcon(tmpii);
+				// Kartenobjekt dem Button zuweisen
+				Gui.alKarten.get(j).setKarte(m.kartenPlayer2.get(j));
+			}
+			
+			for (int k = 0; k < m.kartenJoker2.size(); k++){
+				Gui.alJoker.get(k).setKarte(m.kartenJoker2.get(k));
 			}
 			
 		}
 		
 	}
 	
-	
-
 }

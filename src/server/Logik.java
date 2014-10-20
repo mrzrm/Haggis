@@ -17,7 +17,14 @@ public class Logik {
 		// Wenn Spieler Karten ausspielt
 		else {
 			
-			// Code hier einfügen wenn Karten gespielt werden
+			Server.display(m.users.get(m.getAmZug()).getName() + " hat gespielt:");
+			
+			for(int r = 0; r < m.gespielteKarten.size(); r++){
+				System.out.print("Farbe: " + m.gespielteKarten.get(r).getFarbe());
+				System.out.println(" Wert: " + m.gespielteKarten.get(r).getWert());
+				Server.display(m.gespielteKarten.get(r).getFarbe() + " " + m.gespielteKarten.get(r).getWert());
+			}
+			
 			
 			
 			

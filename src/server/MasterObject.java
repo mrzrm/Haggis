@@ -12,8 +12,10 @@ public class MasterObject implements Serializable {
 	public ArrayList<Karte> kartenPlayer2;
 	public ArrayList<Karte> kartenJoker1;
 	public ArrayList<Karte> kartenJoker2;
+	public ArrayList<Karte> gespielteKarten;
 	public boolean passt;
 	public int amZug;
+	public boolean neuVerteilt;
 
 
 	//constructor
@@ -30,6 +32,8 @@ public class MasterObject implements Serializable {
 		this.kartenPlayer2 = d.getKartenPlayer2();
 		this.kartenJoker1 = d.getJokerPlayer1();
 		this.kartenJoker2 = d.getJokerPlayer2();
+		
+		this.neuVerteilt = true;
 		
 		//System.out.println(kartenPlayer1.get(0).getWert());
 		System.out.println("Masteoject.java: MasterObject erstellt");
@@ -50,6 +54,13 @@ public class MasterObject implements Serializable {
 
 	public void setAmZug(int amZug) {
 		this.amZug = amZug;
+	}
+	public ArrayList<Karte> getGespielteKarten() {
+		return gespielteKarten;
+	}
+
+	public void setGespielteKarten(ArrayList<Karte> gespielteKarten) {
+		this.gespielteKarten = gespielteKarten;
 	}
 		
 }
