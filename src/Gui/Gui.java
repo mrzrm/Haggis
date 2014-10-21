@@ -516,12 +516,44 @@ public class Gui extends JFrame {
 					alTmp.add(selectedButtons.get(b).getKarte());
 				}
 				
+				// Wenn Joker gespielt worden sind, diese aus MasterObjekt entfernen
+				for (int v = 0; v < selectedButtons.size(); v++){
+					if(selectedButtons.get(v).getKarte() == btnp1bube.getKarte()){
+						if(Client.clientId == 0){
+							Client.m.getKartenJoker1().remove(btnp1bube.getKarte());
+						}
+						else{
+							Client.m.getKartenJoker2().remove(btnp1bube.getKarte());
+						}
+					}
+					if(selectedButtons.get(v).getKarte() == btnp1dame.getKarte()){
+						if(Client.clientId == 0){
+							Client.m.getKartenJoker1().remove(btnp1dame.getKarte());
+						}
+						else{
+							Client.m.getKartenJoker2().remove(btnp1dame.getKarte());
+						}
+					}
+					if (selectedButtons.get(v).getKarte() == btnp1koenig.getKarte()) {
+						if(Client.clientId == 0){
+							Client.m.getKartenJoker1().remove(btnp1koenig.getKarte());
+						}
+						else{
+							Client.m.getKartenJoker2().remove(btnp1koenig.getKarte());
+						}
+					}
+				}
+				
+				
 				// Alle karten deselektieren
 				for (int w = 0; w < alAlleKarten.size(); w++){
 					if(alAlleKarten.get(w).isSelected()){
 						alAlleKarten.get(w).setSelected(false);
 					}
 				}
+				
+				
+				
 				
 				Client.m.setGespielteKarten(alTmp);
 				Client.sendObjectToServer();

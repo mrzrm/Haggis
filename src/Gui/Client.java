@@ -72,11 +72,6 @@ public class Client {
 		try {
 			while ((inputObject = in.readObject()) != null) {
 				
-//				// empfangen der ClientID
-//				if (inputObject instanceof Integer) {
-//					clientId = (int) inputObject;
-//					System.out.println("ClientId empfangen: " + clientId );
-//				} 
 				
 				// empfangen des Masterobjekts
 				if (inputObject instanceof MasterObject) {
@@ -128,14 +123,21 @@ public class Client {
 		}
 		
 		// Spielkarten auf Hand laden (wenn neu verteilt)
-		if (m.neuVerteilt) {
-			m.neuVerteilt = false;
+		if (m.isNeuVerteilt()) {
+			
 			if (clientId == 0) {
 				kartenSetzen(0);
 			} else {
 				kartenSetzen(1);
 			}
 		}
+		
+		//Joker aktualisieren
+		
+		
+		
+		
+		
 		// Spielfläche laden
 		else{
 			
@@ -154,7 +156,12 @@ public class Client {
 		// Buttons aktivieren und Status setzen wenn Spieler am Zug ist
 		if(m.getAmZug() == clientId){
 			Gui.btnAusspielen.setEnabled(true);
-			Gui.btnPassen.setEnabled(true);
+			if (m.isNeuVerteilt()) {
+				Gui.btnPassen.setEnabled(false);
+			}
+			else{
+				Gui.btnPassen.setEnabled(true);
+			}
 			Gui.jlStatus.setText("Sie sind am Zug");
 		}
 		else{
@@ -162,8 +169,13 @@ public class Client {
 			Gui.btnPassen.setEnabled(false);
 			Gui.jlStatus.setText("Ihr Gegner ist am Zug");
 		}
+		
+		m.setNeuVerteilt(false);
+		
+		
 		System.out.println("Client: gui refreshed");
 		System.out.println("am zug:" + m.getAmZug());
+		System.out.println("NeuVerteilt: " + m.isNeuVerteilt());
 		System.out.println("clientId: " + clientId);
 	}
 

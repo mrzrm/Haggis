@@ -32,6 +32,7 @@ public class MasterObject implements Serializable {
 		this.kartenPlayer2 = d.getKartenPlayer2();
 		this.kartenJoker1 = d.getJokerPlayer1();
 		this.kartenJoker2 = d.getJokerPlayer2();
+		this.gespielteKarten = null;
 		
 		this.neuVerteilt = true;
 		
@@ -55,12 +56,36 @@ public class MasterObject implements Serializable {
 	public void setAmZug(int amZug) {
 		this.amZug = amZug;
 	}
+	public boolean isNeuVerteilt() {
+		return neuVerteilt;
+	}
+
+	public void setNeuVerteilt(boolean neuVerteilt) {
+		this.neuVerteilt = neuVerteilt;
+	}
+
 	public ArrayList<Karte> getGespielteKarten() {
 		return gespielteKarten;
 	}
 
 	public void setGespielteKarten(ArrayList<Karte> gespielteKarten) {
 		this.gespielteKarten = gespielteKarten;
+	}
+
+	public ArrayList<Karte> getKartenJoker1() {
+		return kartenJoker1;
+	}
+
+	public void setKartenJoker1(ArrayList<Karte> kartenJoker1) {
+		this.kartenJoker1 = kartenJoker1;
+	}
+
+	public ArrayList<Karte> getKartenJoker2() {
+		return kartenJoker2;
+	}
+
+	public void setKartenJoker2(ArrayList<Karte> kartenJoker2) {
+		this.kartenJoker2 = kartenJoker2;
 	}
 		
 }
