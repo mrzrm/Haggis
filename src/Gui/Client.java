@@ -131,13 +131,6 @@ public class Client {
 				kartenSetzen(1);
 			}
 		}
-		
-		//Joker aktualisieren
-		
-		
-		
-		
-		
 		// Spielfläche laden
 		else{
 			
@@ -153,10 +146,76 @@ public class Client {
 			m.gespielteKarten.clear();
 		}
 		
+		//Joker aktualisieren
+		
+		if(clientId == 0){
+			for (int g = 0; g < m.getKartenJoker2().size(); g++){
+				if (m.getKartenJoker2().get(g).getWert() == 11){
+					Gui.lblp2bube.setVisible(true);
+					break;
+				}
+				else{
+					Gui.lblp2bube.setVisible(false);
+				}	
+			}
+		
+			for (int g = 0; g < m.getKartenJoker2().size(); g++){
+				if (m.getKartenJoker2().get(g).getWert() == 12){
+					Gui.lblp2dame.setVisible(true);
+					break;
+				}
+				else{
+					Gui.lblp2dame.setVisible(false);
+				}		
+			}
+			
+			for (int g = 0; g < m.getKartenJoker2().size(); g++){
+				if (m.getKartenJoker2().get(g).getWert() == 13){
+					Gui.lblp2koenig.setVisible(true);
+					break;
+				}
+				else{
+					Gui.lblp2koenig.setVisible(false);
+				}
+			}
+		}
+		else{
+			for (int g = 0; g < m.getKartenJoker1().size(); g++){
+				if (m.getKartenJoker1().get(g).getWert() == 11){
+					Gui.lblp2bube.setVisible(true);
+					break;
+				}
+				else{
+					Gui.lblp2bube.setVisible(false);
+				}	
+			}
+		
+			for (int g = 0; g < m.getKartenJoker1().size(); g++){
+				if (m.getKartenJoker1().get(g).getWert() == 12){
+					Gui.lblp2dame.setVisible(true);
+					break;
+				}
+				else{
+					Gui.lblp2dame.setVisible(false);
+				}		
+			}
+			
+			for (int g = 0; g < m.getKartenJoker1().size(); g++){
+				if (m.getKartenJoker1().get(g).getWert() == 13){
+					Gui.lblp2koenig.setVisible(true);
+					break;
+				}
+				else{
+					Gui.lblp2koenig.setVisible(false);
+				}
+			}
+		}
+		
 		// Buttons aktivieren und Status setzen wenn Spieler am Zug ist
 		if(m.getAmZug() == clientId){
 			Gui.btnAusspielen.setEnabled(true);
 			if (m.isNeuVerteilt()) {
+				// Erster Zug darf man nicht passen!
 				Gui.btnPassen.setEnabled(false);
 			}
 			else{

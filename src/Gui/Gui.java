@@ -93,9 +93,9 @@ public class Gui extends JFrame {
 	
 	
 	// JLabels
-	private JLabel btnp2bube;
-	private JLabel btnp2dame;
-	private JLabel btnp2koenig;
+	public static JLabel lblp2bube;
+	public static JLabel lblp2dame;
+	public static JLabel lblp2koenig;
 	public static JLabel lblSpieler1;
 	public static JLabel lblSpieler2;
 	public static JLabel jlStatus;
@@ -335,20 +335,20 @@ public class Gui extends JFrame {
 		
 		
 		// Player 2 - Joker panel
-		btnp2bube = new JLabel("");
-		btnp2bube.setPreferredSize(new Dimension(87, 140));
-		p2joker.add(btnp2bube);
-		btnp2bube.setIcon(iibube);
+		lblp2bube = new JLabel("");
+		lblp2bube.setPreferredSize(new Dimension(87, 140));
+		p2joker.add(lblp2bube);
+		lblp2bube.setIcon(iibube);
 		
-		btnp2dame = new JLabel("");
-		btnp2dame.setPreferredSize(new Dimension(87, 140));
-		p2joker.add(btnp2dame);
-		btnp2dame.setIcon(iidame);
+		lblp2dame = new JLabel("");
+		lblp2dame.setPreferredSize(new Dimension(87, 140));
+		p2joker.add(lblp2dame);
+		lblp2dame.setIcon(iidame);
 				
-		btnp2koenig = new JLabel("");
-		btnp2koenig.setPreferredSize(new Dimension(87, 140));
-		p2joker.add(btnp2koenig);
-		btnp2koenig.setIcon(iikoenig);
+		lblp2koenig = new JLabel("");
+		lblp2koenig.setPreferredSize(new Dimension(87, 140));
+		p2joker.add(lblp2koenig);
+		lblp2koenig.setIcon(iikoenig);
 				
 		
 		p1joker.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 2));
