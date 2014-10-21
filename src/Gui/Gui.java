@@ -511,10 +511,17 @@ public class Gui extends JFrame {
 				
 				// Selektiere Karten an Server schicken
 				ArrayList<Karte> alTmp = new ArrayList<Karte>();
+				alTmp.clear();
 				for (int b = 0; b < selectedButtons.size(); b++){
 					alTmp.add(selectedButtons.get(b).getKarte());
 				}
 				
+				// Alle karten deselektieren
+				for (int w = 0; w < alAlleKarten.size(); w++){
+					if(alAlleKarten.get(w).isSelected()){
+						alAlleKarten.get(w).setSelected(false);
+					}
+				}
 				
 				Client.m.setGespielteKarten(alTmp);
 				Client.sendObjectToServer();
