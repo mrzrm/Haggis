@@ -99,7 +99,7 @@ public class Deck implements Serializable {
 	private Karte g02, g03, g04, g05, g06, g07, g08, g09, g10;
 	private Karte r02, r03, r04, r05, r06, r07, r08, r09, r10;
 	private Karte y02, y03, y04, y05, y06, y07, y08, y09, y10;
-	private Karte j1, q1, k1;
+	public Karte j1, q1, k1;
 
 	private ArrayList<Karte> kartenDeck = new ArrayList<Karte>();
 	public ArrayList<Karte> kartenPlayer1 = new ArrayList<Karte>();

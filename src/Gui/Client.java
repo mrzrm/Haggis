@@ -15,7 +15,6 @@ import javax.swing.JToggleButton;
 
 import server.MasterObject;
 
-
 public class Client {
 
 	Login login;
@@ -28,21 +27,19 @@ public class Client {
 	static int portNumber = 55558;
 	public static MasterObject m;
 	public static ArrayList<ObjectOutputStream> outlist = new ArrayList<ObjectOutputStream>();
-	
 
-	
 	public static void main(String[] args) {
 		new Client(hostName, portNumber);
 
 	}
-	
+
 	public Client(String hostName, int portNumber) {
 		init(hostName, portNumber);
 		login = new Login(this.out, this.in);
 		receiveObjectFromServer();
 
 	}
-	
+
 	public void init(String hostName, int portNumber) {
 		try {
 			socket = new Socket(hostName, portNumber);
@@ -55,28 +52,28 @@ public class Client {
 			System.exit(1);
 		}
 	}
-	
-	public static void sendObjectToServer(){
+
+	public static void sendObjectToServer() {
 		// send Masterobject from client
-		try{
+		try {
 			out.writeObject(Client.m);
 			System.out.println("Masterobject: sent");
-		}catch  (IOException e){
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	
 	public void receiveObjectFromServer() {
-		// receive the Masterobject 
+		// receive the Masterobject
 		try {
 			while ((inputObject = in.readObject()) != null) {
-				
-				
+
 				// empfangen des Masterobjekts
 				if (inputObject instanceof MasterObject) {
 					m = (MasterObject) inputObject;
-					System.out.println("MasterObject empfangen - Spieler: " + m.users.get(0).getName() + " und " + m.users.get(1).getName());
+					System.out.println("MasterObject empfangen - Spieler: "
+							+ m.users.get(0).getName() + " und "
+							+ m.users.get(1).getName());
 					refreshGui();
 					try {
 						Thread.sleep(1000);
@@ -90,13 +87,16 @@ public class Client {
 					Gui frame = new Gui();
 					frame.setVisible(true);
 				}
-				
+
 				// Error if someone disconnects or closes game
-				else if (inputObject instanceof SocketException){
-					JOptionPane.showMessageDialog(null, "Bitte starte das Spiel neu", "Ein Spieler hat die Verbindung getrennt", JOptionPane.ERROR_MESSAGE);
+				else if (inputObject instanceof SocketException) {
+					JOptionPane.showMessageDialog(null,
+							"Bitte starte das Spiel neu",
+							"Ein Spieler hat die Verbindung getrennt",
+							JOptionPane.ERROR_MESSAGE);
 					System.exit(1);
 				}
-				
+
 				else {
 					System.out.println("Unexpected object type:  "
 							+ inputObject.getClass().getName());
@@ -108,23 +108,22 @@ public class Client {
 	}
 
 	private void refreshGui() {
-		
+
 		// Spielernamen setzen
-		if(Gui.lblSpieler1.getText().equals("Spieler 1")){
-			
-			for (int i = 0; i < m.users.size(); i++){
-				if (m.users.get(i).getUserId() == clientId){
+		if (Gui.lblSpieler1.getText().equals("Spieler 1")) {
+
+			for (int i = 0; i < m.users.size(); i++) {
+				if (m.users.get(i).getUserId() == clientId) {
 					Gui.lblSpieler1.setText(m.users.get(i).getName());
-				}
-				else{
+				} else {
 					Gui.lblSpieler2.setText(m.users.get(i).getName());
 				}
 			}
 		}
-		
+
 		// Spielkarten auf Hand laden (wenn neu verteilt)
 		if (m.isNeuVerteilt()) {
-			
+
 			if (clientId == 0) {
 				kartenSetzen(0);
 			} else {
@@ -132,145 +131,166 @@ public class Client {
 			}
 		}
 		// Spielfläche laden
-		else{
-			
+		else {
+
 			// Reset Spielfläche
-			for (int g = 0; g < Gui.alKartenTisch.size(); g++){
+			for (int g = 0; g < Gui.alKartenTisch.size(); g++) {
 				Gui.alKartenTisch.get(g).setIcon(null);
 			}
 			// neue gespielte Karten setzen
-			for (int f = 0; f < m.gespielteKarten.size(); f++){
-				Gui.alKartenTisch.get(f).setIcon(m.gespielteKarten.get(f).getIcon());
+			for (int f = 0; f < m.gespielteKarten.size(); f++) {
+				Gui.alKartenTisch.get(f).setIcon(
+						m.gespielteKarten.get(f).getIcon());
 			}
 			// Array gespielte Karten löschen
 			m.gespielteKarten.clear();
+
 		}
-		
+
 		//Joker aktualisieren
 		
-		if(clientId == 0){
-			for (int g = 0; g < m.getKartenJoker2().size(); g++){
-				if (m.getKartenJoker2().get(g).getWert() == 11){
-					Gui.lblp2bube.setVisible(true);
-					break;
-				}
-				else{
-					Gui.lblp2bube.setVisible(false);
-				}	
+
+		if (clientId == 0) {
+			if (m.getKartenJoker2().get(0).getWert() != 11) {
+				Gui.lblp2bube.setVisible(false);
+				//System.out.println("Gegner hat bube ausgespielt!");
 			}
-		
-			for (int g = 0; g < m.getKartenJoker2().size(); g++){
-				if (m.getKartenJoker2().get(g).getWert() == 12){
-					Gui.lblp2dame.setVisible(true);
-					break;
-				}
-				else{
-					Gui.lblp2dame.setVisible(false);
-				}		
+			if (m.getKartenJoker2().get(1).getWert() != 12) {
+				Gui.lblp2dame.setVisible(false);
 			}
-			
-			for (int g = 0; g < m.getKartenJoker2().size(); g++){
-				if (m.getKartenJoker2().get(g).getWert() == 13){
-					Gui.lblp2koenig.setVisible(true);
-					break;
-				}
-				else{
-					Gui.lblp2koenig.setVisible(false);
-				}
+			if (m.getKartenJoker2().get(2).getWert() != 13) {
+				Gui.lblp2koenig.setVisible(false);
 			}
-		}
-		else{
-			for (int g = 0; g < m.getKartenJoker1().size(); g++){
-				if (m.getKartenJoker1().get(g).getWert() == 11){
-					Gui.lblp2bube.setVisible(true);
-					break;
-				}
-				else{
-					Gui.lblp2bube.setVisible(false);
-				}	
+		} else {
+			if (m.getKartenJoker1().get(0).getWert() != 11) {
+				Gui.lblp2bube.setVisible(false);
+				//System.out.println("Gegner hat bube ausgespielt!");
 			}
-		
-			for (int g = 0; g < m.getKartenJoker1().size(); g++){
-				if (m.getKartenJoker1().get(g).getWert() == 12){
-					Gui.lblp2dame.setVisible(true);
-					break;
-				}
-				else{
-					Gui.lblp2dame.setVisible(false);
-				}		
+			if (m.getKartenJoker1().get(1).getWert() != 12) {
+				Gui.lblp2dame.setVisible(false);
 			}
-			
-			for (int g = 0; g < m.getKartenJoker1().size(); g++){
-				if (m.getKartenJoker1().get(g).getWert() == 13){
-					Gui.lblp2koenig.setVisible(true);
-					break;
-				}
-				else{
-					Gui.lblp2koenig.setVisible(false);
-				}
+			if (m.getKartenJoker1().get(2).getWert() != 13) {
+				Gui.lblp2koenig.setVisible(false);
 			}
 		}
 		
+		//
+		// if(clientId == 0){
+		// for (int g = 0; g < m.getKartenJoker2().size(); g++){
+		// if (m.getKartenJoker2().get(g).getWert() == 11){
+		// Gui.lblp2bube.setVisible(true);
+		// break;
+		// }
+		// else{
+		// Gui.lblp2bube.setVisible(false);
+		// }
+		// }
+		//
+		// for (int g = 0; g < m.getKartenJoker2().size(); g++){
+		// if (m.getKartenJoker2().get(g).getWert() == 12){
+		// Gui.lblp2dame.setVisible(true);
+		// break;
+		// }
+		// else{
+		// Gui.lblp2dame.setVisible(false);
+		// }
+		// }
+		//
+		// for (int g = 0; g < m.getKartenJoker2().size(); g++){
+		// if (m.getKartenJoker2().get(g).getWert() == 13){
+		// Gui.lblp2koenig.setVisible(true);
+		// break;
+		// }
+		// else{
+		// Gui.lblp2koenig.setVisible(false);
+		// }
+		// }
+		// }
+		// else{
+		// for (int g = 0; g < m.getKartenJoker1().size(); g++){
+		// if (m.getKartenJoker1().get(g).getWert() == 11){
+		// Gui.lblp2bube.setVisible(true);
+		// break;
+		// }
+		// else{
+		// Gui.lblp2bube.setVisible(false);
+		// }
+		// }
+		//
+		// for (int g = 0; g < m.getKartenJoker1().size(); g++){
+		// if (m.getKartenJoker1().get(g).getWert() == 12){
+		// Gui.lblp2dame.setVisible(true);
+		// break;
+		// }
+		// else{
+		// Gui.lblp2dame.setVisible(false);
+		// }
+		// }
+		//
+		// for (int g = 0; g < m.getKartenJoker1().size(); g++){
+		// if (m.getKartenJoker1().get(g).getWert() == 13){
+		// Gui.lblp2koenig.setVisible(true);
+		// break;
+		// }
+		// else{
+		// Gui.lblp2koenig.setVisible(false);
+		// }
+		// }
+		// }
+
 		// Buttons aktivieren und Status setzen wenn Spieler am Zug ist
-		if(m.getAmZug() == clientId){
+		if (m.getAmZug() == clientId) {
 			Gui.btnAusspielen.setEnabled(true);
 			if (m.isNeuVerteilt()) {
 				// Erster Zug darf man nicht passen!
 				Gui.btnPassen.setEnabled(false);
-			}
-			else{
+			} else {
 				Gui.btnPassen.setEnabled(true);
 			}
 			Gui.jlStatus.setText("Sie sind am Zug");
-		}
-		else{
+		} else {
 			Gui.btnAusspielen.setEnabled(false);
 			Gui.btnPassen.setEnabled(false);
 			Gui.jlStatus.setText("Ihr Gegner ist am Zug");
 		}
-		
+
 		m.setNeuVerteilt(false);
-		
-		
-		System.out.println("Client: gui refreshed");
-		System.out.println("am zug:" + m.getAmZug());
-		System.out.println("NeuVerteilt: " + m.isNeuVerteilt());
+
+		// System.out.println("Client: gui refreshed");
+		// System.out.println("am zug:" + m.getAmZug());
+		// System.out.println("NeuVerteilt: " + m.isNeuVerteilt());
 		System.out.println("clientId: " + clientId);
 	}
 
 	private void kartenSetzen(int i) {
-		if(i == 0){
-			for (int j = 0; j < m.kartenPlayer1.size(); j++){
+		if (i == 0) {
+			for (int j = 0; j < m.kartenPlayer1.size(); j++) {
 				// ImageIcon setzen
 				ImageIcon tmpii = m.kartenPlayer1.get(j).getIcon();
 				Gui.alKarten.get(j).setIcon(tmpii);
 				// Kartenobjekt dem Button zuweisen
 				Gui.alKarten.get(j).setKarte(m.kartenPlayer1.get(j));
 			}
-			
-			for (int k = 0; k < m.kartenJoker1.size(); k++){
+
+			for (int k = 0; k < m.kartenJoker1.size(); k++) {
 				Gui.alJoker.get(k).setKarte(m.kartenJoker1.get(k));
 			}
-			
-			
-			
-			
-		}
-		else{
-			for (int j = 0; j < m.kartenPlayer2.size(); j++){
+
+		} else {
+			for (int j = 0; j < m.kartenPlayer2.size(); j++) {
 				// ImageIcon setzen
 				ImageIcon tmpii = m.kartenPlayer2.get(j).getIcon();
 				Gui.alKarten.get(j).setIcon(tmpii);
 				// Kartenobjekt dem Button zuweisen
 				Gui.alKarten.get(j).setKarte(m.kartenPlayer2.get(j));
 			}
-			
-			for (int k = 0; k < m.kartenJoker2.size(); k++){
+
+			for (int k = 0; k < m.kartenJoker2.size(); k++) {
 				Gui.alJoker.get(k).setKarte(m.kartenJoker2.get(k));
 			}
-			
+
 		}
-		
+
 	}
-	
+
 }

@@ -517,33 +517,70 @@ public class Gui extends JFrame {
 				}
 				
 				// Wenn Joker gespielt worden sind, diese aus MasterObjekt entfernen
-				for (int v = 0; v < selectedButtons.size(); v++){
-					if(selectedButtons.get(v).getKarte() == btnp1bube.getKarte()){
-						if(Client.clientId == 0){
-							Client.m.getKartenJoker1().remove(btnp1bube.getKarte());
-						}
-						else{
-							Client.m.getKartenJoker2().remove(btnp1bube.getKarte());
-						}
-					}
-					if(selectedButtons.get(v).getKarte() == btnp1dame.getKarte()){
-						if(Client.clientId == 0){
-							Client.m.getKartenJoker1().remove(btnp1dame.getKarte());
-						}
-						else{
-							Client.m.getKartenJoker2().remove(btnp1dame.getKarte());
-						}
-					}
-					if (selectedButtons.get(v).getKarte() == btnp1koenig.getKarte()) {
-						if(Client.clientId == 0){
-							Client.m.getKartenJoker1().remove(btnp1koenig.getKarte());
-						}
-						else{
-							Client.m.getKartenJoker2().remove(btnp1koenig.getKarte());
-						}
-					}
-				}
 				
+				if(Client.clientId == 0){
+					ArrayList<Karte> tmpal0 = new ArrayList<Karte>();
+					tmpal0.addAll(Client.m.getKartenJoker1());
+					
+					if(selectedButtons.contains(btnp1bube)){
+						
+						tmpal0.remove(0);
+						System.out.println("Bube wurde aus Joker1 entfernt");
+						
+					}
+					if(selectedButtons.contains(btnp1dame)){
+						tmpal0.remove(1);
+						System.out.println("Dame wurde aus Joker1 entfernt");
+						
+					}
+					if(selectedButtons.contains(btnp1koenig)){
+						tmpal0.remove(2);
+						System.out.println("König wurde aus Joker1 enfernt.");
+					}
+					Client.m.setKartenJoker1(tmpal0);
+					
+//					System.out.println("---------------------------------");
+//					System.out.println("tmpal0 size: " + tmpal0.size());
+//					for (int l = 0 ; l < tmpal0.size(); l++){
+//						System.out.println("Index: " + l + " -> " + tmpal0.get(l).getWert());
+//						
+//					}
+//					System.out.println("---------------------------------");
+//					
+//					
+//					
+//					System.out.println("---------------------------------");
+//					System.out.println("kartenJoker1 size: " + Client.m.getKartenJoker1().size());
+//					for (int l = 0 ; l < Client.m.getKartenJoker1().size(); l++){
+//						System.out.println("Index: " + l + " -> " + Client.m.getKartenJoker1().get(l).getWert());
+//						
+//					}
+//					System.out.println("---------------------------------");
+				}
+				else{
+					ArrayList<Karte> tmpal1 = new ArrayList<Karte>();
+					tmpal1.addAll(Client.m.getKartenJoker2());
+					
+					if(selectedButtons.contains(btnp1bube)){
+						
+						tmpal1.remove(0);
+						System.out.println("Bube wurde aus Joker2 entfernt");
+					}
+					if(selectedButtons.contains(btnp1dame)){
+						tmpal1.remove(1);
+						System.out.println("Dame wurde aus Joker2 entfernt");
+						
+					}
+					if(selectedButtons.contains(btnp1koenig)){
+						tmpal1.remove(2);
+						System.out.println("Dame wurde aus Joker2 entfernt");
+					}
+					
+					
+					Client.m.setKartenJoker2(tmpal1);
+					
+				}
+		
 				
 				// Alle karten deselektieren
 				for (int w = 0; w < alAlleKarten.size(); w++){
@@ -557,7 +594,7 @@ public class Gui extends JFrame {
 				
 				Client.m.setGespielteKarten(alTmp);
 				Client.sendObjectToServer();
-				
+				selectedButtons.clear();
 			}
 			
 			if(e.getSource() == btnPassen){
