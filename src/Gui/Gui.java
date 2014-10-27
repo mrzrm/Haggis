@@ -571,9 +571,15 @@ public class Gui extends JFrame {
 
 			if (e.getSource() == btnAusspielen) {
 				System.out.println("Button: Ausspielen");
+<<<<<<< HEAD
 
 				// ----- HIER CODE EINFÜGEN UM AUSZUSPIELEN -----
 
+=======
+				
+				// ----- HIER CODE UM AUSZUSPIELEN -----
+				
+>>>>>>> origin/master
 				ArrayList<JKartenButton<Karte>> selectedButtons = new ArrayList<JKartenButton<Karte>>();
 				// welche Karten sind alle selektiert?
 				for (int z = 0; z < alAlleKarten.size(); z++) {
@@ -660,11 +666,20 @@ public class Gui extends JFrame {
 				selectedButtons.clear();
 				alTmp.clear();
 			}
+<<<<<<< HEAD
 
 			if (e.getSource() == btnPassen) {
 				System.out.println("Button: Passen");
 
 				// HIER CODE EINFÜGEN UM ZU PASSEN
+=======
+			
+			// ----- HIER CODE UM ZU PASSEN -----
+			
+			if(e.getSource() == btnPassen){
+				System.out.println("Button: Passen");
+				
+>>>>>>> origin/master
 				Client.m.setPasst(true);
 				Client.sendObjectToServer();
 			}

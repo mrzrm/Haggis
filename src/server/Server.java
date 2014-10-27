@@ -9,6 +9,7 @@ import java.net.ServerSocket;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.text.DefaultCaret;
 
 public class Server extends JFrame {
 
@@ -25,6 +26,11 @@ public class Server extends JFrame {
 		output = new JTextArea();
 		output.setEditable(false);
 		scrollPane = new JScrollPane(output);
+		
+		// Immer runterscrollen
+		DefaultCaret caret = (DefaultCaret)output.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+		
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
 		this.display("Server wartet auf Spieler ...");

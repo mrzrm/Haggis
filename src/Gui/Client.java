@@ -1,5 +1,6 @@
 package Gui;
 
+import java.awt.Window;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -23,6 +24,7 @@ public class Client {
 	static ObjectOutputStream out;
 	ObjectInputStream in;
 	Object inputObject;
+	private Gui frame;
 	static int clientId;
 	static String hostName = "localhost";
 	static int portNumber = 55558;
@@ -85,7 +87,7 @@ public class Client {
 				// ClientId setzen
 				else if (inputObject instanceof Integer) {
 					clientId = (int) inputObject;
-					Gui frame = new Gui();
+					frame = new Gui();
 					frame.setVisible(true);
 				}
 
@@ -150,12 +152,7 @@ public class Client {
 		}
 
 		//Joker aktualisieren
-		
-		
-		//Gui.lblp2bube.setVisible(false);
-		//Gui.lblp2dame.setVisible(false);
-		//Gui.lblp2koenig.setVisible(false);
-		
+
 		if (clientId == 0){
 			Karte[] temp = m.getKartenJoker2();
 			if (temp[0] == null){
@@ -194,6 +191,14 @@ public class Client {
 				Gui.btnPassen.setEnabled(true);
 			}
 			Gui.jlStatus.setText("Sie sind am Zug");
+			java.awt.EventQueue.invokeLater(new Runnable() {
+
+				@Override
+			    public void run() {
+			        frame.toFront();
+			        frame.repaint();
+			    }
+			});
 		} else {
 			Gui.btnAusspielen.setEnabled(false);
 			Gui.btnPassen.setEnabled(false);
