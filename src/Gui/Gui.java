@@ -501,15 +501,7 @@ public class Gui extends JFrame {
 					
 				}
 				
-				// Hier Code einfügen um Pass zu verifizieren ;-)
-				
-				// Selektierte Karten auf Spielfeld anzeigen lassen
-				for (int a = 0; a < selectedButtons.size(); a++){
-					alKartenTisch.get(a).setIcon(selectedButtons.get(a).getIcon());
-					selectedButtons.get(a).setVisible(false);
-				}
-				
-				// Selektiere Karten an Server schicken
+				// Selektiere Karten in die alTmp ArrayList
 				ArrayList<Karte> alTmp = new ArrayList<Karte>();
 				
 				for (int b = 0; b < selectedButtons.size(); b++){
@@ -517,9 +509,25 @@ public class Gui extends JFrame {
 				}
 				
 				
+				
+				
+				// Hier Code einfügen um Pass zu verifizieren ;-)
+				// Verifikation müsste etwa so aussehen:
+//				boolean verify = false;
+//				verify = zugVerifizieren.verify(alTmp, Client.m.gespielteKarten);
+				
+				
+				
+				
+				
+				// Selektierte Karten auf Spielfeld anzeigen lassen
+				for (int a = 0; a < selectedButtons.size(); a++){
+					alKartenTisch.get(a).setIcon(selectedButtons.get(a).getIcon());
+					selectedButtons.get(a).setVisible(false);
+				}
+							
 				// Wenn Joker gespielt worden sind, diese aus MasterObjekt entfernen
-				
-				
+								
 				if (Client.clientId == 0){
 					Karte[] temp = new Karte[3];
 					temp = Client.m.getKartenJoker1();

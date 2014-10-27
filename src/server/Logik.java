@@ -25,14 +25,20 @@ public class Logik {
 				Server.display(m.gespielteKarten.get(r).getFarbe() + " " + m.gespielteKarten.get(r).getWert());
 			}
 			
-			
-			
-			
-			
-			
-			
 		}
 				
+		// Testausgabe joker
+		for (Karte k: m.kartenJoker1){
+			if(k != null){
+				System.out.println("Joker 1: Wert: " + k.getWert());
+			}
+		}
+		for (Karte k: m.kartenJoker2){
+			if(k != null){
+				System.out.println("Joker 2: Wert: " + k.getWert());
+			}
+		}
+		
 		
 		// Den Spieler der am Zug ist wechseln
 		if (m.getAmZug() == 1){

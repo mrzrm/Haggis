@@ -1,10 +1,13 @@
 package server;
 
 import java.awt.BorderLayout;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import java.io.IOException;
 import java.net.ServerSocket;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class Server extends JFrame {
@@ -14,13 +17,16 @@ public class Server extends JFrame {
 	public static Server s;
 	private int port = 55558;
 	private int loggedUser;
+	private JScrollPane scrollPane;
 
 	public Server() {
 
 		super("Haggis Game-Server");
-		
 		output = new JTextArea();
-		getContentPane().add(output, BorderLayout.CENTER);
+		output.setEditable(false);
+		scrollPane = new JScrollPane(output);
+		getContentPane().add(scrollPane, BorderLayout.CENTER);
+		
 		this.display("Server wartet auf Spieler ...");
 
 		setLocation(100, 100);
