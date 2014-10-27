@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 
+import server.Karte;
 import server.MasterObject;
 
 public class Client {
@@ -76,7 +77,7 @@ public class Client {
 							+ m.users.get(1).getName());
 					refreshGui();
 					try {
-						Thread.sleep(1000);
+						Thread.sleep(100);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -129,115 +130,60 @@ public class Client {
 			} else {
 				kartenSetzen(1);
 			}
+			System.out.println("Karten neu verteilt");
 		}
 		// Spielfläche laden
 		else {
-
+			
 			// Reset Spielfläche
 			for (int g = 0; g < Gui.alKartenTisch.size(); g++) {
 				Gui.alKartenTisch.get(g).setIcon(null);
 			}
 			// neue gespielte Karten setzen
-			for (int f = 0; f < m.gespielteKarten.size(); f++) {
+			for (int f = 0; f < m.getGespielteKarten().size(); f++) {
 				Gui.alKartenTisch.get(f).setIcon(
-						m.gespielteKarten.get(f).getIcon());
+						m.getGespielteKarten().get(f).getIcon());
 			}
 			// Array gespielte Karten löschen
-			m.gespielteKarten.clear();
-
+			m.getGespielteKarten().clear();
+			//System.out.println("Spielfläche neu geladen. Anz. gespielte Karten:" + m.getGespielteKarten().size());
 		}
 
 		//Joker aktualisieren
 		
-
-		if (clientId == 0) {
-			if (m.getKartenJoker2().get(0).getWert() != 11) {
+		
+		//Gui.lblp2bube.setVisible(false);
+		//Gui.lblp2dame.setVisible(false);
+		//Gui.lblp2koenig.setVisible(false);
+		
+		if (clientId == 0){
+			Karte[] temp = m.getKartenJoker2();
+			if (temp[0] == null){
 				Gui.lblp2bube.setVisible(false);
-				//System.out.println("Gegner hat bube ausgespielt!");
 			}
-			if (m.getKartenJoker2().get(1).getWert() != 12) {
+			if (temp[1] == null){
 				Gui.lblp2dame.setVisible(false);
 			}
-			if (m.getKartenJoker2().get(2).getWert() != 13) {
+			if (temp[2] == null){
 				Gui.lblp2koenig.setVisible(false);
 			}
+			
 		} else {
-			if (m.getKartenJoker1().get(0).getWert() != 11) {
+			Karte[] temp1 = m.getKartenJoker1();
+			if (temp1[0] == null){
 				Gui.lblp2bube.setVisible(false);
-				//System.out.println("Gegner hat bube ausgespielt!");
 			}
-			if (m.getKartenJoker1().get(1).getWert() != 12) {
+			if (temp1[1] == null){
 				Gui.lblp2dame.setVisible(false);
 			}
-			if (m.getKartenJoker1().get(2).getWert() != 13) {
+			if (temp1[2] == null){
 				Gui.lblp2koenig.setVisible(false);
 			}
+			
 		}
 		
-		//
-		// if(clientId == 0){
-		// for (int g = 0; g < m.getKartenJoker2().size(); g++){
-		// if (m.getKartenJoker2().get(g).getWert() == 11){
-		// Gui.lblp2bube.setVisible(true);
-		// break;
-		// }
-		// else{
-		// Gui.lblp2bube.setVisible(false);
-		// }
-		// }
-		//
-		// for (int g = 0; g < m.getKartenJoker2().size(); g++){
-		// if (m.getKartenJoker2().get(g).getWert() == 12){
-		// Gui.lblp2dame.setVisible(true);
-		// break;
-		// }
-		// else{
-		// Gui.lblp2dame.setVisible(false);
-		// }
-		// }
-		//
-		// for (int g = 0; g < m.getKartenJoker2().size(); g++){
-		// if (m.getKartenJoker2().get(g).getWert() == 13){
-		// Gui.lblp2koenig.setVisible(true);
-		// break;
-		// }
-		// else{
-		// Gui.lblp2koenig.setVisible(false);
-		// }
-		// }
-		// }
-		// else{
-		// for (int g = 0; g < m.getKartenJoker1().size(); g++){
-		// if (m.getKartenJoker1().get(g).getWert() == 11){
-		// Gui.lblp2bube.setVisible(true);
-		// break;
-		// }
-		// else{
-		// Gui.lblp2bube.setVisible(false);
-		// }
-		// }
-		//
-		// for (int g = 0; g < m.getKartenJoker1().size(); g++){
-		// if (m.getKartenJoker1().get(g).getWert() == 12){
-		// Gui.lblp2dame.setVisible(true);
-		// break;
-		// }
-		// else{
-		// Gui.lblp2dame.setVisible(false);
-		// }
-		// }
-		//
-		// for (int g = 0; g < m.getKartenJoker1().size(); g++){
-		// if (m.getKartenJoker1().get(g).getWert() == 13){
-		// Gui.lblp2koenig.setVisible(true);
-		// break;
-		// }
-		// else{
-		// Gui.lblp2koenig.setVisible(false);
-		// }
-		// }
-		// }
-
+		
+		
 		// Buttons aktivieren und Status setzen wenn Spieler am Zug ist
 		if (m.getAmZug() == clientId) {
 			Gui.btnAusspielen.setEnabled(true);
@@ -272,8 +218,8 @@ public class Client {
 				Gui.alKarten.get(j).setKarte(m.kartenPlayer1.get(j));
 			}
 
-			for (int k = 0; k < m.kartenJoker1.size(); k++) {
-				Gui.alJoker.get(k).setKarte(m.kartenJoker1.get(k));
+			for (int k = 0; k < m.kartenJoker1.length; k++) {
+				Gui.alJoker.get(k).setKarte(m.kartenJoker1[k]);
 			}
 
 		} else {
@@ -285,8 +231,8 @@ public class Client {
 				Gui.alKarten.get(j).setKarte(m.kartenPlayer2.get(j));
 			}
 
-			for (int k = 0; k < m.kartenJoker2.size(); k++) {
-				Gui.alJoker.get(k).setKarte(m.kartenJoker2.get(k));
+			for (int k = 0; k < m.kartenJoker2.length; k++) {
+				Gui.alJoker.get(k).setKarte(m.kartenJoker2[k]);
 			}
 
 		}

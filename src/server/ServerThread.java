@@ -86,6 +86,11 @@ public class ServerThread extends Thread {
 					
 					// Input vom  MasterObjekt
 					else if (inputObject instanceof MasterObject) {
+						try {
+							Thread.sleep(200);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
 						MasterObject m = (MasterObject) inputObject;
 						
 						// Spiellogik aufrufen

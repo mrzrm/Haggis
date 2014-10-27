@@ -1,6 +1,7 @@
 package server;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MasterObject implements Serializable {
@@ -10,8 +11,8 @@ public class MasterObject implements Serializable {
 	public Deck d;
 	public ArrayList<Karte> kartenPlayer1;
 	public ArrayList<Karte> kartenPlayer2;
-	public ArrayList<Karte> kartenJoker1;
-	public ArrayList<Karte> kartenJoker2;
+	public Karte[] kartenJoker1;
+	public Karte[] kartenJoker2;
 	public ArrayList<Karte> gespielteKarten;
 	public boolean passt;
 	public int amZug;
@@ -30,9 +31,10 @@ public class MasterObject implements Serializable {
 		
 		this.kartenPlayer1 = d.getKartenPlayer1();
 		this.kartenPlayer2 = d.getKartenPlayer2();
-		this.kartenJoker1 = d.getJokerPlayer1();
-		this.kartenJoker2 = d.getJokerPlayer2();
-		this.gespielteKarten = null;
+		this.kartenJoker1 =  d.getJokerPlayer1().toArray(new Karte[d.getJokerPlayer1().size()]);
+		this.kartenJoker2 = d.getJokerPlayer2().toArray(new Karte[d.getJokerPlayer2().size()]);
+		//this.gespielteKarten = null;
+		
 		
 		this.neuVerteilt = true;
 		
@@ -72,20 +74,21 @@ public class MasterObject implements Serializable {
 		this.gespielteKarten = gespielteKarten;
 	}
 
-	public ArrayList<Karte> getKartenJoker1() {
+	public Karte[] getKartenJoker1() {
 		return kartenJoker1;
 	}
 
-	public void setKartenJoker1(ArrayList<Karte> kartenJoker1) {
+	public void setKartenJoker1(Karte[] kartenJoker1) {
 		this.kartenJoker1 = kartenJoker1;
 	}
 
-	public ArrayList<Karte> getKartenJoker2() {
+	public Karte[] getKartenJoker2() {
 		return kartenJoker2;
 	}
 
-	public void setKartenJoker2(ArrayList<Karte> kartenJoker2) {
+	public void setKartenJoker2(Karte[] kartenJoker2) {
 		this.kartenJoker2 = kartenJoker2;
 	}
+
 		
 }
