@@ -48,7 +48,7 @@ public class MasterObject implements Serializable {
 	}
 
 	public void setPasst(boolean passt) {
-		this.passt = true;
+		this.passt = passt;
 	}
 
 	public int getAmZug() {
