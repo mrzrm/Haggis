@@ -128,15 +128,16 @@ public class Gui extends JFrame {
 
 	// ArrayList für die JLabels auf dem Kartentisch
 	public static ArrayList<JLabel> alKartenTisch = new ArrayList<JLabel>();
+	
 	private JPanel panel_p2AnzKarten;
 	private JLabel lblp2KartenName;
-	private JLabel lblp2Karten;
+	public static JLabel lblp2Karten;
 	private JLabel lblp2PunkteName;
 	private JLabel lblp2Punkte;
 	private JLabel lblplatzhalter;
 	private JPanel panel;
 	private JLabel lblp1KartenName;
-	private JLabel lblp1KartenAnzahl;
+	public static JLabel lblp1KartenAnzahl;
 	private JLabel lblplatzhalter2;
 	private JLabel lblp1PunkteName;
 	private JLabel lblp1Punkte;
@@ -696,6 +697,32 @@ public class Gui extends JFrame {
 						}
 						Client.m.setKartenJoker2(temp2);
 
+					}
+					
+					// Karten aus Spieler KartenArray entfernen
+					if(Client.clientId == 0){
+						ArrayList<Karte> alEntf = new ArrayList<Karte>();
+
+						for(int n = 0; n < Client.m.getKartenPlayer1().size(); n++){
+							alEntf.add(Client.m.getKartenPlayer1().get(n));
+						}
+						for (int q = 0; q < alTmp.size(); q++){
+							alEntf.remove(alTmp.get(q));
+						}
+						
+						Client.m.setKartenPlayer1(alEntf);
+						
+					}else{
+						ArrayList<Karte> alEntf = new ArrayList<Karte>();
+
+						for(int n = 0; n < Client.m.getKartenPlayer2().size(); n++){
+							alEntf.add(Client.m.getKartenPlayer2().get(n));
+						}
+						for (int q = 0; q < alTmp.size(); q++){
+							alEntf.remove(alTmp.get(q));
+						}
+						
+						Client.m.setKartenPlayer2(alEntf);				
 					}
 
 					// Alle karten deselektieren

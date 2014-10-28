@@ -181,11 +181,16 @@ public class Client {
 		
 		// Kartenanzahl Label aktualisieren
 		if(clientId == 0){
-			
+			Gui.lblp1KartenAnzahl.setText(Integer.toString(m.kartenPlayer1.size()));
+			Gui.lblp2Karten.setText(Integer.toString(m.kartenPlayer2.size()));
 		}else{
-			
+			Gui.lblp1KartenAnzahl.setText(Integer.toString(m.kartenPlayer2.size()));
+			Gui.lblp2Karten.setText(Integer.toString(m.kartenPlayer1.size()));
 		}
 		
+		System.out.println("Anz. KartenPlayer1: " + m.kartenPlayer1.size());
+		System.out.println("Anz. KartenPlayer2: " + m.kartenPlayer2.size());
+
 		
 		// Buttons aktivieren und Status setzen wenn Spieler am Zug ist
 		if (m.getAmZug() == clientId) {

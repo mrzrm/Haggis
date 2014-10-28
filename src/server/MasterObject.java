@@ -90,5 +90,19 @@ public class MasterObject implements Serializable {
 		this.kartenJoker2 = kartenJoker2;
 	}
 
-		
+	public ArrayList<Karte> getKartenPlayer1() {
+		return kartenPlayer1;
+	}
+
+	public void setKartenPlayer1(ArrayList<Karte> kartenPlayer1) {
+		this.kartenPlayer1 = kartenPlayer1;
+	}
+
+	public ArrayList<Karte> getKartenPlayer2() {
+		return kartenPlayer2;
+	}
+
+	public void setKartenPlayer2(ArrayList<Karte> kartenPlayer2) {
+		this.kartenPlayer2 = kartenPlayer2;
+	}	
 }
