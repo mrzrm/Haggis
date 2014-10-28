@@ -179,6 +179,12 @@ public class Client {
 			
 		}
 		
+		// Kartenanzahl Label aktualisieren
+		if(clientId == 0){
+			
+		}else{
+			
+		}
 		
 		
 		// Buttons aktivieren und Status setzen wenn Spieler am Zug ist

@@ -101,14 +101,14 @@ public class Gui extends JFrame {
 	public static JLabel jlStatus;
 
 	// JPanels
-	private JPanel p2joker;
+	private JPanel panel_p2joker;
 	private JPanel panel_status;
 	private JPanel panel_Spielfeld;
 	private JPanel panel_mycards;
 	private JPanel panel_spieler2;
 	private JPanel panel_spieler1;
 	private JPanel p1joker;
-	private JPanel btnPanel;
+	private JPanel panel_btns;
 
 	// JLabel Kartentisch
 	private JLabel lbl1;
@@ -128,6 +128,18 @@ public class Gui extends JFrame {
 
 	// ArrayList für die JLabels auf dem Kartentisch
 	public static ArrayList<JLabel> alKartenTisch = new ArrayList<JLabel>();
+	private JPanel panel_p2AnzKarten;
+	private JLabel lblp2KartenName;
+	private JLabel lblp2Karten;
+	private JLabel lblp2PunkteName;
+	private JLabel lblp2Punkte;
+	private JLabel lblplatzhalter;
+	private JPanel panel;
+	private JLabel lblp1KartenName;
+	private JLabel lblp1KartenAnzahl;
+	private JLabel lblplatzhalter2;
+	private JLabel lblp1PunkteName;
+	private JLabel lblp1Punkte;
 
 	/**
 	 * Launch the application.
@@ -176,15 +188,15 @@ public class Gui extends JFrame {
 		panel_spieler2 = new JPanel();
 		panel_spieler2.setBorder(new LineBorder(new Color(0, 0, 0)));
 
-		btnPanel = new JPanel();
-		btnPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_btns = new JPanel();
+		panel_btns.setBorder(new LineBorder(new Color(0, 0, 0)));
 
 		p1joker = new JPanel();
 		p1joker.setMaximumSize(new Dimension(228, 123));
 		p1joker.setMinimumSize(new Dimension(228, 123));
 		p1joker.setPreferredSize(new Dimension(228, 123));
 
-		p2joker = new JPanel();
+		panel_p2joker = new JPanel();
 
 		panel_status = new JPanel();
 		panel_status.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -221,7 +233,7 @@ public class Gui extends JFrame {
 																297,
 																Short.MAX_VALUE)
 														.addComponent(
-																p2joker,
+																panel_p2joker,
 																Alignment.TRAILING,
 																GroupLayout.PREFERRED_SIZE,
 																297,
@@ -243,7 +255,7 @@ public class Gui extends JFrame {
 																297,
 																Short.MAX_VALUE)
 														.addComponent(
-																btnPanel,
+																panel_btns,
 																GroupLayout.PREFERRED_SIZE,
 																297,
 																GroupLayout.PREFERRED_SIZE))
@@ -269,7 +281,7 @@ public class Gui extends JFrame {
 																		.addPreferredGap(
 																				ComponentPlacement.RELATED)
 																		.addComponent(
-																				p2joker,
+																				panel_p2joker,
 																				GroupLayout.PREFERRED_SIZE,
 																				GroupLayout.DEFAULT_SIZE,
 																				GroupLayout.PREFERRED_SIZE)
@@ -308,7 +320,7 @@ public class Gui extends JFrame {
 																		.addPreferredGap(
 																				ComponentPlacement.RELATED)
 																		.addComponent(
-																				btnPanel,
+																				panel_btns,
 																				GroupLayout.PREFERRED_SIZE,
 																				39,
 																				GroupLayout.PREFERRED_SIZE))
@@ -419,44 +431,84 @@ public class Gui extends JFrame {
 		// Player 2 - Joker panel
 		lblp2bube = new JLabel("");
 		lblp2bube.setPreferredSize(new Dimension(87, 140));
-		p2joker.add(lblp2bube);
+		panel_p2joker.add(lblp2bube);
 		lblp2bube.setIcon(iibube);
 
 		lblp2dame = new JLabel("");
 		lblp2dame.setPreferredSize(new Dimension(87, 140));
-		p2joker.add(lblp2dame);
+		panel_p2joker.add(lblp2dame);
 		lblp2dame.setIcon(iidame);
 
 		lblp2koenig = new JLabel("");
 		lblp2koenig.setPreferredSize(new Dimension(87, 140));
-		p2joker.add(lblp2koenig);
+		panel_p2joker.add(lblp2koenig);
 		lblp2koenig.setIcon(iikoenig);
 
 		p1joker.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 2));
-		btnPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panel_btns.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		// JButton Ausspielen erstellen
 		btnAusspielen = new JButton("Ausspielen");
 		btnAusspielen.setEnabled(false);
 		btnAusspielen.setActionCommand("Ausspielen");
-		btnPanel.add(btnAusspielen);
+		panel_btns.add(btnAusspielen);
 
 		// JButton Passen erstellen
 		btnPassen = new JButton("Passen");
 		btnPassen.setEnabled(false);
-		btnPanel.add(btnPassen);
+		panel_btns.add(btnPassen);
+		panel_spieler2.setLayout(new GridLayout(0, 1, 0, 0));
 
 		// JLabel Spieler 2 erstellen
 		lblSpieler2 = new JLabel("Spieler 2");
-		lblSpieler2.setHorizontalAlignment(SwingConstants.LEFT);
+		lblSpieler2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSpieler2.setFont(new Font("Tahoma", Font.BOLD, 24));
 		panel_spieler2.add(lblSpieler2);
+		
+		panel_p2AnzKarten = new JPanel();
+		panel_spieler2.add(panel_p2AnzKarten);
+		FlowLayout fl_panel_p2AnzKarten = new FlowLayout(FlowLayout.CENTER, 5, 5);
+		panel_p2AnzKarten.setLayout(fl_panel_p2AnzKarten);
+		
+		lblp2KartenName = new JLabel("Anzahl Karten: ");
+		panel_p2AnzKarten.add(lblp2KartenName);
+		
+		lblp2Karten = new JLabel("0");
+		panel_p2AnzKarten.add(lblp2Karten);
+		
+		lblplatzhalter = new JLabel("        ");
+		panel_p2AnzKarten.add(lblplatzhalter);
+		
+		lblp2PunkteName = new JLabel("Punkte:");
+		panel_p2AnzKarten.add(lblp2PunkteName);
+		
+		lblp2Punkte = new JLabel("0");
+		panel_p2AnzKarten.add(lblp2Punkte);
+		panel_spieler1.setLayout(new GridLayout(0, 1, 0, 0));
 
 		// JLabel Spieler 1 erstellen
 		lblSpieler1 = new JLabel("Spieler 1");
 		lblSpieler1.setFont(new Font("Tahoma", Font.BOLD, 24));
-		lblSpieler1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblSpieler1.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_spieler1.add(lblSpieler1);
+		
+		panel = new JPanel();
+		panel_spieler1.add(panel);
+		
+		lblp1KartenName = new JLabel("Anzahl Karten: ");
+		panel.add(lblp1KartenName);
+		
+		lblp1KartenAnzahl = new JLabel("0");
+		panel.add(lblp1KartenAnzahl);
+		
+		lblplatzhalter2 = new JLabel("        ");
+		panel.add(lblplatzhalter2);
+		
+		lblp1PunkteName = new JLabel("Punkte:");
+		panel.add(lblp1PunkteName);
+		
+		lblp1Punkte = new JLabel("0");
+		panel.add(lblp1Punkte);
 		panel_mycards.setLayout(new GridLayout(2, 7, 0, 0));
 
 		// Karten JToggleButtons erstellen
