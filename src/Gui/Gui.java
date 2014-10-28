@@ -1,6 +1,5 @@
 package Gui;
 
-//test kevin
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -44,13 +43,11 @@ import javax.swing.border.SoftBevelBorder;
 
 import server.Deck;
 import server.Karte;
-import server.ZugVerifizieren;
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-import net.miginfocom.swing.MigLayout;
 
 public class Gui extends JFrame {
 
@@ -571,15 +568,9 @@ public class Gui extends JFrame {
 
 			if (e.getSource() == btnAusspielen) {
 				System.out.println("Button: Ausspielen");
-<<<<<<< HEAD
 
-				// ----- HIER CODE EINFÜGEN UM AUSZUSPIELEN -----
-
-=======
-				
 				// ----- HIER CODE UM AUSZUSPIELEN -----
-				
->>>>>>> origin/master
+
 				ArrayList<JKartenButton<Karte>> selectedButtons = new ArrayList<JKartenButton<Karte>>();
 				// welche Karten sind alle selektiert?
 				for (int z = 0; z < alAlleKarten.size(); z++) {
@@ -598,10 +589,12 @@ public class Gui extends JFrame {
 
 				// Hier Code einfügen um Pass zu verifizieren ;-)
 				boolean verify = false;
-				verify = ZugVerifizieren.verify(alTmp, Client.m.gespielteKarten);
+				verify = ZugVerifizieren
+						.verify(alTmp, Client.m.gespielteKarten);
 
 				if (verify == false) {
-					javax.swing.JOptionPane.showMessageDialog(null,"ungültiger Zug");
+					javax.swing.JOptionPane.showMessageDialog(null,
+							"ungültiger Zug");
 					System.out.println("verfiy.false");
 				} else {
 					System.out.print("verfiy.true");
@@ -666,26 +659,22 @@ public class Gui extends JFrame {
 				selectedButtons.clear();
 				alTmp.clear();
 			}
-<<<<<<< HEAD
 
 			if (e.getSource() == btnPassen) {
 				System.out.println("Button: Passen");
 
 				// HIER CODE EINFÜGEN UM ZU PASSEN
-=======
-			
-			// ----- HIER CODE UM ZU PASSEN -----
-			
-			if(e.getSource() == btnPassen){
-				System.out.println("Button: Passen");
-				
->>>>>>> origin/master
-				Client.m.setPasst(true);
-				Client.sendObjectToServer();
+
+				// ----- HIER CODE UM ZU PASSEN -----
+
+				if (e.getSource() == btnPassen) {
+					System.out.println("Button: Passen");
+
+					Client.m.setPasst(true);
+					Client.sendObjectToServer();
+				}
 			}
-
 		}
-
 	}
 
 	public class btnListener implements ItemListener {
@@ -740,5 +729,4 @@ public class Gui extends JFrame {
 			this.karte = karte;
 		}
 	}
-
 }

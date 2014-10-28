@@ -1,8 +1,9 @@
-package server;
+package Gui;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
+import server.Karte;
 import server.Deck.CustomComparator;
 
 public class ZugVerifizieren {
