@@ -17,6 +17,7 @@ public class ZugVerifizieren {
 
 		for (int i = 0; i < zug.size(); i++) {
 			System.out.println(zug.get(i).getWert());
+			System.out.println(zug.get(i).getFarbe());
 		}
 
 		// falls erster zug
@@ -46,35 +47,35 @@ public class ZugVerifizieren {
 				System.out.println(counterStrasse + "er Strasse gespielt");
 				return true;
 			}
-			
+			   
 			else{
 			
 			}
 
 		}
-		// else if ((zug.size() == 4) && (zug.get(0).getWert() ==
-		// zug.get(1).getWert()) && (zug.get(0).getWert() ==
-		// zug.get(2).getWert()) && (zug.get(0).getWert() ==
-		// zug.get(3).getWert())){
-		// System.out.println("vierling gespielt");
-		// return true;
-		// //wert von joker karte muss noch umgewandelt werden
-		// }else if ((zug.size() == 4) && (zug.get(0).getWert() ==
-		// zug.get(1).getWert()) && (zug.get(0).getWert() ==
-		// zug.get(2).getWert()) && (zug.get(0).getWert() ==
-		// zug.get(3).getWert()) && (zug.get(0).getWert() ==
-		// zug.get(4).getWert())){
-		// System.out.println("fuenfling gespielt");
-		// return true;
-		// }
-		// else if ((zug.size() == 4) && (zug.get(0).getWert() ==
-		// zug.get(1).getWert()) && (zug.get(2).getWert() ==
-		// zug.get(3).getWert()) && (zug.get(0).getFarbe() ==
-		// zug.get(1).getFarbe()) && zug.get(2).getFarbe() ==
-		// zug.get(3).getFarbe()){
-		// System.out.println("PaarStrasse gespielt");
-		// return true;
-		// }
+		 else if ((zug.size() == 4) && (zug.get(0).getWert() ==
+		 zug.get(1).getWert()) && (zug.get(0).getWert() ==
+		 zug.get(2).getWert()) && (zug.get(0).getWert() ==
+		 zug.get(3).getWert())){
+		 System.out.println("vierling gespielt");
+		 return true;
+		 //wert von joker karte muss noch umgewandelt werden
+		 }else if ((zug.size() == 4) && (zug.get(0).getWert() ==
+		 zug.get(1).getWert()) && (zug.get(0).getWert() ==
+		 zug.get(2).getWert()) && (zug.get(0).getWert() ==
+		 zug.get(3).getWert()) && (zug.get(0).getWert() ==
+		 zug.get(4).getWert())){
+		 System.out.println("fuenfling gespielt");
+		 return true;
+		 }
+		 else if ((zug.size() == 4) && (zug.get(0).getWert() ==
+		 zug.get(1).getWert()) && (zug.get(2).getWert() ==
+		 zug.get(3).getWert()) && (zug.get(0).getFarbe() ==
+		 zug.get(2).getFarbe()) && zug.get(1).getFarbe() ==
+		 zug.get(3).getFarbe()){
+		 System.out.println("PaarStrasse gespielt");
+		 return true;
+		 }
 		// else if ((zug.size() == 4) && (zug.get(0).getWert() ==
 		// zug.get(2).getWert()) && (zug.get(1).getWert() ==
 		// zug.get(3).getWert()) && (zug.get(0).getFarbe() ==
