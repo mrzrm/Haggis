@@ -17,6 +17,8 @@ public class MasterObject implements Serializable {
 	public boolean passt;
 	public int amZug;
 	public boolean neuVerteilt;
+	public boolean verify;
+	public int letzerZug;
 
 
 	//constructor

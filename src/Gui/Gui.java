@@ -641,11 +641,10 @@ public class Gui extends JFrame {
 				}
 
 				// Hier Code einfügen um Pass zu verifizieren ;-)
-				boolean verify = false;
-				verify = ZugVerifizieren
+//				int verify = 0;
+				Client.m.verify = ZugVerifizieren
 						.verify(alTmp, Client.m.gespielteKarten);
-
-				if (verify == false) {
+				if (Client.m.verify == false) {
 					javax.swing.JOptionPane.showMessageDialog(null,
 							"ungültiger Zug");
 					System.out.println("verfiy.false");
@@ -731,12 +730,13 @@ public class Gui extends JFrame {
 							alAlleKarten.get(w).setSelected(false);
 						}
 					}
-
 					Client.m.setGespielteKarten(alTmp);
 					Client.sendObjectToServer();
+
 				}
 				selectedButtons.clear();
-				alTmp.clear();
+				//alTmp.clear();
+
 			}
 
 			if (e.getSource() == btnPassen) {

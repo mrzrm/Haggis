@@ -9,6 +9,10 @@ public class Logik {
 		if (m.isPasst()){
 			m.setPasst(false);
 			
+			//Spielfeld löschen
+			m.gespielteKarten.clear();
+			
+			
 			// Konsolenausgabe
 			Server.display(m.users.get(m.getAmZug()).getName() + " hat gepasst.");
 		}
@@ -18,7 +22,6 @@ public class Logik {
 		else {
 			
 			Server.display(m.users.get(m.getAmZug()).getName() + " hat gespielt:");
-			
 			for(int r = 0; r < m.gespielteKarten.size(); r++){
 				System.out.print("Farbe: " + m.gespielteKarten.get(r).getFarbe());
 				System.out.println(" Wert: " + m.gespielteKarten.get(r).getWert());
