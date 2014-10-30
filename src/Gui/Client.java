@@ -146,9 +146,6 @@ public class Client {
 				Gui.alKartenTisch.get(f).setIcon(
 						m.getGespielteKarten().get(f).getIcon());
 			}
-			// Array gespielte Karten löschen
-			m.getGespielteKarten().clear();
-			//System.out.println("Spielfläche neu geladen. Anz. gespielte Karten:" + m.getGespielteKarten().size());
 		}
 
 		//Joker aktualisieren
