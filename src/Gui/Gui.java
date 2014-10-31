@@ -133,14 +133,14 @@ public class Gui extends JFrame {
 	private JLabel lblp2KartenName;
 	public static JLabel lblp2Karten;
 	private JLabel lblp2PunkteName;
-	private JLabel lblp2Punkte;
+	public static JLabel lblp2Punkte;
 	private JLabel lblplatzhalter;
 	private JPanel panel;
 	private JLabel lblp1KartenName;
 	public static JLabel lblp1KartenAnzahl;
 	private JLabel lblplatzhalter2;
 	private JLabel lblp1PunkteName;
-	private JLabel lblp1Punkte;
+	public static JLabel lblp1Punkte;
 
 	/**
 	 * Launch the application.
@@ -700,14 +700,18 @@ public class Gui extends JFrame {
 					
 					// Karten aus Spieler KartenArray entfernen (KartenPlayer1 oder KartenPlayer2)
 					if(Client.clientId == 0){
-						
 						Client.m.setKartenPlayer1(kartenEntfernen(Client.m.getKartenPlayer1(),alTmp));
-						
 					}else{
-						
 						Client.m.setKartenPlayer2(kartenEntfernen(Client.m.getKartenPlayer2(),alTmp));
-						
 					}
+					
+					// Punkte zu variable punkteBisStich addieren
+					int punkteNeu = Client.m.getPunkteBisStich();
+					
+					for (Karte k: alTmp){
+						punkteNeu += k.getPunkte();
+					}
+					Client.m.setPunkteBisStich(punkteNeu);
 
 					// Alle karten deselektieren
 					for (int w = 0; w < alAlleKarten.size(); w++) {

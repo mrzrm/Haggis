@@ -19,6 +19,7 @@ public class MasterObject implements Serializable {
 	public boolean neuVerteilt;
 	public boolean verify;
 	public int letzerZug;
+	public int punkteBisStich;
 
 
 	//constructor
@@ -106,5 +107,13 @@ public class MasterObject implements Serializable {
 
 	public void setKartenPlayer2(ArrayList<Karte> kartenPlayer2) {
 		this.kartenPlayer2 = kartenPlayer2;
+	}
+
+	public int getPunkteBisStich() {
+		return punkteBisStich;
+	}
+
+	public void setPunkteBisStich(int punkteBisStich) {
+		this.punkteBisStich = punkteBisStich;
 	}	
 }

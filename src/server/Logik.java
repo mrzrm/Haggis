@@ -9,9 +9,22 @@ public class Logik {
 		if (m.isPasst()){
 			m.setPasst(false);
 			
-			//Spielfeld löschen
+			// Spielfeld löschen
 			m.gespielteKarten.clear();
 			
+			// punkteBisStich dem Spieler der nicht gepasst hat hinzu addieren
+			int bekommtPunkte = 0;
+			if(m.getAmZug() == 1 ){
+				bekommtPunkte = 0;
+			}else{
+				bekommtPunkte = 1;
+			}
+			int tPunkte = m.users.get(bekommtPunkte).getPunkte();
+			tPunkte += m.getPunkteBisStich();
+			m.users.get(bekommtPunkte).setPunkte(tPunkte);
+			
+			// pukteBisStich reseten
+			m.setPunkteBisStich(0);
 			
 			// Konsolenausgabe
 			Server.display(m.users.get(m.getAmZug()).getName() + " hat gepasst.");

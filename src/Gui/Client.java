@@ -187,20 +187,30 @@ public class Client {
 		
 		System.out.println("Anz. KartenPlayer1: " + m.kartenPlayer1.size());
 		System.out.println("Anz. KartenPlayer2: " + m.kartenPlayer2.size());
+				
+//		//Testausgabe Karten P1 & P2
+//		System.out.println("-----------------------------------------");
+//		System.out.println("Karten Player 1");
+//		for (Karte k : m.kartenPlayer1 ){
+//			System.out.println("Farbe: " + k.getFarbe() + " Wert: " + k.getWert());
+//		}
+//		System.out.println("-----------------------------------------");
+//		System.out.println("-----------------------------------------");
+//		System.out.println("Karten Player 2");
+//		for (Karte k : m.kartenPlayer2 ){
+//			System.out.println("Farbe: " + k.getFarbe() + " Wert: " + k.getWert());
+//		}
+//		System.out.println("-----------------------------------------");
 		
-		//Testausgabe Karten P1 & P2
-		System.out.println("-----------------------------------------");
-		System.out.println("Karten Player 1");
-		for (Karte k : m.kartenPlayer1 ){
-			System.out.println("Farbe: " + k.getFarbe() + " Wert: " + k.getWert());
+		// Punkte Label aktualisieren
+		if(clientId == 0){
+			Gui.lblp1Punkte.setText(Integer.toString(m.users.get(0).getPunkte()));
+			Gui.lblp2Punkte.setText(Integer.toString(m.users.get(1).getPunkte()));
+		}else{
+			Gui.lblp1Punkte.setText(Integer.toString(m.users.get(1).getPunkte()));
+			Gui.lblp2Punkte.setText(Integer.toString(m.users.get(0).getPunkte()));
 		}
-		System.out.println("-----------------------------------------");
-		System.out.println("-----------------------------------------");
-		System.out.println("Karten Player 2");
-		for (Karte k : m.kartenPlayer2 ){
-			System.out.println("Farbe: " + k.getFarbe() + " Wert: " + k.getWert());
-		}
-		System.out.println("-----------------------------------------");
+		
 		
 		// Buttons aktivieren und Status setzen wenn Spieler am Zug ist
 		if (m.getAmZug() == clientId) {
@@ -212,6 +222,7 @@ public class Client {
 				Gui.btnPassen.setEnabled(true);
 			}
 			Gui.jlStatus.setText("Sie sind am Zug");
+			// Fenster in Fokus setzen
 			java.awt.EventQueue.invokeLater(new Runnable() {
 
 				@Override
