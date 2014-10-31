@@ -6,16 +6,26 @@ import javax.swing.ImageIcon;
 
 public class Karte implements Serializable{
 
-	private final Farbe farbe;
-	private final int rang;
+	private String name;
+	private Farbe farbe;
+	private int rang;
 	private final int punkte;
 	private final ImageIcon icon;
 	
-	public Karte(Farbe f, int r, int p, ImageIcon i){
+	public Karte(String n, Farbe f, int r, int p, ImageIcon i){
+		this.name = n;
 		this.farbe = f;
 		this.rang = r;
 		this.punkte = p;
 		this.icon = i;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	public enum Farbe {

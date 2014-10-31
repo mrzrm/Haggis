@@ -113,48 +113,48 @@ public class Deck implements Serializable {
 	public Deck() {
 
 		// Grüne Karten erstellen und zur ArrayList hinzufügen
-		kartenDeck.add(e02 = new Karte(Karte.Farbe.GREEN, 2, 0, iie02));
-		kartenDeck.add(e03 = new Karte(Karte.Farbe.GREEN, 3, 1, iie03));
-		kartenDeck.add(e04 = new Karte(Karte.Farbe.GREEN, 4, 0, iie04));
-		kartenDeck.add(e05 = new Karte(Karte.Farbe.GREEN, 5, 1, iie05));
-		kartenDeck.add(e06 = new Karte(Karte.Farbe.GREEN, 6, 0, iie06));
-		kartenDeck.add(e07 = new Karte(Karte.Farbe.GREEN, 7, 1, iie07));
-		kartenDeck.add(e08 = new Karte(Karte.Farbe.GREEN, 8, 0, iie08));
-		kartenDeck.add(e09 = new Karte(Karte.Farbe.GREEN, 9, 1, iie09));
-		kartenDeck.add(e10 = new Karte(Karte.Farbe.GREEN, 10, 0, iie10));
+		kartenDeck.add(e02 = new Karte("gruen2", Karte.Farbe.GREEN, 2, 0, iie02));
+		kartenDeck.add(e03 = new Karte("gruen3", Karte.Farbe.GREEN, 3, 1, iie03));
+		kartenDeck.add(e04 = new Karte("gruen4", Karte.Farbe.GREEN, 4, 0, iie04));
+		kartenDeck.add(e05 = new Karte("gruen5", Karte.Farbe.GREEN, 5, 1, iie05));
+		kartenDeck.add(e06 = new Karte("gruen6", Karte.Farbe.GREEN, 6, 0, iie06));
+		kartenDeck.add(e07 = new Karte("gruen7", Karte.Farbe.GREEN, 7, 1, iie07));
+		kartenDeck.add(e08 = new Karte("gruen8", Karte.Farbe.GREEN, 8, 0, iie08));
+		kartenDeck.add(e09 = new Karte("gruen9", Karte.Farbe.GREEN, 9, 1, iie09));
+		kartenDeck.add(e10 = new Karte("gruen10", Karte.Farbe.GREEN, 10, 0, iie10));
 
 		// Graue Karten erstellen und zur ArrayList hinzufügen
-		kartenDeck.add(g02 = new Karte(Karte.Farbe.GREY, 2, 0, iig02));
-		kartenDeck.add(g03 = new Karte(Karte.Farbe.GREY, 3, 1, iig03));
-		kartenDeck.add(g04 = new Karte(Karte.Farbe.GREY, 4, 0, iig04));
-		kartenDeck.add(g05 = new Karte(Karte.Farbe.GREY, 5, 1, iig05));
-		kartenDeck.add(g06 = new Karte(Karte.Farbe.GREY, 6, 0, iig06));
-		kartenDeck.add(g07 = new Karte(Karte.Farbe.GREY, 7, 1, iig07));
-		kartenDeck.add(g08 = new Karte(Karte.Farbe.GREY, 8, 0, iig08));
-		kartenDeck.add(g09 = new Karte(Karte.Farbe.GREY, 9, 1, iig09));
-		kartenDeck.add(g10 = new Karte(Karte.Farbe.GREY, 10, 0, iig10));
+		kartenDeck.add(g02 = new Karte("grau2", Karte.Farbe.GREY, 2, 0, iig02));
+		kartenDeck.add(g03 = new Karte("grau3", Karte.Farbe.GREY, 3, 1, iig03));
+		kartenDeck.add(g04 = new Karte("grau4", Karte.Farbe.GREY, 4, 0, iig04));
+		kartenDeck.add(g05 = new Karte("grau5", Karte.Farbe.GREY, 5, 1, iig05));
+		kartenDeck.add(g06 = new Karte("grau6", Karte.Farbe.GREY, 6, 0, iig06));
+		kartenDeck.add(g07 = new Karte("grau7", Karte.Farbe.GREY, 7, 1, iig07));
+		kartenDeck.add(g08 = new Karte("grau8", Karte.Farbe.GREY, 8, 0, iig08));
+		kartenDeck.add(g09 = new Karte("grau9", Karte.Farbe.GREY, 9, 1, iig09));
+		kartenDeck.add(g10 = new Karte("grau10", Karte.Farbe.GREY, 10, 0, iig10));
 
 		// Rote Karten erstellen und zur ArrayList hinzufügen
-		kartenDeck.add(r02 = new Karte(Karte.Farbe.RED, 2, 0, iir02));
-		kartenDeck.add(r03 = new Karte(Karte.Farbe.RED, 3, 1, iir03));
-		kartenDeck.add(r04 = new Karte(Karte.Farbe.RED, 4, 0, iir04));
-		kartenDeck.add(r05 = new Karte(Karte.Farbe.RED, 5, 1, iir05));
-		kartenDeck.add(r06 = new Karte(Karte.Farbe.RED, 6, 0, iir06));
-		kartenDeck.add(r07 = new Karte(Karte.Farbe.RED, 7, 1, iir07));
-		kartenDeck.add(r08 = new Karte(Karte.Farbe.RED, 8, 0, iir08));
-		kartenDeck.add(r09 = new Karte(Karte.Farbe.RED, 9, 1, iir09));
-		kartenDeck.add(r10 = new Karte(Karte.Farbe.RED, 10, 0, iir10));
+		kartenDeck.add(r02 = new Karte("rot2", Karte.Farbe.RED, 2, 0, iir02));
+		kartenDeck.add(r03 = new Karte("rot3", Karte.Farbe.RED, 3, 1, iir03));
+		kartenDeck.add(r04 = new Karte("rot4", Karte.Farbe.RED, 4, 0, iir04));
+		kartenDeck.add(r05 = new Karte("rot5", Karte.Farbe.RED, 5, 1, iir05));
+		kartenDeck.add(r06 = new Karte("rot6", Karte.Farbe.RED, 6, 0, iir06));
+		kartenDeck.add(r07 = new Karte("rot7", Karte.Farbe.RED, 7, 1, iir07));
+		kartenDeck.add(r08 = new Karte("rot8", Karte.Farbe.RED, 8, 0, iir08));
+		kartenDeck.add(r09 = new Karte("rot9", Karte.Farbe.RED, 9, 1, iir09));
+		kartenDeck.add(r10 = new Karte("rot10", Karte.Farbe.RED, 10, 0, iir10));
 
 		// Gelbe Karten erstellen und zur ArrayList hinzufügen
-		kartenDeck.add(y02 = new Karte(Karte.Farbe.YELLOW, 2, 0, iiy02));
-		kartenDeck.add(y03 = new Karte(Karte.Farbe.YELLOW, 3, 1, iiy03));
-		kartenDeck.add(y04 = new Karte(Karte.Farbe.YELLOW, 4, 0, iiy04));
-		kartenDeck.add(y05 = new Karte(Karte.Farbe.YELLOW, 5, 1, iiy05));
-		kartenDeck.add(y06 = new Karte(Karte.Farbe.YELLOW, 6, 0, iiy06));
-		kartenDeck.add(y07 = new Karte(Karte.Farbe.YELLOW, 7, 1, iiy07));
-		kartenDeck.add(y08 = new Karte(Karte.Farbe.YELLOW, 8, 0, iiy08));
-		kartenDeck.add(y09 = new Karte(Karte.Farbe.YELLOW, 9, 1, iiy09));
-		kartenDeck.add(y10 = new Karte(Karte.Farbe.YELLOW, 10, 0, iiy10));
+		kartenDeck.add(y02 = new Karte("gelb1", Karte.Farbe.YELLOW, 2, 0, iiy02));
+		kartenDeck.add(y03 = new Karte("gelb1", Karte.Farbe.YELLOW, 3, 1, iiy03));
+		kartenDeck.add(y04 = new Karte("gelb1", Karte.Farbe.YELLOW, 4, 0, iiy04));
+		kartenDeck.add(y05 = new Karte("gelb1", Karte.Farbe.YELLOW, 5, 1, iiy05));
+		kartenDeck.add(y06 = new Karte("gelb1", Karte.Farbe.YELLOW, 6, 0, iiy06));
+		kartenDeck.add(y07 = new Karte("gelb1", Karte.Farbe.YELLOW, 7, 1, iiy07));
+		kartenDeck.add(y08 = new Karte("gelb1", Karte.Farbe.YELLOW, 8, 0, iiy08));
+		kartenDeck.add(y09 = new Karte("gelb1", Karte.Farbe.YELLOW, 9, 1, iiy09));
+		kartenDeck.add(y10 = new Karte("gelb1", Karte.Farbe.YELLOW, 10, 0, iiy10));
 
 	}
 
@@ -184,13 +184,13 @@ public class Deck implements Serializable {
 		Collections.sort(kartenPlayer1, new CustomComparator());
 		Collections.sort(kartenPlayer2, new CustomComparator());
 
-		jokerPlayer1.add(new Karte(Karte.Farbe.JOKER, 11, 2, iij1));
-		jokerPlayer1.add(new Karte(Karte.Farbe.JOKER, 12, 3, iiq1));
-		jokerPlayer1.add(new Karte(Karte.Farbe.JOKER, 13, 5, iik1));
+		jokerPlayer1.add(new Karte("bube", Karte.Farbe.JOKER, 11, 2, iij1));
+		jokerPlayer1.add(new Karte("dame", Karte.Farbe.JOKER, 12, 3, iiq1));
+		jokerPlayer1.add(new Karte("koenig", Karte.Farbe.JOKER, 13, 5, iik1));
 
-		jokerPlayer2.add(new Karte(Karte.Farbe.JOKER, 11, 2, iij1));
-		jokerPlayer2.add(new Karte(Karte.Farbe.JOKER, 12, 3, iiq1));
-		jokerPlayer2.add(new Karte(Karte.Farbe.JOKER, 13, 5, iik1));
+		jokerPlayer2.add(new Karte("bube", Karte.Farbe.JOKER, 11, 2, iij1));
+		jokerPlayer2.add(new Karte("dame", Karte.Farbe.JOKER, 12, 3, iiq1));
+		jokerPlayer2.add(new Karte("koenig", Karte.Farbe.JOKER, 13, 5, iik1));
 
 	}
 

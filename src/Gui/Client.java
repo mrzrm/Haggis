@@ -187,7 +187,20 @@ public class Client {
 		
 		System.out.println("Anz. KartenPlayer1: " + m.kartenPlayer1.size());
 		System.out.println("Anz. KartenPlayer2: " + m.kartenPlayer2.size());
-
+		
+		//Testausgabe Karten P1 & P2
+		System.out.println("-----------------------------------------");
+		System.out.println("Karten Player 1");
+		for (Karte k : m.kartenPlayer1 ){
+			System.out.println("Farbe: " + k.getFarbe() + " Wert: " + k.getWert());
+		}
+		System.out.println("-----------------------------------------");
+		System.out.println("-----------------------------------------");
+		System.out.println("Karten Player 2");
+		for (Karte k : m.kartenPlayer2 ){
+			System.out.println("Farbe: " + k.getFarbe() + " Wert: " + k.getWert());
+		}
+		System.out.println("-----------------------------------------");
 		
 		// Buttons aktivieren und Status setzen wenn Spieler am Zug ist
 		if (m.getAmZug() == clientId) {

@@ -698,30 +698,15 @@ public class Gui extends JFrame {
 
 					}
 					
-					// Karten aus Spieler KartenArray entfernen
+					// Karten aus Spieler KartenArray entfernen (KartenPlayer1 oder KartenPlayer2)
 					if(Client.clientId == 0){
-						ArrayList<Karte> alEntf = new ArrayList<Karte>();
-
-						for(int n = 0; n < Client.m.getKartenPlayer1().size(); n++){
-							alEntf.add(Client.m.getKartenPlayer1().get(n));
-						}
-						for (int q = 0; q < alTmp.size(); q++){
-							alEntf.remove(alTmp.get(q));
-						}
 						
-						Client.m.setKartenPlayer1(alEntf);
+						Client.m.setKartenPlayer1(kartenEntfernen(Client.m.getKartenPlayer1(),alTmp));
 						
 					}else{
-						ArrayList<Karte> alEntf = new ArrayList<Karte>();
-
-						for(int n = 0; n < Client.m.getKartenPlayer2().size(); n++){
-							alEntf.add(Client.m.getKartenPlayer2().get(n));
-						}
-						for (int q = 0; q < alTmp.size(); q++){
-							alEntf.remove(alTmp.get(q));
-						}
 						
-						Client.m.setKartenPlayer2(alEntf);				
+						Client.m.setKartenPlayer2(kartenEntfernen(Client.m.getKartenPlayer2(),alTmp));
+						
 					}
 
 					// Alle karten deselektieren
@@ -807,5 +792,21 @@ public class Gui extends JFrame {
 		public void setKarte(Karte karte) {
 			this.karte = karte;
 		}
+	}
+
+	public ArrayList<Karte> kartenEntfernen(ArrayList<Karte> hand, ArrayList<Karte> entfernen) {
+
+		for (int q = 0; q < entfernen.size(); q++){
+			for(int s = 0; s < hand.size(); s++){
+				if(entfernen.get(q).getWert() == hand.get(s).getWert() && entfernen.get(q).getFarbe() == hand.get(s).getFarbe()){
+					hand.remove(s);
+				}
+			}
+			
+		}
+		
+		return hand;
+		//Client.m.setKartenPlayer1(hand);
+		
 	}
 }
