@@ -640,6 +640,23 @@ public class Gui extends JFrame {
 					alTmp.add(selectedButtons.get(b).getKarte());
 				}
 
+				// Schauen wieviele Jokerkarte gespielt wurde bzw. deren Indexe
+				ArrayList<Integer> indexVonJoker = new ArrayList<Integer>();
+				indexVonJoker = vieleJokerGespielt(alTmp);
+				
+				// Wenn mehr als 2 Joker gespielt wurden muss dereb Wert bestimmt werden
+				if(indexVonJoker.size() == 1){
+					jokerWertFarbeErmitteln(indexVonJoker);
+				}	
+				else if(indexVonJoker.size() == 2){
+					setze2JokerWerte(indexVonJoker);
+				}
+				else if(indexVonJoker.size() == 3){
+					setze3JokerWerte(idexVonJoker);
+				}
+				
+				
+				
 				// Hier Code einfügen um Pass zu verifizieren ;-)
 //				int verify = 0;
 				Client.m.verify = ZugVerifizieren
@@ -813,4 +830,17 @@ public class Gui extends JFrame {
 		//Client.m.setKartenPlayer1(hand);
 		
 	}
+
+	public ArrayList<Integer> vieleJokerGespielt(ArrayList<Karte> gespielteKarten) {
+		ArrayList<Integer> alIndexe = new ArrayList<Integer>();
+		
+		for (Karte k: gespielteKarten){
+			if(k.getFarbe().equals(Karte.Farbe.JOKER)){
+				alIndexe.add(gespielteKarten.indexOf(k));
+			}
+			
+		}
+		return alIndexe;
+	}
+
 }
