@@ -22,10 +22,12 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JRadioButton;
 
 import server.Karte;
+import server.Karte.Farbe;
 
 public class JokerValues extends JFrame {
 	
@@ -50,27 +52,29 @@ public class JokerValues extends JFrame {
 	private JRadioButton rdbtn_gelb;
 	private JRadioButton rdbtn_grau;
 	private JButton btnOk;
+	private int wert;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JokerValues frame = new JokerValues();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					JokerValues frame = new JokerValues();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
 	 */
-	public JokerValues() {
+	public JokerValues(int wert, Farbe farbe) {
+		this.wert = wert;
 		setResizable(false);
 		setTitle("Jokerwert bestimmen");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -79,7 +83,7 @@ public class JokerValues extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-
+		
 		JPanel panel_top = new JPanel();
 		contentPane.add(panel_top, BorderLayout.NORTH);
 		panel_top.setLayout(new GridLayout(0, 2, 0, 0));
@@ -333,20 +337,33 @@ public class JokerValues extends JFrame {
 				}
 				
 				else{
-					// HIER CODE UM JOKERWERT ZU SETZTEN oder ÜBERMITTELN
-					// etwa so (alTmp müsste evt noch zugänglich gemacht werden!)
-					//Gui.alTmp.get(IndexVonJoker).setWert(jokerWert);
-					//Gui.alTmp.get(IndexVonJoker).setFarbe(jokerFarbe));
+					System.out.println("jokervalues " + wert);
 					
-					//denn no gui verschwende lo
-					//System.exit(0); oder so....
-					
-					}	
-				
+					setJokerWert(jokerWert);
+//					Karte.setWert(jokerWert);
+					setJokerFarbe(jokerFarbe);
+					System.out.println("jokervalues " + jokerWert);
+
+//					Gui.alTmp.get(0).setWert(wert);
+//					System.out.println("jovervalues altmp"+ Gui.alTmp.get(0).getWert() );
+//					
+//					ArrayList<Karte> temp = new ArrayList<Karte>();
+//					temp = Gui.alTmp;
+//					System.out.println(Gui.alTmp.get(0).getWert());
+//					for (int i = 0; i <= temp.size()-1; i++){
+//						System.out.println("joker value for");
+//						if (temp.get(i).getWert() == wert){
+//							temp.get(i).setWert(jokerWert);
+//							temp.get(9).setFarbe(jokerFarbe);
+//							System.out.println("jokerValue: " +temp.get(i).getWert());
+//							System.out.println("jokerValue:" +temp.get(i).getFarbe());
+//						}
+//					}
+//					Gui.alTmp = temp;
+					dispose();
+				}
 			}
-			
 		}
-		
 	}
 
 	public int getJokerWert() {

@@ -40,7 +40,14 @@ public class Karte implements Serializable{
 		return rang;
 	}
 	
-	
+	public void setWert(int rang) {
+		this.rang = rang;
+	}
+
+	public void setFarbe(Farbe farbe) {
+		this.farbe = farbe;
+	}
+
 	public int getPunkte() {
 		return punkte;
 	}
