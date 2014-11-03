@@ -5,6 +5,9 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Image;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -47,7 +50,7 @@ import server.Karte;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-
+import java.io.File;
 
 public class Gui extends JFrame {
 
@@ -128,9 +131,7 @@ public class Gui extends JFrame {
 
 	// ArrayList für die JLabels auf dem Kartentisch
 	public static ArrayList<JLabel> alKartenTisch = new ArrayList<JLabel>();
-	public static ArrayList<Karte> alTmp = new ArrayList<Karte>();
 
-	
 	private JPanel panel_p2AnzKarten;
 	private JLabel lblp2KartenName;
 	public static JLabel lblp2Karten;
@@ -467,24 +468,25 @@ public class Gui extends JFrame {
 		lblSpieler2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSpieler2.setFont(new Font("Tahoma", Font.BOLD, 24));
 		panel_spieler2.add(lblSpieler2);
-		
+
 		panel_p2AnzKarten = new JPanel();
 		panel_spieler2.add(panel_p2AnzKarten);
-		FlowLayout fl_panel_p2AnzKarten = new FlowLayout(FlowLayout.CENTER, 5, 5);
+		FlowLayout fl_panel_p2AnzKarten = new FlowLayout(FlowLayout.CENTER, 5,
+				5);
 		panel_p2AnzKarten.setLayout(fl_panel_p2AnzKarten);
-		
+
 		lblp2KartenName = new JLabel("Anzahl Karten: ");
 		panel_p2AnzKarten.add(lblp2KartenName);
-		
+
 		lblp2Karten = new JLabel("0");
 		panel_p2AnzKarten.add(lblp2Karten);
-		
+
 		lblplatzhalter = new JLabel("        ");
 		panel_p2AnzKarten.add(lblplatzhalter);
-		
+
 		lblp2PunkteName = new JLabel("Punkte:");
 		panel_p2AnzKarten.add(lblp2PunkteName);
-		
+
 		lblp2Punkte = new JLabel("0");
 		panel_p2AnzKarten.add(lblp2Punkte);
 		panel_spieler1.setLayout(new GridLayout(0, 1, 0, 0));
@@ -494,22 +496,22 @@ public class Gui extends JFrame {
 		lblSpieler1.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblSpieler1.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_spieler1.add(lblSpieler1);
-		
+
 		panel = new JPanel();
 		panel_spieler1.add(panel);
-		
+
 		lblp1KartenName = new JLabel("Anzahl Karten: ");
 		panel.add(lblp1KartenName);
-		
+
 		lblp1KartenAnzahl = new JLabel("0");
 		panel.add(lblp1KartenAnzahl);
-		
+
 		lblplatzhalter2 = new JLabel("        ");
 		panel.add(lblplatzhalter2);
-		
+
 		lblp1PunkteName = new JLabel("Punkte:");
 		panel.add(lblp1PunkteName);
-		
+
 		lblp1Punkte = new JLabel("0");
 		panel.add(lblp1Punkte);
 		panel_mycards.setLayout(new GridLayout(2, 7, 0, 0));
@@ -626,8 +628,8 @@ public class Gui extends JFrame {
 
 				// ----- HIER CODE UM AUSZUSPIELEN -----
 
-				ArrayList<JKartenButton<Karte>> selectedButtons = new ArrayList<JKartenButton<Karte>>();
 				// welche Karten sind alle selektiert?
+				ArrayList<JKartenButton<Karte>> selectedButtons = new ArrayList<JKartenButton<Karte>>();
 				for (int z = 0; z < alAlleKarten.size(); z++) {
 					if (alAlleKarten.get(z).isSelected()) {
 						selectedButtons.add(alAlleKarten.get(z));
@@ -636,98 +638,124 @@ public class Gui extends JFrame {
 				}
 
 				// Selektiere Karten in die alTmp ArrayList
+				ArrayList<Karte> alTmp = new ArrayList<Karte>();
 				for (int b = 0; b < selectedButtons.size(); b++) {
 					alTmp.add(selectedButtons.get(b).getKarte());
 				}
 
-				// Schauen wieviele Jokerkarte gespielt wurde bzw. deren Indexe
-//				ArrayList<Integer> indexVonJoker = new ArrayList<Integer>();
-//				indexVonJoker = vieleJokerGespielt(alTmp);
-								
-				// Hier Code einfügen um Pass zu verifizieren ;-)
-//				int verify = 0;
-				Client.m.verify = ZugVerifizieren
-						.verify(alTmp, Client.m.gespielteKarten);
-				if (Client.m.verify == false) {
-					javax.swing.JOptionPane.showMessageDialog(null,
-							"ungültiger Zug");
-					System.out.println("verfiy.false");
-				} else {
-					System.out.print("verfiy.true");
+				// Prüfen ob eine Bombe gespielt wurde
+				if (isBomb(alTmp)) {
+					System.out
+							.println("If-confdition: eine Bombe wurde gespielt");
 
-					// Selektierte Karten auf Spielfeld anzeigen lassen
-					for (int a = 0; a < selectedButtons.size(); a++) {
-						alKartenTisch.get(a).setIcon(
-								selectedButtons.get(a).getIcon());
-						selectedButtons.get(a).setVisible(false);
+					Client.m.verify = BombeVerifizieren.verifyBomb(alTmp,Client.m.gespielteKarten);
+
+					if (Client.m.verify == false) {
+
+						javax.swing.JOptionPane.showMessageDialog(null,
+								"ungültiger Bombe");
+						System.out.println("verfiyBombe: false");
 					}
+					// Wenn Bombe erlaubt
+					else {
+						System.out.println("verifyBombe: true");
 
-					// Wenn Joker gespielt worden sind, diese aus MasterObjekt
-					// entfernen
+						// Selektierte Karten auf Spielfeld anzeigen lassen
+						selektierteKartenAufSpielfeld(selectedButtons);
 
-					if (Client.clientId == 0) {
-						Karte[] temp = new Karte[3];
-						temp = Client.m.getKartenJoker1();
-						for (int g = 0; g < selectedButtons.size(); g++) {
+						// Wenn Joker gespielt worden sind, diese aus
+						// MasterObjekt
+						// entfernen
+						jokerAusMasterObjektEntfernen(selectedButtons);
 
-							if (selectedButtons.get(g).getKarte().getWert() == 11) {
-								temp[0] = null;
-								System.out.println("Bube p1 entfernt");
-							}
-							if (selectedButtons.get(g).getKarte().getWert() == 12) {
-								temp[1] = null;
-							}
-							if (selectedButtons.get(g).getKarte().getWert() == 13) {
-								temp[2] = null;
-							}
-							Client.m.setKartenJoker1(temp);
+						// Karten aus Spieler KartenArray entfernen
+						// (KartenPlayer1 oder KartenPlayer2)
+						if (Client.clientId == 0) {
+							Client.m.setKartenPlayer1(kartenEntfernen(
+									Client.m.getKartenPlayer1(), alTmp));
+						} else {
+							Client.m.setKartenPlayer2(kartenEntfernen(
+									Client.m.getKartenPlayer2(), alTmp));
 						}
-					} else {
-						Karte[] temp2 = new Karte[3];
-						temp2 = Client.m.getKartenJoker2();
-						for (int g = 0; g < selectedButtons.size(); g++) {
 
-							if (selectedButtons.get(g).getKarte().getWert() == 11) {
-								temp2[0] = null;
-								System.out.println("Bube p2 entfernt");
-							}
-							if (selectedButtons.get(g).getKarte().getWert() == 12) {
-								temp2[1] = null;
-							}
-							if (selectedButtons.get(g).getKarte().getWert() == 13) {
-								temp2[2] = null;
-							}
+						// Punkte zu variable punkteBisStich addieren
+						int punkteNeu = Client.m.getPunkteBisStich();
+						for (Karte k : alTmp) {
+							punkteNeu += k.getPunkte();
 						}
-						Client.m.setKartenJoker2(temp2);
+						Client.m.setPunkteBisStich(punkteNeu);
 
-					}
-					
-					// Karten aus Spieler KartenArray entfernen (KartenPlayer1 oder KartenPlayer2)
-					if(Client.clientId == 0){
-						Client.m.setKartenPlayer1(kartenEntfernen(Client.m.getKartenPlayer1(),alTmp));
-					}else{
-						Client.m.setKartenPlayer2(kartenEntfernen(Client.m.getKartenPlayer2(),alTmp));
-					}
-					
-					// Punkte zu variable punkteBisStich addieren
-					int punkteNeu = Client.m.getPunkteBisStich();
-					
-					for (Karte k: alTmp){
-						punkteNeu += k.getPunkte();
-					}
-					Client.m.setPunkteBisStich(punkteNeu);
+						// Alle karten deselektieren
+						alleKartenDeselektieren();
 
-					// Alle karten deselektieren
-					for (int w = 0; w < alAlleKarten.size(); w++) {
-						if (alAlleKarten.get(w).isSelected()) {
-							alAlleKarten.get(w).setSelected(false);
-						}
+						// Ausgespielte Karten in GespielteKarten setzen
+						Client.m.setGespielteKarten(alTmp);
+
+						// MasterObjekt an Server senden
+						Client.sendObjectToServer();
 					}
-					Client.m.setGespielteKarten(alTmp);
-					Client.sendObjectToServer();
 				}
+
+				// Wenn keine Bombe gespielt wurde
+				else {
+					// schauen ob es Jökerlis het und deren wert setzen
+
+					// Pass zu verifizieren (Vergleicht zu spielende Karten und
+					// Karten auf dem Tisch)
+					Client.m.verify = ZugVerifizieren.verify(alTmp,
+							Client.m.gespielteKarten);
+
+					// Wenn Zug unerlaubt
+					if (Client.m.verify == false) {
+
+						javax.swing.JOptionPane.showMessageDialog(null,
+								"ungültiger Zug");
+						System.out.println("verfiyZug: false");
+					}
+
+					// Wenn Zug erlaubt
+					else {
+						System.out.print("verfiyZug: true");
+
+						// Selektierte Karten auf Spielfeld anzeigen lassen
+						selektierteKartenAufSpielfeld(selectedButtons);
+
+						// Wenn Joker gespielt worden sind, diese aus
+						// MasterObjekt
+						// entfernen
+						jokerAusMasterObjektEntfernen(selectedButtons);
+
+						// Karten aus Spieler KartenArray entfernen
+						// (KartenPlayer1 oder KartenPlayer2)
+						if (Client.clientId == 0) {
+							Client.m.setKartenPlayer1(kartenEntfernen(
+									Client.m.getKartenPlayer1(), alTmp));
+						} else {
+							Client.m.setKartenPlayer2(kartenEntfernen(
+									Client.m.getKartenPlayer2(), alTmp));
+						}
+
+						// Punkte zu variable punkteBisStich addieren
+						int punkteNeu = Client.m.getPunkteBisStich();
+						for (Karte k : alTmp) {
+							punkteNeu += k.getPunkte();
+						}
+						Client.m.setPunkteBisStich(punkteNeu);
+
+						// Alle karten deselektieren
+						alleKartenDeselektieren();
+
+						// Ausgespielte Karten in GespielteKarten setzen
+						Client.m.setGespielteKarten(alTmp);
+
+						// MasterObjekt an Server senden
+						Client.sendObjectToServer();
+					}
+
+				}
+
 				selectedButtons.clear();
-				alTmp.clear();
+				// alTmp.clear();
 
 			}
 
@@ -801,32 +829,136 @@ public class Gui extends JFrame {
 		}
 	}
 
-	public ArrayList<Karte> kartenEntfernen(ArrayList<Karte> hand, ArrayList<Karte> entfernen) {
+	public ArrayList<Karte> kartenEntfernen(ArrayList<Karte> hand,
+			ArrayList<Karte> entfernen) {
 
-		for (int q = 0; q < entfernen.size(); q++){
-			for(int s = 0; s < hand.size(); s++){
-				if(entfernen.get(q).getWert() == hand.get(s).getWert() && entfernen.get(q).getFarbe() == hand.get(s).getFarbe()){
+		for (int q = 0; q < entfernen.size(); q++) {
+			for (int s = 0; s < hand.size(); s++) {
+				if (entfernen.get(q).getWert() == hand.get(s).getWert()
+						&& entfernen.get(q).getFarbe() == hand.get(s)
+								.getFarbe()) {
 					hand.remove(s);
 				}
 			}
-			
+
 		}
-		
+
 		return hand;
-		//Client.m.setKartenPlayer1(hand);
-		
+		// Client.m.setKartenPlayer1(hand);
+
 	}
-	
-//	public ArrayList<Integer> vieleJokerGespielt(ArrayList<Karte> gespielteKarten) {
-//		ArrayList<Integer> alIndexe = new ArrayList<Integer>();
-//		
-//		for (Karte k: gespielteKarten){
-//			if(k.getFarbe().equals(Karte.Farbe.JOKER)){
-//				alIndexe.add(gespielteKarten.indexOf(k));
-//			}
-//			
-//		}
-//		return alIndexe;
-//	}
+
+	public void alleKartenDeselektieren() {
+		for (int w = 0; w < alAlleKarten.size(); w++) {
+			if (alAlleKarten.get(w).isSelected()) {
+				alAlleKarten.get(w).setSelected(false);
+			}
+		}
+	}
+
+	public void jokerAusMasterObjektEntfernen(
+			ArrayList<JKartenButton<Karte>> selectedButtons) {
+		if (Client.clientId == 0) {
+			Karte[] temp = new Karte[3];
+			temp = Client.m.getKartenJoker1();
+			for (int g = 0; g < selectedButtons.size(); g++) {
+
+				if (selectedButtons.get(g).getKarte().getWert() == 11) {
+					temp[0] = null;
+					// System.out.println("Bube p1 entfernt");
+				}
+				if (selectedButtons.get(g).getKarte().getWert() == 12) {
+					temp[1] = null;
+				}
+				if (selectedButtons.get(g).getKarte().getWert() == 13) {
+					temp[2] = null;
+				}
+				Client.m.setKartenJoker1(temp);
+			}
+		} else {
+			Karte[] temp2 = new Karte[3];
+			temp2 = Client.m.getKartenJoker2();
+			for (int g = 0; g < selectedButtons.size(); g++) {
+
+				if (selectedButtons.get(g).getKarte().getWert() == 11) {
+					temp2[0] = null;
+					// System.out.println("Bube p2 entfernt");
+				}
+				if (selectedButtons.get(g).getKarte().getWert() == 12) {
+					temp2[1] = null;
+				}
+				if (selectedButtons.get(g).getKarte().getWert() == 13) {
+					temp2[2] = null;
+				}
+			}
+			Client.m.setKartenJoker2(temp2);
+
+		}
+
+	}
+
+	public void selektierteKartenAufSpielfeld(
+			ArrayList<JKartenButton<Karte>> selectedButtons) {
+		for (int a = 0; a < selectedButtons.size(); a++) {
+			alKartenTisch.get(a).setIcon(selectedButtons.get(a).getIcon());
+			selectedButtons.get(a).setVisible(false);
+		}
+
+	}
+
+	public boolean isBomb(ArrayList<Karte> zug) {
+		// ----Bombe1 (3,5,7,9)-----
+		if (zug.size() == 4 && zug.get(0).getWert() == 3
+				&& zug.get(1).getWert() == 5 && zug.get(2).getWert() == 7
+				&& zug.get(3).getWert() == 9) {
+			System.out.println("Bombaa");
+			Client.m.letzerZug = 8;
+			return true;
+		}
+		// ----Bombe2 (bauer, dame)-----
+		if (zug.size() == 2 && zug.get(0).getWert() == 11
+				&& zug.get(1).getWert() == 12) {
+			System.out.println("Bombaa Bauer-Dame");
+			Client.m.letzerZug = 9;
+			return true;
+		}
+
+		// ----Bombe3 (bube, könig)-----
+		if (zug.size() == 2 && zug.get(0).getWert() == 11
+				&& zug.get(1).getWert() == 13) {
+			System.out.println("Bombaa bauer-könig");
+			Client.m.letzerZug = 10;
+			return true;
+		}
+
+		// ----Bombe4 (dame, könig)-----
+		if (zug.size() == 2 && zug.get(0).getWert() == 12
+				&& zug.get(1).getWert() == 13) {
+			System.out.println("Bombaa dame-könig");
+			Client.m.letzerZug = 11;
+			return true;
+		}
+
+		// ----Bombe5 (bauer, dame, könig)-----
+		if (zug.size() == 3 && zug.get(0).getWert() == 11
+				&& zug.get(1).getWert() == 12 && zug.get(2).getWert() == 13) {
+			System.out.println("Bombaa bauer-dame-könig");
+			Client.m.letzerZug = 12;
+			return true;
+		}
+
+		// ----Bombe6 (3,5,7,9) gleiche Farbe-----
+		if (zug.size() == 4 && zug.get(0).getWert() == 3
+				&& zug.get(1).getWert() == 5 && zug.get(2).getWert() == 7
+				&& zug.get(3).getWert() == 9
+				&& zug.get(0).getFarbe() == zug.get(1).getFarbe()
+				&& zug.get(0).getFarbe() == zug.get(2).getFarbe()
+				&& zug.get(0).getFarbe() == zug.get(3).getFarbe()) {
+			System.out.println("Bombaaaa");
+			Client.m.letzerZug = 13;
+			return true;
+		}
+		return false;
+	}
 
 }

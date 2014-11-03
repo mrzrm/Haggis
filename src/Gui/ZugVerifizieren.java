@@ -1,12 +1,7 @@
 package Gui;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 
 import server.Karte;
 import server.CustomComparator;
@@ -28,77 +23,7 @@ public class ZugVerifizieren {
 
 		// falls erster zug
 		if (gespielt == null || gespielt.size() == 0){
-			//----Bombe1 (2,5,7,9)-----
-			if (zug.size() == 4 && zug.get(0).getWert() == 3 && zug.get(1).getWert() == 5 && zug.get(2).getWert() == 7 && zug.get(3).getWert() == 9){
-				System.out.println("Bombaa");
-				Client.m.letzerZug = 8;
-				playBomba();
-				return true;
-			}
-			//----Bombe2 (bauer, dame)-----
-			if (zug.size() == 2 && zug.get(0).getWert() == 11 && zug.get(1).getWert() == 12){
-				System.out.println("Bombaa Bauer-Dame");
-				Client.m.letzerZug = 9;
-				playBomba();
-				return true;
-			}
-			
-			//----Bombe3 (bube, könig)-----
-			if (zug.size() == 2 && zug.get(0).getWert() == 11 && zug.get(1).getWert() == 13){
-				System.out.println("Bombaa bauer-könig");
-				Client.m.letzerZug = 10;
-				playBomba();
-				return true;
-			}
-			
-			//----Bombe4 (dame, könig)-----
-			if (zug.size() == 2 && zug.get(0).getWert() == 12 && zug.get(1).getWert() == 13){
-				System.out.println("Bombaa dame-könig");
-				Client.m.letzerZug = 11;
-				playBomba();
-				return true;
-			}
-			
-			//----Bombe5 (bauer, dame, könig)-----
-			if (zug.size() == 3 && zug.get(0).getWert() == 11 && zug.get(1).getWert() == 12 && zug.get(2).getWert() == 13){
-				System.out.println("Bombaa bauer-dame-könig");
-				Client.m.letzerZug = 12;
-				playBomba();
-				return true;
-			}
 
-			//----Bombe6-----
-			if (zug.size() == 4 && zug.get(0).getWert() == 3 && zug.get(1).getWert() == 5 && zug.get(2).getWert() == 7 && zug.get(3).getWert() == 9
-					&& zug.get(0).getFarbe() == zug.get(1).getFarbe() && zug.get(0).getFarbe() == zug.get(2).getFarbe() && zug.get(0).getFarbe() == zug.get(3).getFarbe()){
-				System.out.println("Bombaaaa");
-				Client.m.letzerZug = 13;
-				playBomba();
-				return true;
-			}
-			// prüfen ob joker karten gespielt
-			if (zug.size() > 1){
-				System.out.println("test if");
-				for (Karte k: zug){
-					System.out.println("test for");
-					System.out.println("alle karten:" + k.getWert());
-					if (k.getWert() == 11 ){
-						JokerValues jvBube = new JokerValues(k.getWert(), k.getFarbe());
-						jvBube.setVisible(true);
-						System.out.println("wert: " + k.getWert());
-					}
-					if (k.getWert() == 12 ){
-						JokerValues jvDame = new JokerValues(k.getWert(), k.getFarbe());
-						jvDame.setVisible(true);
-						System.out.println("wert: " + k.getWert());
-					}
-					if (k.getWert() == 13 ){
-						JokerValues jvKoenig = new JokerValues(k.getWert(), k.getFarbe());
-						jvKoenig.setVisible(true);
-						System.out.println("wert: " + k.getWert());
-					}
-				}
-				return true;
-			}
 			
 			//---- einzelne Karte-----
 			if (zug.size() == 1) {
@@ -204,76 +129,13 @@ public class ZugVerifizieren {
 				System.out.println("ungültiger Zug");
 				return false;
 			}
-		///////////////////////////////
-		// falls nicht der erste zug///
-		///////////////////////////////
+
+		// falls nicht der erster zug
+
 		}else{
-			Collections.sort(gespielt, new CustomComparator());
-			//---- bomben prüfen, bomben können nur durch bomben geschlagen werden -----
-			//bombe 6 schlägt alles
-			if (zug.size() == 4 && zug.get(0).getWert() == 3 && zug.get(1).getWert() == 5 && zug.get(2).getWert() == 7 && zug.get(3).getWert() == 9
-					&& zug.get(0).getFarbe() == zug.get(1).getFarbe() && zug.get(0).getFarbe() == zug.get(2).getFarbe() && zug.get(0).getFarbe() == zug.get(3).getFarbe()){
-				System.out.println("bombe6 gespielt");
-				playBomba();
-				return true;
-			}// bombe 5 schlägt alles ausser bombe 6 und 5
-			else if (Client.m.letzerZug != 13 && Client.m.letzerZug != 12 && zug.size() == 3 && zug.get(0).getWert() == 11 && zug.get(1).getWert() == 12 && zug.get(2).getWert() == 13){
-				System.out.println("bombe5 gespielt");
-				playBomba();
-				return true;
-			}
-			//bombe 4 schlägt alls ausser bombe 6, 5 und 4
-			else if (Client.m.letzerZug != 13 && Client.m.letzerZug != 12 && Client.m.letzerZug != 11  && zug.size() == 2 && zug.get(0).getWert() == 12 && zug.get(1).getWert() == 13){
-				System.out.println("bombe4 gespielt");
-				playBomba();
-				return true;
-			}
-			// bombe 3 schlägt alles ausser bombe 6, 5 und 4
-			else if (Client.m.letzerZug != 13 && Client.m.letzerZug != 12 && Client.m.letzerZug != 11 && Client.m.letzerZug != 10 && zug.size() == 2 && zug.get(0).getWert() == 11 && zug.get(1).getWert() == 13){
-				System.out.println("bombe3 gespielt");
-				playBomba();
-				return true;
-			}
-			//bombe 2 schlägt alles ausser bombe 6, 5, 4, 3 und 2
-			if (Client.m.letzerZug != 13 && Client.m.letzerZug != 12 && Client.m.letzerZug != 11 && Client.m.letzerZug != 10 && Client.m.letzerZug != 9 && zug.size() == 2 && zug.get(0).getWert() == 11 && zug.get(1).getWert() == 12){
-				System.out.println("bombe2 gespielt");
-				playBomba();
-				return true;
-			}
-			//bombe 1 schlägt alles ausser bombe 6, 5, 4, 3, 2 und 1
-			if (Client.m.letzerZug != 13 && Client.m.letzerZug != 12 && Client.m.letzerZug != 11 && Client.m.letzerZug != 10 && Client.m.letzerZug != 9 && Client.m.letzerZug != 8 && zug.size() == 4 && zug.get(0).getWert() == 3 && zug.get(1).getWert() == 5 && zug.get(2).getWert() == 7 && zug.get(3).getWert() == 9){
-				System.out.println("bombe1 gespielt");
-				playBomba();
-				return true;
-			}
-			
-			// prüfen ob joker karten gespielt
-			else if (zug.size() > 1){
-				System.out.println("test if");
-				for (Karte k: zug){
-					System.out.println("test for");
-					System.out.println("alle karten:" + k.getWert());
-					if (k.getWert() == 11 ){
-						JokerValues jvBube = new JokerValues(k.getWert(), k.getFarbe());
-						jvBube.setVisible(true);
-						System.out.println("zugverifizieren, wert: " + k.getWert());
-					}
-					if (k.getWert() == 12 ){
-						JokerValues jvDame = new JokerValues(k.getWert(), k.getFarbe());
-						jvDame.setVisible(true);
-						System.out.println("zugverifizieren, wert: " + k.getWert());
-					}
-					if (k.getWert() == 13 ){
-						JokerValues jvKoenig = new JokerValues(k.getWert(), k.getFarbe());
-						jvKoenig.setVisible(true);
-						System.out.println("zugverifizieren, wert: " + k.getWert());
-					}
-				}
-				return true;
-			}
 			
 			//---- einzelne Karte-----
-			else if (Client.m.letzerZug == 1){
+			if (Client.m.letzerZug == 1){
 				if (zug.size() == 1 && zug.get(0).getWert() > gespielt.get(0).getWert()) {
 					System.out.println("einzelne karte gespielt");
 					return true;
@@ -459,15 +321,5 @@ public class ZugVerifizieren {
 		return false;
 	}
 	
-	public static void playBomba() {
-	    try {
-	        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("C:/bomba.wav").getAbsoluteFile());
-	        Clip clip = AudioSystem.getClip();
-	        clip.open(audioInputStream);
-	        clip.start();
-	    } catch(Exception ex) {
-	        System.out.println("Error with playing sound.");
-	        ex.printStackTrace();
-	    }
-	}
+
 }
