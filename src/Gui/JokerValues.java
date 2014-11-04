@@ -11,6 +11,7 @@ import java.awt.GridLayout;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
@@ -29,7 +30,7 @@ import javax.swing.JRadioButton;
 import server.Karte;
 import server.Karte.Farbe;
 
-public class JokerValues extends JFrame {
+public class JokerValues extends JDialog {
 	
 	private int jokerWert = 0;
 	private Karte.Farbe jokerFarbe = null;
@@ -73,12 +74,13 @@ public class JokerValues extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public JokerValues(int wert, Farbe farbe) {
+	public JokerValues(int wert) {
 		this.wert = wert;
 		setResizable(false);
+		setModal(true);
 		setTitle("Jokerwert bestimmen");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 235);
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		setBounds(150, 150, 229, 235);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -344,22 +346,6 @@ public class JokerValues extends JFrame {
 					setJokerFarbe(jokerFarbe);
 					System.out.println("jokervalues " + jokerWert);
 
-//					Gui.alTmp.get(0).setWert(wert);
-//					System.out.println("jovervalues altmp"+ Gui.alTmp.get(0).getWert() );
-//					
-//					ArrayList<Karte> temp = new ArrayList<Karte>();
-//					temp = Gui.alTmp;
-//					System.out.println(Gui.alTmp.get(0).getWert());
-//					for (int i = 0; i <= temp.size()-1; i++){
-//						System.out.println("joker value for");
-//						if (temp.get(i).getWert() == wert){
-//							temp.get(i).setWert(jokerWert);
-//							temp.get(9).setFarbe(jokerFarbe);
-//							System.out.println("jokerValue: " +temp.get(i).getWert());
-//							System.out.println("jokerValue:" +temp.get(i).getFarbe());
-//						}
-//					}
-//					Gui.alTmp = temp;
 					dispose();
 				}
 			}

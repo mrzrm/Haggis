@@ -648,13 +648,17 @@ public class Gui extends JFrame {
 					System.out
 							.println("If-confdition: eine Bombe wurde gespielt");
 
-					Client.m.verify = BombeVerifizieren.verifyBomb(alTmp,Client.m.gespielteKarten);
+					Client.m.verifyBombe = BombeVerifizieren.verifyBomb(alTmp,Client.m.gespielteKarten);
 
-					if (Client.m.verify == false) {
+					if (Client.m.verifyBombe == false) {
 
 						javax.swing.JOptionPane.showMessageDialog(null,
-								"ungültiger Bombe");
+								"ungültige Bombe");
 						System.out.println("verfiyBombe: false");
+						
+						// Alle karten deselektieren
+						alleKartenDeselektieren();
+						
 					}
 					// Wenn Bombe erlaubt
 					else {
@@ -698,8 +702,20 @@ public class Gui extends JFrame {
 
 				// Wenn keine Bombe gespielt wurde
 				else {
-					// schauen ob es Jökerlis het und deren wert setzen
-
+					
+					// schauen ob es Jökerlis het und deren wert setzen (wenn nur 1 joker gespielt nicht)
+					if(containsJoker(alTmp) && alTmp.size() > 1){
+						System.out.println("Zug enthält Joker");
+						for(Karte d: alTmp){
+							if(d.getWert() > 10){
+								JokerValues jv = new JokerValues(d.getWert());
+								jv.setVisible(true);
+								d.setWert(jv.getJokerWert());
+								d.setFarbe(jv.getJokerFarbe());
+							}
+						}
+					}
+					
 					// Pass zu verifizieren (Vergleicht zu spielende Karten und
 					// Karten auf dem Tisch)
 					Client.m.verify = ZugVerifizieren.verify(alTmp,
@@ -708,9 +724,13 @@ public class Gui extends JFrame {
 					// Wenn Zug unerlaubt
 					if (Client.m.verify == false) {
 
-						javax.swing.JOptionPane.showMessageDialog(null,
-								"ungültiger Zug");
+						javax.swing.JOptionPane.showMessageDialog(null,"ungültiger Zug");
 						System.out.println("verfiyZug: false");
+						
+						// Alle karten deselektieren
+						alleKartenDeselektieren();
+						
+						
 					}
 
 					// Wenn Zug erlaubt
@@ -848,6 +868,16 @@ public class Gui extends JFrame {
 
 	}
 
+	public boolean containsJoker(ArrayList<Karte> alTmp) {
+		for(Karte s: alTmp){
+			if (s.getWert() > 10){
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public void alleKartenDeselektieren() {
 		for (int w = 0; w < alAlleKarten.size(); w++) {
 			if (alAlleKarten.get(w).isSelected()) {
@@ -863,14 +893,14 @@ public class Gui extends JFrame {
 			temp = Client.m.getKartenJoker1();
 			for (int g = 0; g < selectedButtons.size(); g++) {
 
-				if (selectedButtons.get(g).getKarte().getWert() == 11) {
+				if (selectedButtons.get(g).getKarte().getName().equals("bube")) {
 					temp[0] = null;
 					// System.out.println("Bube p1 entfernt");
 				}
-				if (selectedButtons.get(g).getKarte().getWert() == 12) {
+				if (selectedButtons.get(g).getKarte().getName().equals("dame")) {
 					temp[1] = null;
 				}
-				if (selectedButtons.get(g).getKarte().getWert() == 13) {
+				if (selectedButtons.get(g).getKarte().getName().equals("koenig")) {
 					temp[2] = null;
 				}
 				Client.m.setKartenJoker1(temp);
@@ -880,14 +910,14 @@ public class Gui extends JFrame {
 			temp2 = Client.m.getKartenJoker2();
 			for (int g = 0; g < selectedButtons.size(); g++) {
 
-				if (selectedButtons.get(g).getKarte().getWert() == 11) {
+				if (selectedButtons.get(g).getKarte().getName().equals("bube")) {
 					temp2[0] = null;
 					// System.out.println("Bube p2 entfernt");
 				}
-				if (selectedButtons.get(g).getKarte().getWert() == 12) {
+				if (selectedButtons.get(g).getKarte().getName().equals("dame")) {
 					temp2[1] = null;
 				}
-				if (selectedButtons.get(g).getKarte().getWert() == 13) {
+				if (selectedButtons.get(g).getKarte().getName().equals("koenig")) {
 					temp2[2] = null;
 				}
 			}

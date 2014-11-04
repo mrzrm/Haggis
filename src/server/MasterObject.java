@@ -18,6 +18,7 @@ public class MasterObject implements Serializable {
 	public int amZug;
 	public boolean neuVerteilt;
 	public boolean verify;
+	public boolean verifyBombe;
 	public int letzerZug;
 	public int punkteBisStich;
 

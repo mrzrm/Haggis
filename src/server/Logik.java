@@ -43,17 +43,17 @@ public class Logik {
 			
 		}
 				
-		// Testausgabe joker
-		for (Karte k: m.kartenJoker1){
-			if(k != null){
-				System.out.println("Joker 1: Wert: " + k.getWert());
-			}
-		}
-		for (Karte k: m.kartenJoker2){
-			if(k != null){
-				System.out.println("Joker 2: Wert: " + k.getWert());
-			}
-		}
+//		// Testausgabe joker
+//		for (Karte k: m.kartenJoker1){
+//			if(k != null){
+//				System.out.println("Joker 1: Wert: " + k.getWert());
+//			}
+//		}
+//		for (Karte k: m.kartenJoker2){
+//			if(k != null){
+//				System.out.println("Joker 2: Wert: " + k.getWert());
+//			}
+//		}
 		
 		
 		// Den Spieler der am Zug ist wechseln
