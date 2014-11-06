@@ -935,48 +935,10 @@ public class Gui extends JFrame {
 		}
 
 	}
-
+	/**isBomb prüft obe AL zug eine Bombe ist
+	 * 
+	 */
 	public boolean isBomb(ArrayList<Karte> zug) {
-		// ----Bombe1 (3,5,7,9)-----
-		if (zug.size() == 4 && zug.get(0).getWert() == 3
-				&& zug.get(1).getWert() == 5 && zug.get(2).getWert() == 7
-				&& zug.get(3).getWert() == 9) {
-			System.out.println("Bombaa");
-			Client.m.letzerZug = 8;
-			return true;
-		}
-		// ----Bombe2 (bauer, dame)-----
-		if (zug.size() == 2 && zug.get(0).getWert() == 11
-				&& zug.get(1).getWert() == 12) {
-			System.out.println("Bombaa Bauer-Dame");
-			Client.m.letzerZug = 9;
-			return true;
-		}
-
-		// ----Bombe3 (bube, könig)-----
-		if (zug.size() == 2 && zug.get(0).getWert() == 11
-				&& zug.get(1).getWert() == 13) {
-			System.out.println("Bombaa bauer-könig");
-			Client.m.letzerZug = 10;
-			return true;
-		}
-
-		// ----Bombe4 (dame, könig)-----
-		if (zug.size() == 2 && zug.get(0).getWert() == 12
-				&& zug.get(1).getWert() == 13) {
-			System.out.println("Bombaa dame-könig");
-			Client.m.letzerZug = 11;
-			return true;
-		}
-
-		// ----Bombe5 (bauer, dame, könig)-----
-		if (zug.size() == 3 && zug.get(0).getWert() == 11
-				&& zug.get(1).getWert() == 12 && zug.get(2).getWert() == 13) {
-			System.out.println("Bombaa bauer-dame-könig");
-			Client.m.letzerZug = 12;
-			return true;
-		}
-
 		// ----Bombe6 (3,5,7,9) gleiche Farbe-----
 		if (zug.size() == 4 && zug.get(0).getWert() == 3
 				&& zug.get(1).getWert() == 5 && zug.get(2).getWert() == 7
@@ -984,8 +946,44 @@ public class Gui extends JFrame {
 				&& zug.get(0).getFarbe() == zug.get(1).getFarbe()
 				&& zug.get(0).getFarbe() == zug.get(2).getFarbe()
 				&& zug.get(0).getFarbe() == zug.get(3).getFarbe()) {
-			System.out.println("Bombaaaa");
-			Client.m.letzerZug = 13;
+			System.out.println("Bombaaaa 3,5,7,9 one color");
+			Client.m.bombe = 13;
+			return true;
+		}
+		// ----Bombe5 (bauer, dame, könig)-----
+		if (zug.size() == 3 && zug.get(0).getWert() == 11
+				&& zug.get(1).getWert() == 12 && zug.get(2).getWert() == 13) {
+			System.out.println("Bombaa bauer-dame-könig");
+			Client.m.bombe = 12;
+			return true;
+		}
+		// ----Bombe4 (dame, könig)-----
+		if (zug.size() == 2 && zug.get(0).getWert() == 12
+				&& zug.get(1).getWert() == 13) {
+			System.out.println("Bombaa dame-könig");
+			Client.m.bombe = 11;
+			return true;
+		}
+		// ----Bombe3 (bube, könig)-----
+		if (zug.size() == 2 && zug.get(0).getWert() == 11
+				&& zug.get(1).getWert() == 13) {
+			System.out.println("Bombaa bauer-könig");
+			Client.m.bombe = 10;
+			return true;
+		}
+		// ----Bombe2 (bauer, dame)-----
+		if (zug.size() == 2 && zug.get(0).getWert() == 11
+				&& zug.get(1).getWert() == 12) {
+			System.out.println("Bombaa Bauer-Dame");
+			Client.m.bombe = 9;
+			return true;
+		}
+		// ----Bombe1 (3,5,7,9)-----
+		if (zug.size() == 4 && zug.get(0).getWert() == 3
+				&& zug.get(1).getWert() == 5 && zug.get(2).getWert() == 7
+				&& zug.get(3).getWert() == 9) {
+			System.out.println("Bombaa");
+			Client.m.bombe = 8;
 			return true;
 		}
 		return false;

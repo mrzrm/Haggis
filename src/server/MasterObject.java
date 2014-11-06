@@ -21,6 +21,7 @@ public class MasterObject implements Serializable {
 	public boolean verifyBombe;
 	public int letzerZug;
 	public int punkteBisStich;
+	public int bombe;
 
 
 	//constructor

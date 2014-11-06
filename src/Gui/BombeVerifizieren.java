@@ -1,7 +1,14 @@
 package Gui;
 
+import java.awt.MediaTracker;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
+
+import javax.print.attribute.standard.Media;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 import server.CustomComparator;
 import server.Karte;
@@ -12,10 +19,13 @@ public class BombeVerifizieren {
 
 		// falls erster zug
 		if (gespielt == null || gespielt.size() == 0) {
+			Client.m.letzerZug = Client.m.bombe;
+			playBomba();
 			return true;
 		}
 		// falls jemand schon gespielt hat
 		else {
+			System.out.println(Client.m.letzerZug);
 			Collections.sort(gespielt, new CustomComparator());
 			// ---- bomben prüfen, bomben können nur durch bomben geschlagen
 			// werden -----
@@ -27,6 +37,8 @@ public class BombeVerifizieren {
 					&& zug.get(0).getFarbe() == zug.get(2).getFarbe()
 					&& zug.get(0).getFarbe() == zug.get(3).getFarbe()) {
 				System.out.println("bombe6 gespielt");
+				Client.m.letzerZug = 13;
+				playBomba();
 				// Gui.playBomba();
 				return true;
 			}// bombe 5 schlägt alles ausser bombe 6 und 5
@@ -34,7 +46,9 @@ public class BombeVerifizieren {
 					&& zug.size() == 3 && zug.get(0).getWert() == 11
 					&& zug.get(1).getWert() == 12 && zug.get(2).getWert() == 13) {
 				System.out.println("bombe5 gespielt");
+				playBomba();
 				// Gui.playBomba();
+				Client.m.letzerZug = 12;
 				return true;
 			}
 			// bombe 4 schlägt alls ausser bombe 6, 5 und 4
@@ -42,6 +56,8 @@ public class BombeVerifizieren {
 					&& Client.m.letzerZug != 11 && zug.size() == 2
 					&& zug.get(0).getWert() == 12 && zug.get(1).getWert() == 13) {
 				System.out.println("bombe4 gespielt");
+				Client.m.letzerZug = 11;
+				playBomba();
 				// Gui.playBomba();
 				return true;
 			}
@@ -51,7 +67,9 @@ public class BombeVerifizieren {
 					&& zug.size() == 2 && zug.get(0).getWert() == 11
 					&& zug.get(1).getWert() == 13) {
 				System.out.println("bombe3 gespielt");
+				Client.m.letzerZug = 10;
 				// Gui.playBomba();
+				playBomba();
 				return true;
 			}
 			// bombe 2 schlägt alles ausser bombe 6, 5, 4, 3 und 2
@@ -60,7 +78,9 @@ public class BombeVerifizieren {
 					&& Client.m.letzerZug != 9 && zug.size() == 2
 					&& zug.get(0).getWert() == 11 && zug.get(1).getWert() == 12) {
 				System.out.println("bombe2 gespielt");
+				Client.m.letzerZug = 9;
 				// Gui.playBomba();
+				playBomba();
 				return true;
 			}
 			// bombe 1 schlägt alles ausser bombe 6, 5, 4, 3, 2 und 1
@@ -71,11 +91,23 @@ public class BombeVerifizieren {
 					&& zug.get(1).getWert() == 5 && zug.get(2).getWert() == 7
 					&& zug.get(3).getWert() == 9) {
 				System.out.println("bombe1 gespielt");
-				// Gui.playBomba();
+				Client.m.letzerZug = 8;
+				playBomba();
 				return true;
 			}
 		}
 		return false;
+	}
+	public static void playBomba() {
+	    try {
+	        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("src/audio/bomba/bomba.wav").getAbsoluteFile());
+	        Clip clip = AudioSystem.getClip();
+	        clip.open(audioInputStream);
+	        clip.start();
+	    } catch(Exception ex) {
+	        System.out.println("Error with playing sound.");
+	        ex.printStackTrace();
+	    }
 	}
 
 }
