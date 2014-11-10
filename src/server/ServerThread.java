@@ -16,7 +16,7 @@ public class ServerThread extends Thread {
 	private Socket connection;
 	//private DataInputStream input;
 	//private DataOutputStream output;
-	private MasterObject m;
+	public static MasterObject m;
 	// private Server server;
 	static int userId = 0;
 	public static ArrayList<User> userList = new ArrayList<User>(2);
@@ -122,5 +122,11 @@ public class ServerThread extends Thread {
 
 		}
 
+	}
+
+	public static void neuRunde() {
+		m = new MasterObject(userList);
+		System.out.println("neuRunde(): Karten neu verteilt");
+		
 	}
 }
