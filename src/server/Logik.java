@@ -27,7 +27,8 @@ public class Logik {
 				m.setPunkteBisStich(0);
 				
 				// Karten neu verteilen (neu verteilt auf true)
-				ServerThread.neuRunde();
+				ServerThread.neueRunde();
+				
 							
 			}
 			else if(m.getKartenPlayer2().size() == 0){
@@ -49,7 +50,7 @@ public class Logik {
 				m.setPunkteBisStich(0);
 				
 				// Karten neu verteilen (neu verteilt auf true)
-				ServerThread.neuRunde();
+				ServerThread.neueRunde();
 				
 				
 			}

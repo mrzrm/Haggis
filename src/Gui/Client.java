@@ -125,6 +125,7 @@ public class Client {
 		}
 
 		// Spielkarten auf Hand laden (wenn neu verteilt)
+		System.out.println("refreshGui " + m.isNeuVerteilt());
 		if (m.isNeuVerteilt()) {
 
 			if (clientId == 0) {
@@ -236,9 +237,7 @@ public class Client {
 			Gui.btnPassen.setEnabled(false);
 			Gui.jlStatus.setText("Ihr Gegner ist am Zug");
 		}
-
 		m.setNeuVerteilt(false);
-
 		// System.out.println("Client: gui refreshed");
 		// System.out.println("am zug:" + m.getAmZug());
 		// System.out.println("NeuVerteilt: " + m.isNeuVerteilt());
