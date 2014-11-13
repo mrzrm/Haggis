@@ -95,7 +95,7 @@ public class ServerThread extends Thread {
 						
 						// Spiellogik aufrufen
 						m = Logik.Kontrolle(m);
-						
+						System.out.println("Bevor MasteObjekt geschickt - neuVerteilt: " + m.isNeuVerteilt());
 						// Neues MasterObejct zu den Clients zurückschicken
 						Iterator<ObjectOutputStream> i = outlist.iterator();
 						while (i.hasNext()) {
@@ -125,8 +125,12 @@ public class ServerThread extends Thread {
 	}
 
 	public static void neuRunde() {
-		m = new MasterObject(userList);
-		System.out.println("neuRunde(): Karten neu verteilt");
+		ArrayList<User> tmpUser = new ArrayList<User>();
+		tmpUser = m.getUsers();
+		m = null;
+		m = new MasterObject(tmpUser);
+		
+		System.out.println("neuRunde(): Karten neu verteilt - neuVerteilt: " + m.isNeuVerteilt());
 		
 	}
 }

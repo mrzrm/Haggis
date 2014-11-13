@@ -741,8 +741,7 @@ public class Gui extends JFrame {
 						selektierteKartenAufSpielfeld(selectedButtons);
 
 						// Wenn Joker gespielt worden sind, diese aus
-						// MasterObjekt
-						// entfernen
+						// MasterObjekt entfernen
 						jokerAusMasterObjektEntfernen(selectedButtons);
 
 						// Karten aus Spieler KartenArray entfernen
@@ -900,7 +899,8 @@ public class Gui extends JFrame {
 				if (selectedButtons.get(g).getKarte().getName().equals("dame")) {
 					temp[1] = null;
 				}
-				if (selectedButtons.get(g).getKarte().getName().equals("koenig")) {
+				if (selectedButtons.get(g).getKarte().getName()
+						.equals("koenig")) {
 					temp[2] = null;
 				}
 				Client.m.setKartenJoker1(temp);
@@ -917,7 +917,8 @@ public class Gui extends JFrame {
 				if (selectedButtons.get(g).getKarte().getName().equals("dame")) {
 					temp2[1] = null;
 				}
-				if (selectedButtons.get(g).getKarte().getName().equals("koenig")) {
+				if (selectedButtons.get(g).getKarte().getName()
+						.equals("koenig")) {
 					temp2[2] = null;
 				}
 			}

@@ -74,6 +74,9 @@ public class Client {
 				// empfangen des Masterobjekts
 				if (inputObject instanceof MasterObject) {
 					m = (MasterObject) inputObject;
+					
+					System.out.println("Client MasteObjekt emfangen - neuVerteilt: " + m.isNeuVerteilt());
+					
 					System.out.println("MasterObject empfangen - Spieler: "
 							+ m.users.get(0).getName() + " und "
 							+ m.users.get(1).getName());
@@ -185,23 +188,9 @@ public class Client {
 			Gui.lblp2Karten.setText(Integer.toString(m.kartenPlayer1.size()));
 		}
 		
-		System.out.println("Anz. KartenPlayer1: " + m.kartenPlayer1.size());
-		System.out.println("Anz. KartenPlayer2: " + m.kartenPlayer2.size());
-				
-//		//Testausgabe Karten P1 & P2
-//		System.out.println("-----------------------------------------");
-//		System.out.println("Karten Player 1");
-//		for (Karte k : m.kartenPlayer1 ){
-//			System.out.println("Farbe: " + k.getFarbe() + " Wert: " + k.getWert());
-//		}
-//		System.out.println("-----------------------------------------");
-//		System.out.println("-----------------------------------------");
-//		System.out.println("Karten Player 2");
-//		for (Karte k : m.kartenPlayer2 ){
-//			System.out.println("Farbe: " + k.getFarbe() + " Wert: " + k.getWert());
-//		}
-//		System.out.println("-----------------------------------------");
-		
+		//System.out.println("Anz. KartenPlayer1: " + m.kartenPlayer1.size());
+		//System.out.println("Anz. KartenPlayer2: " + m.kartenPlayer2.size());
+					
 		// Punkte Label aktualisieren
 		if(clientId == 0){
 			Gui.lblp1Punkte.setText(Integer.toString(m.users.get(0).getPunkte()));
@@ -250,27 +239,71 @@ public class Client {
 			for (int j = 0; j < m.kartenPlayer1.size(); j++) {
 				// ImageIcon setzen
 				ImageIcon tmpii = m.kartenPlayer1.get(j).getIcon();
+				// Icons visible machen
+				Gui.alKarten.get(j).setVisible(true);
+				Gui.alKarten.get(j).setIcon(null);
 				Gui.alKarten.get(j).setIcon(tmpii);
 				// Kartenobjekt dem Button zuweisen
 				Gui.alKarten.get(j).setKarte(m.kartenPlayer1.get(j));
+				
 			}
-
+			
+			// alle eigenen Joker visible setzen
+			for (int l = 0; l < Gui.alJoker.size(); l++){
+				Gui.alJoker.get(l).setVisible(true);
+			}
+			
+			// den eigenen Jokerbuttens die entsprechenden Werte zuweisen
 			for (int k = 0; k < m.kartenJoker1.length; k++) {
 				Gui.alJoker.get(k).setKarte(m.kartenJoker1[k]);
 			}
+			
+			// Jokerlabel des Gegners Visible setzen
+			Gui.lblp2bube.setVisible(true);
+			Gui.lblp2dame.setVisible(true);
+			Gui.lblp2koenig.setVisible(true);
+			
+			// Reset Spielfläche
+			for (int g = 0; g < Gui.alKartenTisch.size(); g++) {
+				Gui.alKartenTisch.get(g).setIcon(null);
+			}
+			
+			System.out.println("Karten player1 wurden neu gesetzt");
 
 		} else {
 			for (int j = 0; j < m.kartenPlayer2.size(); j++) {
 				// ImageIcon setzen
 				ImageIcon tmpii = m.kartenPlayer2.get(j).getIcon();
+				//Icons visible machen
+				Gui.alKarten.get(j).setVisible(true);
+				Gui.alKarten.get(j).setIcon(null);
 				Gui.alKarten.get(j).setIcon(tmpii);
 				// Kartenobjekt dem Button zuweisen
 				Gui.alKarten.get(j).setKarte(m.kartenPlayer2.get(j));
+				
+			}
+			
+			// alle eigenen Joker visible setzen
+			for (int l = 0; l < Gui.alJoker.size(); l++) {
+				Gui.alJoker.get(l).setVisible(true);
 			}
 
+			// den eigenen Jokerbuttens die entsprechenden Werte zuweisen
 			for (int k = 0; k < m.kartenJoker2.length; k++) {
 				Gui.alJoker.get(k).setKarte(m.kartenJoker2[k]);
 			}
+			
+			// Jokerlabel des Gegners Visible setzen
+			Gui.lblp2bube.setVisible(true);
+			Gui.lblp2dame.setVisible(true);
+			Gui.lblp2koenig.setVisible(true);
+			
+			// Reset Spielfläche
+			for (int g = 0; g < Gui.alKartenTisch.size(); g++) {
+				Gui.alKartenTisch.get(g).setIcon(null);
+			}
+			
+			System.out.println("Karten player2 wurden neu gesetzt");
 
 		}
 
