@@ -9,8 +9,6 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import Gui.Client;
-
 
 
 public class ServerThread extends Thread {
@@ -73,7 +71,7 @@ public class ServerThread extends Thread {
 								System.out.println("ServerThread.java: MasterObject wurde geschickt!");
 								Server.display(m.users.get(0).getName() + " ist am Zug.");
 							}
-							
+									
 													
 							// sleep
 							try {
@@ -81,6 +79,7 @@ public class ServerThread extends Thread {
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
+							
 						}
 
 					}
@@ -125,20 +124,9 @@ public class ServerThread extends Thread {
 
 	}
 
-	public static void neueRunde() {
-		//m = new MasterObject(userList);
-		m.d.shuffleDeck();
-		m.d.giveCards();				
-		m.kartenPlayer1 = m.d.getKartenPlayer1();
-		m.kartenPlayer2 = m.d.getKartenPlayer2();
-		m.kartenJoker1 =  m.d.getJokerPlayer1().toArray(new Karte[m.d.getJokerPlayer1().size()]);
-		m.kartenJoker2 = m.d.getJokerPlayer2().toArray(new Karte[m.d.getJokerPlayer2().size()]);
-		m.setNeuVerteilt(true);
-		System.out.println("serverthread " + m.isNeuVerteilt());
-		
-		System.out.println(m.d.getKartenPlayer1().get(1).getWert());
-
-
+	public static void neuRunde() {
+		m = new MasterObject(userList);
 		System.out.println("neuRunde(): Karten neu verteilt");
+		
 	}
 }
