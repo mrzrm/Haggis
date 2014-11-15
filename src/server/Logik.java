@@ -3,10 +3,12 @@ package server;
 
 public class Logik {
 	
+	static int punkteBisSieg = 250;
+	
 	public static MasterObject Kontrolle (MasterObject m){
 		
 		// Falls ein Spieler keine Karten mehr hat, neue Runde starten
-		if(m.getKartenPlayer1().size() == 0 && isEmpty(m.getKartenJoker1()) || m.getKartenPlayer2().size() == 0 && isEmpty(m.getKartenJoker2())){
+		if(m.getKartenPlayer1().size() == 0 && isJokerEmpty(m.getKartenJoker1()) || m.getKartenPlayer2().size() == 0 && isJokerEmpty(m.getKartenJoker2())){
 			if(m.getKartenPlayer1().size() == 0){
 				
 				Server.display(m.users.get(0).getName() + " hat Runde gewonnen! Karten werden neu verteilt...");
@@ -59,6 +61,18 @@ public class Logik {
 				m.setAmZug(1);
 				
 			}
+			
+			// Checken, ob Player1 bereits gewonnen hat
+			if(m.users.get(0).getPunkte() >= punkteBisSieg){
+				m.setSieger(1);
+				Server.display(m.users.get(0).getName() + " hat das Spiel Gewonnen!");
+			}
+			// Checken, ob Player2 bereits gewonnen hat
+			else if(m.users.get(1).getPunkte() >= punkteBisSieg){
+				m.setSieger(2);
+				Server.display(m.users.get(1).getName() + " hat das Spiel Gewonnen!");
+			}
+			
 		}
 		
 		// Wenn nächster Spieler am Zug
@@ -128,7 +142,7 @@ public class Logik {
 		return m;
 	}
 
-	private static boolean isEmpty(Karte[] kartenJoker) {
+	private static boolean isJokerEmpty(Karte[] kartenJoker) {
 		
 		for (int g = 0; g < kartenJoker.length; g++){
 			if(kartenJoker[g] != null){

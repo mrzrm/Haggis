@@ -87,7 +87,7 @@ public class ServerThread extends Thread {
 					// Input vom  MasterObjekt
 					else if (inputObject instanceof MasterObject) {
 						try {
-							Thread.sleep(200);
+							Thread.sleep(100);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
@@ -95,7 +95,7 @@ public class ServerThread extends Thread {
 						
 						// Spiellogik aufrufen
 						m = Logik.Kontrolle(m);
-						System.out.println("Bevor MasteObjekt geschickt - neuVerteilt: " + m.isNeuVerteilt());
+						
 						// Neues MasterObejct zu den Clients zurückschicken
 						Iterator<ObjectOutputStream> i = outlist.iterator();
 						while (i.hasNext()) {
@@ -118,19 +118,22 @@ public class ServerThread extends Thread {
 
 		} catch (IOException e) {
 			e.printStackTrace();
-			Server.display("Ein Spieler hat das Spiel verlassen!\n" + e.toString()); 
+			Server.display("Ein Spieler hat das Spiel verlassen!");
+			
+			// Hier sollte eine meldung an Mitspieler gemacht werden, dass sein opponent geleaved hat
 
 		}
 
 	}
-
-	public static void neuRunde() {
-		ArrayList<User> tmpUser = new ArrayList<User>();
-		tmpUser = m.getUsers();
-		m = null;
-		m = new MasterObject(tmpUser);
-		
-		System.out.println("neuRunde(): Karten neu verteilt - neuVerteilt: " + m.isNeuVerteilt());
-		
-	}
+	
+// METHODE IST IM MASTEROBJEKT damit es funzt
+//	public static void neuRunde() {
+//		ArrayList<User> tmpUser = new ArrayList<User>();
+//		tmpUser = m.getUsers();
+//		m = null;
+//		m = new MasterObject(tmpUser);
+//		
+//		System.out.println("neuRunde(): Karten neu verteilt - neuVerteilt: " + m.isNeuVerteilt());
+//		
+//	}
 }

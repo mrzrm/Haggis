@@ -22,6 +22,7 @@ public class MasterObject implements Serializable {
 	public int letzerZug;
 	public int punkteBisStich;
 	public int bombe;
+	public int sieger;
 
 
 	//constructor
@@ -125,6 +126,14 @@ public class MasterObject implements Serializable {
 
 	public void setPunkteBisStich(int punkteBisStich) {
 		this.punkteBisStich = punkteBisStich;
+	}
+
+	public int getSieger() {
+		return sieger;
+	}
+
+	public void setSieger(int sieger) {
+		this.sieger = sieger;
 	}
 
 	public void neuRunde() {

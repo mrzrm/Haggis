@@ -80,7 +80,16 @@ public class Client {
 					System.out.println("MasterObject empfangen - Spieler: "
 							+ m.users.get(0).getName() + " und "
 							+ m.users.get(1).getName());
-					refreshGui();
+					
+					if(m.getSieger() == 0){
+						refreshGui();
+					}else{
+						zeigeGewinner(m.getSieger());
+						m.setSieger(0);
+						refreshGui();
+						
+					}
+					
 					try {
 						Thread.sleep(100);
 					} catch (InterruptedException e) {
@@ -89,12 +98,14 @@ public class Client {
 				}
 				// ClientId setzen
 				else if (inputObject instanceof Integer) {
+					
 					clientId = (int) inputObject;
 					frame = new Gui();
 					frame.setVisible(true);
+					
 				}
 
-				// Error if someone disconnects or closes game
+				// Error wenn Server disconected
 				else if (inputObject instanceof SocketException) {
 					JOptionPane.showMessageDialog(null,
 							"Bitte starte das Spiel neu",
@@ -111,6 +122,81 @@ public class Client {
 		} catch (ClassNotFoundException | IOException cnfException) {
 			cnfException.printStackTrace();
 		}
+	}
+
+	private void zeigeGewinner(int sieger) {
+		if(sieger == clientId+1){
+			System.out.println("Sie haben das Spiel Gewonnen! Gratuliere :-)");
+			
+			// Kartenanzahl Label aktualisieren
+			if(clientId == 0){
+				Gui.lblp1KartenAnzahl.setText(Integer.toString(m.kartenPlayer1.size()));
+				Gui.lblp2Karten.setText(Integer.toString(m.kartenPlayer2.size()));
+			}else{
+				Gui.lblp1KartenAnzahl.setText(Integer.toString(m.kartenPlayer2.size()));
+				Gui.lblp2Karten.setText(Integer.toString(m.kartenPlayer1.size()));
+			}
+				
+			// Punkte Label aktualisieren
+			if(clientId == 0){
+				Gui.lblp1Punkte.setText(Integer.toString(m.users.get(0).getPunkte()));
+				Gui.lblp2Punkte.setText(Integer.toString(m.users.get(1).getPunkte()));
+			}else{
+				Gui.lblp1Punkte.setText(Integer.toString(m.users.get(1).getPunkte()));
+				Gui.lblp2Punkte.setText(Integer.toString(m.users.get(0).getPunkte()));
+			}
+			
+			
+			// Custom button text
+			Object[] options = { "Neue Runde starten", "Spiel beenden" };
+			int w = JOptionPane.showOptionDialog(frame,
+					"Gratulation, Sie haben das Spiel gewonnen!", "Haggis",
+					JOptionPane.YES_NO_CANCEL_OPTION,
+					JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+			if(w == 1){
+				System.exit(0);
+			}else{
+				// Punkte zurücksetzen
+				m.users.get(0).setPunkte(0);
+				m.users.get(1).setPunkte(0);
+			}
+		}else{
+			System.out.println("Sie haben leider verloren");
+			
+			// Kartenanzahl Label aktualisieren
+			if(clientId == 0){
+				Gui.lblp1KartenAnzahl.setText(Integer.toString(m.kartenPlayer1.size()));
+				Gui.lblp2Karten.setText(Integer.toString(m.kartenPlayer2.size()));
+			}else{
+				Gui.lblp1KartenAnzahl.setText(Integer.toString(m.kartenPlayer2.size()));
+				Gui.lblp2Karten.setText(Integer.toString(m.kartenPlayer1.size()));
+			}
+		
+			// Punkte Label aktualisieren
+			if(clientId == 0){
+				Gui.lblp1Punkte.setText(Integer.toString(m.users.get(0).getPunkte()));
+				Gui.lblp2Punkte.setText(Integer.toString(m.users.get(1).getPunkte()));
+			}else{
+				Gui.lblp1Punkte.setText(Integer.toString(m.users.get(1).getPunkte()));
+				Gui.lblp2Punkte.setText(Integer.toString(m.users.get(0).getPunkte()));
+			}
+			
+			// Custom button text
+			Object[] options = { "Neue Runde starten", "Spiel beenden" };
+			int l = JOptionPane.showOptionDialog(frame,
+					"Sie haben leider verloren. Vielleicht haben Sie in der nächsten Runde mehr Glück?", "Haggis",
+					JOptionPane.YES_NO_CANCEL_OPTION,
+					JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+			if(l == 1){
+				System.exit(0);
+			}else{
+				// Punkte zurücksetzen
+				m.users.get(0).setPunkte(0);
+				m.users.get(1).setPunkte(0);
+			}
+			
+		}
+		
 	}
 
 	private void refreshGui() {
