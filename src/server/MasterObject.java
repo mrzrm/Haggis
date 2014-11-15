@@ -48,6 +48,14 @@ public class MasterObject implements Serializable {
 		
 	}
 
+	public ArrayList<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(ArrayList<User> users) {
+		this.users = users;
+	}
+
 	public boolean isPasst() {
 		return passt;
 	}
@@ -117,5 +125,23 @@ public class MasterObject implements Serializable {
 
 	public void setPunkteBisStich(int punkteBisStich) {
 		this.punkteBisStich = punkteBisStich;
+	}
+
+	public void neuRunde() {
+		
+		d = null;
+		d  = new Deck();
+		d.giveCards();
+		
+		this.kartenPlayer1 = d.getKartenPlayer1();
+		this.kartenPlayer2 = d.getKartenPlayer2();
+		this.kartenJoker1 =  d.getJokerPlayer1().toArray(new Karte[d.getJokerPlayer1().size()]);
+		this.kartenJoker2 = d.getJokerPlayer2().toArray(new Karte[d.getJokerPlayer2().size()]);
+		
+		this.neuVerteilt = true;
+		this.gespielteKarten = null;
+		this.passt = false;
+		this.amZug = 0;
+		
 	}	
 }

@@ -6,7 +6,7 @@ public class Logik {
 	public static MasterObject Kontrolle (MasterObject m){
 		
 		// Falls ein Spieler keine Karten mehr hat, neue Runde starten
-		if(m.getKartenPlayer1().size() == 0 || m.getKartenPlayer2().size() == 0){
+		if(m.getKartenPlayer1().size() == 0 && isEmpty(m.getKartenJoker1()) || m.getKartenPlayer2().size() == 0 && isEmpty(m.getKartenJoker2())){
 			if(m.getKartenPlayer1().size() == 0){
 				
 				Server.display(m.users.get(0).getName() + " hat Runde gewonnen! Karten werden neu verteilt...");
@@ -27,8 +27,11 @@ public class Logik {
 				m.setPunkteBisStich(0);
 				
 				// Karten neu verteilen (neu verteilt auf true)
-				ServerThread.neuRunde();
-							
+				//ServerThread.neuRunde();
+				m.neuRunde();
+				
+				// am Zug setzen
+				m.setAmZug(0);
 			}
 			else if(m.getKartenPlayer2().size() == 0){
 				
@@ -49,8 +52,11 @@ public class Logik {
 				m.setPunkteBisStich(0);
 				
 				// Karten neu verteilen (neu verteilt auf true)
-				ServerThread.neuRunde();
+				//ServerThread.neuRunde();
+				m.neuRunde();
 				
+				// am Zug setzen
+				m.setAmZug(1);
 				
 			}
 		}
@@ -118,7 +124,18 @@ public class Logik {
 			Server.display(m.users.get(m.getAmZug()).getName() + " ist am Zug.");
 			
 		}
-		
+		System.out.println("Logik.java bevor return- neu verteilt: " + m.isNeuVerteilt());
 		return m;
+	}
+
+	private static boolean isEmpty(Karte[] kartenJoker) {
+		
+		for (int g = 0; g < kartenJoker.length; g++){
+			if(kartenJoker[g] != null){
+				return false;
+			}
+		}
+		
+		return true;
 	}
 }
