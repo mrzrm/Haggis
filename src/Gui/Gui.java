@@ -707,7 +707,7 @@ public class Gui extends JFrame {
 					if(containsJoker(alTmp) && alTmp.size() > 1){
 						System.out.println("Zug enthält Joker");
 						for(Karte d: alTmp){
-							if(d.getWert() > 10){
+							if(d.getName().equals("bube") || d.getName().equals("dame") || d.getName().equals("koenig")){
 								JokerValues jv = new JokerValues(d.getWert());
 								jv.setVisible(true);
 								d.setWert(jv.getJokerWert());
