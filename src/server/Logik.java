@@ -41,7 +41,14 @@ public class Logik {
 				m.neuRunde();
 
 				// am Zug setzen
-				m.setAmZug(0);
+				if (m.users.get(0).getPunkte() > m.users.get(1).getPunkte()) {
+					m.setAmZug(1);
+				}
+				if (m.users.get(0).getPunkte() == m.users.get(1).getPunkte()) {
+					m.setAmZug(1);
+				} else {
+					m.setAmZug(0);
+				}
 			} else if (m.getKartenPlayer2().size() == 0) {
 
 				Server.display(m.users.get(1).getName()
@@ -66,7 +73,14 @@ public class Logik {
 				m.neuRunde();
 
 				// am Zug setzen
-				m.setAmZug(1);
+				if (m.users.get(0).getPunkte() > m.users.get(1).getPunkte()) {
+					m.setAmZug(1);
+				}
+				if (m.users.get(0).getPunkte() == m.users.get(1).getPunkte()) {
+					m.setAmZug(0);
+				} else {
+					m.setAmZug(0);
+				}
 
 			}
 
@@ -92,8 +106,6 @@ public class Logik {
 			if (m.isPasst()) {
 				m.setPasst(false);
 
-				
-
 				// punkteBisStich dem Spieler der nicht gepasst hat hinzu
 				// addieren
 				int bekommtPunkte = 0;
@@ -116,7 +128,7 @@ public class Logik {
 
 				// pukteBisStich reseten
 				m.setPunkteBisStich(0);
-				
+
 				// Spielfeld löschen
 				m.gespielteKarten.clear();
 
