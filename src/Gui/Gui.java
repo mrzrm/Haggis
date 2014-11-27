@@ -1,6 +1,7 @@
 package Gui;
 
 import java.awt.BorderLayout;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Image;
@@ -51,6 +52,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.io.File;
+import java.io.IOException;
+import java.awt.Button;
 
 public class Gui extends JFrame {
 
@@ -144,6 +147,9 @@ public class Gui extends JFrame {
 	private JLabel lblplatzhalter2;
 	private JLabel lblp1PunkteName;
 	public static JLabel lblp1Punkte;
+	
+	public ImageIcon helpicon = new ImageIcon(Gui.class.getResource("/images/special/HelpIcon.gif"));
+	private JButton btnRegeln;
 
 	/**
 	 * Launch the application.
@@ -461,7 +467,20 @@ public class Gui extends JFrame {
 		btnPassen = new JButton("Passen");
 		btnPassen.setEnabled(false);
 		panel_btns.add(btnPassen);
+		
+		btnRegeln = new JButton("");
+		btnRegeln.setBorder(null);
+		btnRegeln.setPreferredSize(new Dimension(23, 23));
+		btnRegeln.setMinimumSize(new Dimension(23, 23));
+		panel_btns.add(btnRegeln);
 		panel_spieler2.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		Image img = helpicon.getImage();
+		Image newimg = img.getScaledInstance(23, 23,  java.awt.Image.SCALE_SMOOTH);
+		ImageIcon helpicon2 = new ImageIcon(newimg);
+		
+		btnRegeln.setIcon(helpicon2);
+		
 
 		// JLabel Spieler 2 erstellen
 		lblSpieler2 = new JLabel("Spieler 2");
@@ -615,6 +634,7 @@ public class Gui extends JFrame {
 		actnListener actnl1 = new actnListener();
 		btnPassen.addActionListener(actnl1);
 		btnAusspielen.addActionListener(actnl1);
+		btnRegeln.addActionListener(actnl1);
 
 	}
 
@@ -781,16 +801,32 @@ public class Gui extends JFrame {
 			if (e.getSource() == btnPassen) {
 				System.out.println("Button: Passen");
 
-				// HIER CODE EINFÜGEN UM ZU PASSEN
-
 				// ----- HIER CODE UM ZU PASSEN -----
 
-				if (e.getSource() == btnPassen) {
-					System.out.println("Button: Passen");
+				System.out.println("Button: Passen");
 
-					Client.m.setPasst(true);
-					Client.sendObjectToServer();
+				Client.m.setPasst(true);
+				Client.sendObjectToServer();
+
+			}
+			
+			if (e.getSource() == btnRegeln) {
+				
+				// ----- HIER CODE UM REGELN ANZUZEIGEN -----
+				
+				System.out.println("Button: Regeln");
+				
+				if (Desktop.isDesktopSupported()) {
+				    try {
+				        File myFile = new File("src/images/special/haggis.pdf");
+				        Desktop.getDesktop().open(myFile);
+				    } catch (IOException ex) {
+				        System.out.println("PDF wird nicht unterstützt!");
+				    }
+				}else{
+					System.out.println("Nicht DesktopSupported");
 				}
+								
 			}
 		}
 	}
