@@ -15,6 +15,7 @@ public class ZugVerifizieren {
 		int counterStrasse = 1;
 		int counterPaerchenStrasse = 0;
 		int counterDrillingStrasse = 1;
+		int counterVierlingsStrasse = 1;
 
 		for (int i = 0; i < zug.size(); i++) {
 			System.out.println(zug.get(i).getWert());
@@ -97,7 +98,6 @@ public class ZugVerifizieren {
 
 			//-----Drillingstrasse------
 			if (zug.size() >= 6) {
-				System.out.println("if paerchen");
 
 				//			int j = zug.size() - 1;
 				for (int i = zug.size() - 1; i > 4; i = i - 3) {
@@ -120,6 +120,37 @@ public class ZugVerifizieren {
 				if (counterDrillingStrasse > 1) {
 					System.out.println(counterDrillingStrasse
 							+ "er Drillingsstrasse gespielt");
+					Client.m.letzerZug = 7;
+					return true;
+				}
+			}
+			
+			//-----Vierlingstrasse------
+			if (zug.size() >= 8) {
+
+				//			int j = zug.size() - 1;
+				for (int i = zug.size() - 1; i > 4; i = i - 4) {
+					System.out.println("1. Schlaufe");
+					if (	zug.get(i).getWert() == zug.get(i - 1).getWert()
+							&& zug.get(i).getWert() == zug.get(i - 2).getWert()
+							&& zug.get(i).getWert() == zug.get(i - 3).getWert()
+							&& zug.get(i).getFarbe() == zug.get(i - 4).getFarbe()
+							&& zug.get(i-1).getFarbe() == zug.get(i - 5).getFarbe()
+							&& zug.get(i-2).getFarbe() == zug.get(i - 6).getFarbe()
+							&& zug.get(i-3).getFarbe() == zug.get(i - 7).getFarbe()) {
+						counterVierlingsStrasse++;
+						//					j--;
+						System.out.println("counter" + counterVierlingsStrasse);
+					} else {
+						//					j = zug.size() - 1;
+						counterVierlingsStrasse = 1;
+						System.out.println("counter wieder 1");
+						break;
+					}
+				}
+				if (counterVierlingsStrasse > 1) {
+					System.out.println(counterVierlingsStrasse
+							+ "er Vierlingsstrasse gespielt");
 					Client.m.letzerZug = 7;
 					return true;
 				}
@@ -231,6 +262,37 @@ public class ZugVerifizieren {
 								+ "er Drillingsstrasse gespielt");
 						return true;
 					}
+				}
+			}
+			
+			//-----Vierlingstrasse------
+			if (zug.size() >= 8) {
+
+				//			int j = zug.size() - 1;
+				for (int i = zug.size() - 1; i > 4; i = i - 4) {
+					System.out.println("1. Schlaufe");
+					if (	zug.get(i).getWert() == zug.get(i - 1).getWert()
+							&& zug.get(i).getWert() == zug.get(i - 2).getWert()
+							&& zug.get(i).getWert() == zug.get(i - 3).getWert()
+							&& zug.get(i).getFarbe() == zug.get(i - 4).getFarbe()
+							&& zug.get(i-1).getFarbe() == zug.get(i - 5).getFarbe()
+							&& zug.get(i-2).getFarbe() == zug.get(i - 6).getFarbe()
+							&& zug.get(i-3).getFarbe() == zug.get(i - 7).getFarbe()) {
+						counterVierlingsStrasse++;
+						//					j--;
+						System.out.println("counter" + counterVierlingsStrasse);
+					} else {
+						//					j = zug.size() - 1;
+						counterVierlingsStrasse = 1;
+						System.out.println("counter wieder 1");
+						break;
+					}
+				}
+				if (counterVierlingsStrasse > 1) {
+					System.out.println(counterVierlingsStrasse
+							+ "er Vierlingsstrasse gespielt");
+					Client.m.letzerZug = 7;
+					return true;
 				}
 			}
 //			//----Bombe1------

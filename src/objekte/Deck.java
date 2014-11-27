@@ -107,6 +107,7 @@ public class Deck implements Serializable {
 	public ArrayList<Karte> kartenPlayer2 = new ArrayList<Karte>();
 	public ArrayList<Karte> jokerPlayer1 = new ArrayList<Karte>();
 	public ArrayList<Karte> jokerPlayer2 = new ArrayList<Karte>();
+	public ArrayList<Karte> haggis = new ArrayList<Karte>();
 
 	/**
 	 * 
@@ -173,11 +174,15 @@ public class Deck implements Serializable {
 		// am besten nochmals Mischen
 		this.shuffleDeck();
 
-		for (int j = 0; j < 28; j++) {
+		for (int j = 0; j < this.kartenDeck.size(); j++) {
 			if (j < 14) {
 				kartenPlayer1.add(this.kartenDeck.get(j));
-			} else {
+			} 
+			else if (j < 28){
 				kartenPlayer2.add(this.kartenDeck.get(j));
+			}
+			else {
+				haggis.add(this.kartenDeck.get(j));
 			}
 		}
 
@@ -193,6 +198,14 @@ public class Deck implements Serializable {
 		jokerPlayer2.add(new Karte("dame", Karte.Farbe.JOKER, 12, 3, iiq1));
 		jokerPlayer2.add(new Karte("koenig", Karte.Farbe.JOKER, 13, 5, iik1));
 
+	}
+
+	public ArrayList<Karte> getHaggis() {
+		return haggis;
+	}
+
+	public void setHaggis(ArrayList<Karte> haggis) {
+		this.haggis = haggis;
 	}
 
 	public ArrayList<Karte> getKartenPlayer1() {

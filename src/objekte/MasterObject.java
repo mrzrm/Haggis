@@ -11,6 +11,7 @@ public class MasterObject implements Serializable {
 	public Deck d;
 	public ArrayList<Karte> kartenPlayer1;
 	public ArrayList<Karte> kartenPlayer2;
+	public ArrayList<Karte> haggis;
 	public Karte[] kartenJoker1;
 	public Karte[] kartenJoker2;
 	public ArrayList<Karte> gespielteKarten;
@@ -39,6 +40,7 @@ public class MasterObject implements Serializable {
 		this.kartenPlayer2 = d.getKartenPlayer2();
 		this.kartenJoker1 =  d.getJokerPlayer1().toArray(new Karte[d.getJokerPlayer1().size()]);
 		this.kartenJoker2 = d.getJokerPlayer2().toArray(new Karte[d.getJokerPlayer2().size()]);
+		this.haggis = d.getHaggis();
 		//this.gespielteKarten = null;
 		
 		
@@ -47,6 +49,14 @@ public class MasterObject implements Serializable {
 		//System.out.println(kartenPlayer1.get(0).getWert());
 		System.out.println("Masteoject.java: MasterObject erstellt");
 		
+	}
+
+	public ArrayList<Karte> getHaggis() {
+		return haggis;
+	}
+
+	public void setHaggis(ArrayList<Karte> haggis) {
+		this.haggis = haggis;
 	}
 
 	public ArrayList<User> getUsers() {

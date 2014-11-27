@@ -26,8 +26,12 @@ public class Logik {
 				int tmpPunkte = m.users.get(0).getPunkte();
 				tmpPunkte += m.getPunkteBisStich();
 
-				// Zusätzlich fünf Punkte für jede Karte des Gegners
+				// Zusätzlich fünf Punkte für jede Karte des Gegners und Haggis
 				int tmpKartenX5 = m.getKartenPlayer2().size() * 5;
+				tmpKartenX5 += m.getKartenJoker2().length  * 5;
+				for (int i = 0; i < m.getHaggis().size(); i++){
+					tmpKartenX5 += m.getHaggis().get(i).getWert();
+				}
 				tmpPunkte += tmpKartenX5;
 
 				// Punkte setzen
@@ -41,12 +45,11 @@ public class Logik {
 				m.neuRunde();
 
 				// am Zug setzen
-				if (m.users.get(0).getPunkte() > m.users.get(1).getPunkte()) {
+				if (m.users.get(0).getPunkte() >= m.users.get(1).getPunkte()) {
 					m.setAmZug(1);
 				}
-				if (m.users.get(0).getPunkte() == m.users.get(1).getPunkte()) {
-					m.setAmZug(1);
-				} else {
+
+				else {
 					m.setAmZug(0);
 				}
 			} else if (m.getKartenPlayer2().size() == 0) {
@@ -58,8 +61,12 @@ public class Logik {
 				int tmpPunkte = m.users.get(1).getPunkte();
 				tmpPunkte += m.getPunkteBisStich();
 
-				// Zusätzlich fünf Punkte für jede Karte des Gegners
+				// Zusätzlich fünf Punkte für jede Karte des Gegners und Haggis
 				int tmpKartenX5 = m.getKartenPlayer1().size() * 5;
+				tmpKartenX5 += m.getKartenJoker1().length  * 5;
+				for (int i = 0; i < m.getHaggis().size(); i++){
+					tmpKartenX5 += m.getHaggis().get(i).getWert();
+				}
 				tmpPunkte += tmpKartenX5;
 
 				// Punkte setzen
@@ -75,9 +82,6 @@ public class Logik {
 				// am Zug setzen
 				if (m.users.get(0).getPunkte() > m.users.get(1).getPunkte()) {
 					m.setAmZug(1);
-				}
-				if (m.users.get(0).getPunkte() == m.users.get(1).getPunkte()) {
-					m.setAmZug(0);
 				} else {
 					m.setAmZug(0);
 				}
