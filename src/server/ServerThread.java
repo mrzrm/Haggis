@@ -121,6 +121,16 @@ public class ServerThread extends Thread {
 			Server.display("Ein Spieler hat das Spiel verlassen!");
 			
 			// Hier sollte eine meldung an Mitspieler gemacht werden, dass sein opponent geleaved hat
+			Iterator<ObjectOutputStream> i = outlist.iterator();
+			while (i.hasNext()) {
+				try {
+					i.next().writeObject("fertig");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				System.out.println("Meldung Spiel beendet verschickt");
+			}
 
 		}
 

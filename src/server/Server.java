@@ -23,6 +23,7 @@ public class Server extends JFrame {
 	public Server() {
 
 		super("Haggis Game-Server");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		output = new JTextArea();
 		output.setEditable(false);
 		scrollPane = new JScrollPane(output);

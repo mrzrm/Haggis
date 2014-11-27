@@ -113,6 +113,15 @@ public class Client {
 							JOptionPane.ERROR_MESSAGE);
 					System.exit(1);
 				}
+				
+				else if (inputObject instanceof String) {
+					JOptionPane.showMessageDialog(null,
+							"Ein Spieler hat die Verbindung getrennt \n"
+							+ "Bitte starte das Spiel neu!",
+							"Verbindungsfehler",
+							JOptionPane.ERROR_MESSAGE);
+					System.exit(0);
+				}
 
 				else {
 					System.out.println("Unexpected object type:  "
