@@ -9,6 +9,9 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import objekte.MasterObject;
+import objekte.User;
+
 
 
 public class ServerThread extends Thread {

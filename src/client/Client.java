@@ -1,4 +1,4 @@
-package Gui;
+package client;
 
 import java.awt.Window;
 import java.io.IOException;
@@ -14,8 +14,8 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 
-import server.Karte;
-import server.MasterObject;
+import objekte.Karte;
+import objekte.MasterObject;
 
 public class Client {
 

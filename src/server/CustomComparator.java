@@ -2,6 +2,8 @@ package server;
 
 import java.util.Comparator;
 
+import objekte.Karte;
+
 public class CustomComparator implements Comparator<Karte> {
 	@Override
 	public int compare(Karte k1, Karte k2) {

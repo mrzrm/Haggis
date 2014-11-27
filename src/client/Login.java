@@ -1,4 +1,4 @@
-package Gui;
+package client;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
-import server.User;
+import objekte.User;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

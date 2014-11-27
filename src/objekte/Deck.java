@@ -1,4 +1,4 @@
-package server;
+package objekte;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,8 +7,9 @@ import java.util.Comparator;
 
 import javax.swing.ImageIcon;
 
-import server.Karte;
-import Gui.Gui;
+import objekte.Karte;
+import client.Gui;
+import server.CustomComparator;
 
 public class Deck implements Serializable {
 

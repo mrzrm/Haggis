@@ -1,9 +1,9 @@
-package Gui;
+package client;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-import server.Karte;
+import objekte.Karte;
 import server.CustomComparator;
 
 public class ZugVerifizieren {

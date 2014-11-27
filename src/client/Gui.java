@@ -1,4 +1,4 @@
-package Gui;
+package client;
 
 import java.awt.BorderLayout;
 import java.awt.Desktop;
@@ -45,8 +45,8 @@ import java.util.ArrayList;
 
 import javax.swing.border.SoftBevelBorder;
 
-import server.Deck;
-import server.Karte;
+import objekte.Deck;
+import objekte.Karte;
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;

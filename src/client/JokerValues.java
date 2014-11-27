@@ -1,4 +1,4 @@
-package Gui;
+package client;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -27,8 +27,8 @@ import java.util.ArrayList;
 
 import javax.swing.JRadioButton;
 
-import server.Karte;
-import server.Karte.Farbe;
+import objekte.Karte;
+import objekte.Karte.Farbe;
 
 public class JokerValues extends JDialog {
 	

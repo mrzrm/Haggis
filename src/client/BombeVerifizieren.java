@@ -1,4 +1,4 @@
-package Gui;
+package client;
 
 import java.awt.MediaTracker;
 import java.io.File;
@@ -10,8 +10,8 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
+import objekte.Karte;
 import server.CustomComparator;
-import server.Karte;
 
 public class BombeVerifizieren {
 

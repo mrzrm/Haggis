@@ -2,7 +2,9 @@ package server;
 
 import java.util.ArrayList;
 
-import Gui.Client;
+import objekte.Karte;
+import objekte.MasterObject;
+import client.Client;
 
 public class Logik {
 
