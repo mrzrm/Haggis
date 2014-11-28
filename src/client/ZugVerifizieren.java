@@ -117,7 +117,7 @@ public class ZugVerifizieren {
 						break;
 					}
 				}
-				if (counterDrillingStrasse > 1) {
+				if (counterDrillingStrasse > 1 && counterDrillingStrasse * 3 == zug.size()) {
 					System.out.println(counterDrillingStrasse
 							+ "er Drillingsstrasse gespielt");
 					Client.m.letzerZug = 7;
@@ -257,7 +257,7 @@ public class ZugVerifizieren {
 							break;
 						}
 					}
-					if (counterDrillingStrasse > 1) {
+					if (counterDrillingStrasse > 1 && counterDrillingStrasse * 3 == zug.size()) {
 						System.out.println(counterDrillingStrasse
 								+ "er Drillingsstrasse gespielt");
 						return true;
