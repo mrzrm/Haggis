@@ -65,7 +65,7 @@ public class Logik {
 				int tmpKartenX5 = m.getKartenPlayer1().size() * 5;
 				tmpKartenX5 += m.getKartenJoker1().length  * 5;
 				for (int i = 0; i < m.getHaggis().size(); i++){
-					tmpKartenX5 += m.getHaggis().get(i).getWert();
+					tmpKartenX5 += m.getHaggis().get(i).getPunkte();
 				}
 				tmpPunkte += tmpKartenX5;
 
