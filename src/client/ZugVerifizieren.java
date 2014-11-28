@@ -88,7 +88,7 @@ public class ZugVerifizieren {
 						break;
 					}
 				}
-				if (counterPaerchenStrasse > 1) {
+				if (counterPaerchenStrasse > 1 && counterPaerchenStrasse * 2 == zug.size()) {
 					System.out.println(counterPaerchenStrasse
 							+ "er Pärchenstrasse gespielt");
 					Client.m.letzerZug = 6;
@@ -233,7 +233,7 @@ public class ZugVerifizieren {
 						}
 					}
 				}
-				if (counterPaerchenStrasse > 1) {
+				if (counterPaerchenStrasse > 1 && counterPaerchenStrasse * 2 == zug.size()) {
 					System.out.println(counterPaerchenStrasse
 							+ "er Pärchenstrasse gespielt");
 					return true;
