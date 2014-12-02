@@ -43,8 +43,8 @@ public class BombeVerifizieren {
 				return true;
 			}// bombe 5 schlägt alles ausser bombe 6 und 5
 			else if (Client.m.letzerZug != 13 && Client.m.letzerZug != 12
-					&& zug.size() == 3 && zug.get(0).getWert() == 11
-					&& zug.get(1).getWert() == 12 && zug.get(2).getWert() == 13) {
+					&& zug.size() == 3 && zug.get(0).getName().equals("bube")
+					&& zug.get(1).getName().equals("dame") && zug.get(2).getName().equals("koenig")) {
 				System.out.println("bombe5 gespielt");
 				playBomba();
 				// Gui.playBomba();
@@ -54,7 +54,7 @@ public class BombeVerifizieren {
 			// bombe 4 schlägt alls ausser bombe 6, 5 und 4
 			else if (Client.m.letzerZug != 13 && Client.m.letzerZug != 12
 					&& Client.m.letzerZug != 11 && zug.size() == 2
-					&& zug.get(0).getWert() == 12 && zug.get(1).getWert() == 13) {
+					&& zug.get(0).getName().equals("dame") && zug.get(1).getName().equals("koenig")) {
 				System.out.println("bombe4 gespielt");
 				Client.m.letzerZug = 11;
 				playBomba();
@@ -64,8 +64,8 @@ public class BombeVerifizieren {
 			// bombe 3 schlägt alles ausser bombe 6, 5 und 4
 			else if (Client.m.letzerZug != 13 && Client.m.letzerZug != 12
 					&& Client.m.letzerZug != 11 && Client.m.letzerZug != 10
-					&& zug.size() == 2 && zug.get(0).getWert() == 11
-					&& zug.get(1).getWert() == 13) {
+					&& zug.size() == 2 && zug.get(0).getName().equals("bube")
+					&& zug.get(1).getName().equals("koenig")) {
 				System.out.println("bombe3 gespielt");
 				Client.m.letzerZug = 10;
 				// Gui.playBomba();
@@ -76,7 +76,7 @@ public class BombeVerifizieren {
 			if (Client.m.letzerZug != 13 && Client.m.letzerZug != 12
 					&& Client.m.letzerZug != 11 && Client.m.letzerZug != 10
 					&& Client.m.letzerZug != 9 && zug.size() == 2
-					&& zug.get(0).getWert() == 11 && zug.get(1).getWert() == 12) {
+					&& zug.get(0).getName().equals("bube") && zug.get(1).getName().equals("dame")) {
 				System.out.println("bombe2 gespielt");
 				Client.m.letzerZug = 9;
 				// Gui.playBomba();

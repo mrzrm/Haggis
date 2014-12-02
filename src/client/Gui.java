@@ -988,29 +988,29 @@ public class Gui extends JFrame {
 			return true;
 		}
 		// ----Bombe5 (bauer, dame, könig)-----
-		if (zug.size() == 3 && zug.get(0).getWert() == 11
-				&& zug.get(1).getWert() == 12 && zug.get(2).getWert() == 13) {
+		if (zug.size() == 3 && zug.get(0).getName().equals("bube")
+				&& zug.get(1).getName().equals("dame") && zug.get(2).getName().equals("koenig")) {
 			System.out.println("Bombaa bauer-dame-könig");
 			Client.m.bombe = 12;
 			return true;
 		}
 		// ----Bombe4 (dame, könig)-----
-		if (zug.size() == 2 && zug.get(0).getWert() == 12
-				&& zug.get(1).getWert() == 13) {
+		if (zug.size() == 2 && zug.get(0).getName().equals("dame")
+				&& zug.get(1).getName().equals("koenig")) {
 			System.out.println("Bombaa dame-könig");
 			Client.m.bombe = 11;
 			return true;
 		}
 		// ----Bombe3 (bube, könig)-----
-		if (zug.size() == 2 && zug.get(0).getWert() == 11
-				&& zug.get(1).getWert() == 13) {
+		if (zug.size() == 2 && zug.get(0).getName().equals("bube")
+				&& zug.get(1).getName().equals("koenig")) {
 			System.out.println("Bombaa bauer-könig");
 			Client.m.bombe = 10;
 			return true;
 		}
 		// ----Bombe2 (bauer, dame)-----
-		if (zug.size() == 2 && zug.get(0).getWert() == 11
-				&& zug.get(1).getWert() == 12) {
+		if (zug.size() == 2 && zug.get(0).getName().equals("bube")
+				&& zug.get(1).getName().equals("dame")) {
 			System.out.println("Bombaa Bauer-Dame");
 			Client.m.bombe = 9;
 			return true;
