@@ -905,7 +905,7 @@ public class Gui extends JFrame {
 
 	public boolean containsJoker(ArrayList<Karte> alTmp) {
 		for(Karte s: alTmp){
-			if (s.getWert() > 10){
+			if (s.getName().equals("bube") || s.getName().equals("dame") || s.getName().equals("koenig")){
 				return true;
 			}
 		}
