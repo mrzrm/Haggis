@@ -1,3 +1,12 @@
+/**
+ * Setzt die Verbindung zwischene Client und Server auf. Updated bei erhalten von Objekten das Spielfeld.
+ *
+ * Bugs: keine Bekannt
+ *
+ * @author       Moritz Leimgrübler
+ * @version      1.0
+ * @see also     Login, Gui
+ */
 package client;
 
 import java.awt.Window;

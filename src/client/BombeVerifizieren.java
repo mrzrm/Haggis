@@ -1,3 +1,12 @@
+/**
+ * Diese Klasse übeprüft, ob der zu Spielende Zug eine Bombe ist. Falls ja, wird eine Audiodatei abgespiet.
+ *
+ * Bugs: keine Bekannt
+ *
+ * @author       Moritz Leimgrübler
+ * @version      1.0
+ * @see also     Login, Gui
+ */
 package client;
 
 import java.awt.MediaTracker;
@@ -11,7 +20,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
 import objekte.Karte;
-import server.CustomComparator;
+import client.CustomComparator;
 
 public class BombeVerifizieren {
 

@@ -1,3 +1,12 @@
+/**
+ * Die Klasse User enthält den Aufbau eines Spielers.
+ *
+ * Bugs: keine Bekannt
+ *
+ * @author       Adrian Immer
+ * @version      1.0
+ * @see also     MasterObject, Logik
+ */
 package objekte;
 
 import java.io.Serializable;

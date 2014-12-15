@@ -1,3 +1,14 @@
+/**
+ * Stellt optisch das Spielfeld dar. Enthält zudem Item- und Actionlistener mit den Funktionen der Buttons.
+ * Beim Ausspielen wird ZugVerifizieren aufgerufen. Falls Joker gespielt wird ebenso die Klasse JokerValues als
+ * JDialog.
+ *
+ * Bugs: keine Bekannt
+ *
+ * @author       Moritz Leimgrübler
+ * @version      1.0
+ * @see also     JokerValues, ZugVerifizieren
+ */
 package client;
 
 import java.awt.BorderLayout;

@@ -1,3 +1,14 @@
+/**
+ * Das Masterobjekt enthält alle Informationen welche im Spielverlauf hin und her geschickt werden. 
+ * Die sind zum einen eine Liste mit den Usern und Listen mit den Karten, nebst weiteren spielrelevanten
+ * Attributen.
+ *
+ * Bugs: keine Bekannt
+ *
+ * @author       Moritz Leimgrübler, Kevin Schenk, Adrian Immer
+ * @version      1.0
+ * @see also     User, Deck, Karte
+ */
 package objekte;
 
 import java.io.Serializable;
@@ -6,7 +17,7 @@ import java.util.ArrayList;
 
 public class MasterObject implements Serializable {
 
-	// Attributes
+	// Attribute
 	public ArrayList<User> users;
 	public Deck d;
 	public ArrayList<Karte> kartenPlayer1;

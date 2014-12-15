@@ -1,3 +1,13 @@
+/**
+ * Der ServerThread wartet jeweils auf empfangene Objekte des Clients und löst dementsprechend
+ * die Klasse Logik auf. Anschliessend wird MasterObjekt zurückgeschickt.
+ *
+ * Bugs: keine Bekannt
+ *
+ * @author       Moritz Leimgrübler
+ * @version      1.0
+ * @see also     Server, Logik
+ */
 package server;
 
 import java.io.DataInputStream;
@@ -138,15 +148,5 @@ public class ServerThread extends Thread {
 		}
 
 	}
-	
-// METHODE IST IM MASTEROBJEKT damit es funzt
-//	public static void neuRunde() {
-//		ArrayList<User> tmpUser = new ArrayList<User>();
-//		tmpUser = m.getUsers();
-//		m = null;
-//		m = new MasterObject(tmpUser);
-//		
-//		System.out.println("neuRunde(): Karten neu verteilt - neuVerteilt: " + m.isNeuVerteilt());
-//		
-//	}
+
 }

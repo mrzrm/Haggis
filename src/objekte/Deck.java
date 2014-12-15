@@ -1,3 +1,13 @@
+/**
+ * Diese Klasse erstellt ein Deck aus 36 Spielkarten, mischt sie und verteilt diese auf zwei Arrays.
+ * Die Arrays werden anschliessend sortiert. Ebenso werden je 3 Joker erstellt und verteilt.
+ *
+ * Bugs: keine Bekannt
+ *
+ * @author       Moritz Leimgrübler
+ * @version      1.0
+ * @see also     Karte, MasterObject
+ */
 package objekte;
 
 import java.io.Serializable;
@@ -9,7 +19,7 @@ import javax.swing.ImageIcon;
 
 import objekte.Karte;
 import client.Gui;
-import server.CustomComparator;
+import client.CustomComparator;
 
 public class Deck implements Serializable {
 

@@ -1,3 +1,12 @@
+/**
+ * Die Klasse Karte enthält den Aufbau einer Karte.
+ *
+ * Bugs: keine Bekannt
+ *
+ * @author       Moritz Leimgrübler
+ * @version      1.0
+ * @see also     Deck
+ */
 package objekte;
 
 import java.io.Serializable;

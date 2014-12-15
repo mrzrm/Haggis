@@ -1,8 +1,16 @@
+/**
+ * Diese Klasse enthält die Serveroberfläche als JFrame. Es erstellt zudem einen ServerThread zu jedem verbundenen
+ * Spieler.  
+ *
+ * Bugs: keine Bekannt
+ *
+ * @author       Moritz Leimgrübler
+ * @version      1.0
+ * @see also     User, Deck, Karte
+ */
 package server;
 
 import java.awt.BorderLayout;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
 import java.io.IOException;
 import java.net.ServerSocket;
 
@@ -57,8 +65,7 @@ public class Server extends JFrame {
 	/**
 	 * Methode welche auf die Serverkonsole schreibt.
 	 * 
-	 * @param s
-	 *            : Text der auf Serverkonsole ausgegeben werden soll.
+	 * @param s: Text der auf Serverkonsole ausgegeben werden soll.
 	 */
 	public static void display(String s) {
 

@@ -1,10 +1,19 @@
+/**
+ * Diese Klasse überprüft, ob der auszuspielende Zug erlaubt ist.
+ *
+ * Bugs: keine Bekannt
+ *
+ * @author       Adrian Immer, Kevin Schenk
+ * @version      1.0
+ * @see also     Gui, BombeVerifizieren
+ */
 package client;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 import objekte.Karte;
-import server.CustomComparator;
+import client.CustomComparator;
 
 public class ZugVerifizieren {
 
@@ -295,90 +304,7 @@ public class ZugVerifizieren {
 					return true;
 				}
 			}
-//			//----Bombe1------
-//			else if (Client.m.letzerZug == 8){
-//				if (zug.size() == 2 && zug.get(0).getWert() == 11 && zug.get(1).getWert() == 12){
-//					System.out.println("bombe2 gespielt");
-//					return true;
-//				}else if (zug.size() == 2 && zug.get(0).getWert() == 11 && zug.get(1).getWert() == 13){
-//					System.out.println("bombe3 gespielt");
-//					return true;
-//				}else if (zug.size() == 2 && zug.get(0).getWert() == 12 && zug.get(1).getWert() == 13){
-//					System.out.println("bombe4 gespielt");
-//					return true;
-//				}else if (zug.size() == 3 && zug.get(0).getWert() == 11 && zug.get(1).getWert() == 12 && zug.get(2).getWert() == 13){
-//					System.out.println("bombe5 gespielt");
-//					return true;
-//				}else if (zug.size() == 4 && zug.get(0).getWert() == 3 && zug.get(1).getWert() == 5 && zug.get(2).getWert() == 7 && zug.get(3).getWert() == 9
-//						&& zug.get(0).getFarbe() == zug.get(1).getFarbe() && zug.get(0).getFarbe() == zug.get(2).getFarbe() && zug.get(0).getFarbe() == zug.get(3).getFarbe()){
-//					System.out.println("bombe6 gespielt");
-//					return true;
-//				}else{
-//					return false;
-//				}
-//			}
-//			//----Bombe2------
-//			else if (Client.m.letzerZug == 9){
-//				if (zug.size() == 2 && zug.get(0).getWert() == 11 && zug.get(1).getWert() == 13){
-//					System.out.println("bombe3 gespielt");
-//					return true;
-//				}else if (zug.size() == 2 && zug.get(0).getWert() == 12 && zug.get(1).getWert() == 13){
-//					System.out.println("bombe4 gespielt");
-//					return true;
-//				}else if (zug.size() == 3 && zug.get(0).getWert() == 11 && zug.get(1).getWert() == 12 && zug.get(2).getWert() == 13){
-//					System.out.println("bombe5 gespielt");
-//					return true;
-//				}else if (zug.size() == 4 && zug.get(0).getWert() == 3 && zug.get(1).getWert() == 5 && zug.get(2).getWert() == 7 && zug.get(3).getWert() == 9
-//						&& zug.get(0).getFarbe() == zug.get(1).getFarbe() && zug.get(0).getFarbe() == zug.get(2).getFarbe() && zug.get(0).getFarbe() == zug.get(3).getFarbe()){
-//					System.out.println("bombe6 gespielt");
-//					return true;
-//				}else{
-//					return false;
-//				}
-//			}
-//			//----Bombe3------
-//			else if (Client.m.letzerZug == 10){
-//				if (zug.size() == 2 && zug.get(0).getWert() == 12 && zug.get(1).getWert() == 13){
-//					System.out.println("bombe4 gespielt");
-//					return true;
-//				}else if (zug.size() == 3 && zug.get(0).getWert() == 11 && zug.get(1).getWert() == 12 && zug.get(2).getWert() == 13){
-//					System.out.println("bombe5 gespielt");
-//					return true;
-//				}else if (zug.size() == 4 && zug.get(0).getWert() == 3 && zug.get(1).getWert() == 5 && zug.get(2).getWert() == 7 && zug.get(3).getWert() == 9
-//						&& zug.get(0).getFarbe() == zug.get(1).getFarbe() && zug.get(0).getFarbe() == zug.get(2).getFarbe() && zug.get(0).getFarbe() == zug.get(3).getFarbe()){
-//					System.out.println("bombe6 gespielt");
-//					return true;
-//				}else{
-//					return false;
-//				}
-//			}
-//			//----Bombe4------
-//			else if (Client.m.letzerZug == 11){
-//				if (zug.size() == 3 && zug.get(0).getWert() == 11 && zug.get(1).getWert() == 12 && zug.get(2).getWert() == 13){
-//					System.out.println("bombe5 gespielt");
-//					return true;
-//				}else if (zug.size() == 4 && zug.get(0).getWert() == 3 && zug.get(1).getWert() == 5 && zug.get(2).getWert() == 7 && zug.get(3).getWert() == 9
-//						&& zug.get(0).getFarbe() == zug.get(1).getFarbe() && zug.get(0).getFarbe() == zug.get(2).getFarbe() && zug.get(0).getFarbe() == zug.get(3).getFarbe()){
-//					System.out.println("bombe6 gespielt");
-//					return true;
-//				}else{
-//					return false;
-//				}
-//			}
-//			//----Bombe5------
-//			else if (Client.m.letzerZug == 12){
-//				if (zug.size() == 4 && zug.get(0).getWert() == 3 && zug.get(1).getWert() == 5 && zug.get(2).getWert() == 7 && zug.get(3).getWert() == 9
-//						&& zug.get(0).getFarbe() == zug.get(1).getFarbe() && zug.get(0).getFarbe() == zug.get(2).getFarbe() && zug.get(0).getFarbe() == zug.get(3).getFarbe()){
-//					System.out.println("bombe6 gespielt");
-//					return true;
-//				}else{
-//					return false;
-//				}
-//			}
-//
-//			else {
-//				return false;
-//			}
+
 		}
 		return false;
 	}

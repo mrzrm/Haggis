@@ -1,3 +1,14 @@
+/**
+ * Die Klasse Logik wird durch den ServerThread aufgerufen. Sie dient dazu die Spiellogik auf das Masterobjekt
+ * anzuwenden. Die Aktionen werden jeweils auf der Serverkonsole ausgegeben.  
+ *  
+ *
+ * Bugs: keine Bekannt
+ *
+ * @author       Kevin Schenk, Moritz Leimgrübler, Adrian Immer
+ * @version      1.0
+ * @see also     ServerThread, CustomComparator
+ */
 package server;
 
 import java.util.ArrayList;
@@ -156,18 +167,6 @@ public class Logik {
 				}
 
 			}
-
-			// // Testausgabe joker
-			// for (Karte k: m.kartenJoker1){
-			// if(k != null){
-			// System.out.println("Joker 1: Wert: " + k.getWert());
-			// }
-			// }
-			// for (Karte k: m.kartenJoker2){
-			// if(k != null){
-			// System.out.println("Joker 2: Wert: " + k.getWert());
-			// }
-			// }
 
 			// Den Spieler der am Zug ist wechseln
 			if (m.getAmZug() == 1) {

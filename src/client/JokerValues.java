@@ -1,3 +1,12 @@
+/**
+ * Dieser JDialog dient dazu, Jokerwerte (Farbe und Wert) zu bestimmen.
+ *
+ * Bugs: keine Bekannt
+ *
+ * @author       Moritz Leimgrübler
+ * @version      1.0
+ * @see also     Gui
+ */
 package client;
 
 import java.awt.BorderLayout;

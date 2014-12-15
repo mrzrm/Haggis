@@ -1,3 +1,12 @@
+/**
+ * Das Fenster dient zur Eingabe des Spielernamens. Spielernamen die mehr als 14 Zeichen enthalten sind nicht erlaubt.
+ *
+ * Bugs: keine Bekannt
+ *
+ * @author       Moritz Leimgrübler
+ * @version      1.0
+ * @see also     Client, Gui
+ */
 package client;
 
 import java.awt.BorderLayout;
