@@ -4,7 +4,7 @@
  *
  * Bugs: keine Bekannt
  *
- * @author       Moritz Leimgrübler
+ * @author       Moritz Leimgrübler, Adrian Immer
  * @version      1.0
  * @see also     Karte, MasterObject
  */

@@ -3,7 +3,7 @@
  *
  * Bugs: keine Bekannt
  *
- * @author       Moritz Leimgrübler, Kevin Schenk
+ * @author       Moritz Leimgrübler, Kevin Schenk, Adrian Immer
  * @version      1.0
  * @see also     Login, Gui
  */
