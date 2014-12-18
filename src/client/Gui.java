@@ -98,7 +98,7 @@ public class Gui extends JFrame {
 	public ImageIcon iidame = new ImageIcon(
 			Gui.class.getResource("/images/special/Dame.jpg"));
 	public ImageIcon iikoenig = new ImageIcon(
-			Gui.class.getResource("/images/special/König.jpg"));
+			Gui.class.getResource("/images/special/Koenig.jpg"));
 
 	// JButtons
 	public static JButton btnPassen;
