@@ -104,7 +104,7 @@ public class Deck implements Serializable {
 	public ImageIcon iiq1 = new ImageIcon(
 			Gui.class.getResource("/images/special/Dame.jpg"));
 	public ImageIcon iik1 = new ImageIcon(
-			Gui.class.getResource("/images/special/König.jpg"));
+			Gui.class.getResource("/images/special/Koenig.jpg"));
 
 	private Karte e02, e03, e04, e05, e06, e07, e08, e09, e10;
 	private Karte g02, g03, g04, g05, g06, g07, g08, g09, g10;
